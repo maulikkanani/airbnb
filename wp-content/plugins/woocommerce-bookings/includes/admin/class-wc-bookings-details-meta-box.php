@@ -52,6 +52,11 @@ class WC_Bookings_Details_Meta_Box {
 		if ( strtotime( $start_date ) && strtotime( $end_date ) && strtotime( $start_date ) > strtotime( $end_date ) ) {
 			echo '<div class="error"><p>' . __( 'This booking has an end date set before the start date.', 'woocommerce-bookings' ) . '</p></div>';
 		}
+
+		$product_check = get_product( $product_id );
+		if ( $product_check->is_skeleton() ) {
+			echo '<div class="error"><p>' . sprintf( __( 'This booking is missing a required add-on (product type: %s). Some information is shown below but might be incomplete. Please install the missing add-on through the plugins screen.', 'woocommerce-bookings' ), $product_check->product_type ) . '</p></div>';
+		}
 		?>
 		<style type="text/css">
 			#post-body-content, #titlediv, #major-publishing-actions, #minor-publishing-actions, #visibility, #submitdiv { display:none }
@@ -69,6 +74,9 @@ class WC_Bookings_Details_Meta_Box {
 					printf( ' ' . __( 'Order number: %s.', 'woocommerce-bookings' ), '<a href="' . admin_url( 'post.php?post=' . absint( $post->post_parent ) . '&action=edit' ) . '">#' . esc_html( $order->get_order_number() ) . '</a>' );
 				}
 
+				if ( $product->is_bookings_addon() ) {
+					printf( ' ' . __( 'Booking type: %s', 'woocommerce-bookings' ), $product->bookings_addon_title() );
+				}
 			?></p>
 
 			<div class="booking_data_column_container">
@@ -102,15 +110,8 @@ class WC_Bookings_Details_Meta_Box {
 					</p>
 
 					<?php
-						$statuses = array(
-							'unpaid'               => __( 'unpaid', 'woocommerce-bookings' ),
-							'in-cart'              => __( 'in-cart', 'woocommerce-bookings' ),
-							'pending-confirmation' => __( 'pending-confirmation', 'woocommerce-bookings' ),
-							'confirmed'            => __( 'confirmed', 'woocommerce-bookings' ),
-							'paid'                 => __( 'paid', 'woocommerce-bookings' ),
-							'cancelled'            => __( 'cancelled', 'woocommerce-bookings' ),
-							'complete'             => __( 'complete', 'woocommerce-bookings' )
-						);
+						$statuses = array_unique( array_merge( get_wc_booking_statuses(), get_wc_booking_statuses( 'user' ), get_wc_booking_statuses( 'cancel') ) );
+						$statuses = $this->get_labels_for_statuses( $statuses );
 					?>
 
 					<p class="form-field form-field-wide">
@@ -330,6 +331,19 @@ class WC_Bookings_Details_Meta_Box {
 			" );
 	}
 
+	/**
+	 * Returns an array of labels (statuses wrapped in gettext)
+	 * @param  array  $statuses
+	 * @return array
+	 */
+	public function get_labels_for_statuses( $statuses = array() ) {
+		$labels = array();
+		foreach ( $statuses as $status ) {
+			$labels[ $status ] = __( $status, 'woocommerce-bookings' );
+		}
+		return $labels;
+	}
+
 	public function meta_box_save( $post_id ) {
 		if ( ! isset( $_POST['wc_bookings_details_meta_box_nonce'] ) || ! wp_verify_nonce( $_POST['wc_bookings_details_meta_box_nonce'], 'wc_bookings_details_meta_box' ) ) {
 			return $post_id;
@@ -365,7 +379,7 @@ class WC_Bookings_Details_Meta_Box {
 
 		// Note in the order
 		if ( $booking_order_id && function_exists( 'wc_get_order' ) && ( $order = wc_get_order( $booking_order_id ) ) ) {
-			$order->add_order_note( sprintf( __( 'Booking #%d status changed manually from "%s" to "%s', 'woocommerce-bookings' ), $post_id, $old_status, $booking_status ) );
+			$order->add_order_note( sprintf( __( 'Booking #%d status changed manually from "%s" to "%s"', 'woocommerce-bookings' ), $post_id, $old_status, $booking_status ) );
 		}
 
 		// Save product and resource
@@ -432,7 +446,7 @@ class WC_Bookings_Details_Meta_Box {
 		if ( ! empty( $order ) && $booking_order_id ) {
 			// Update order metas
 			foreach ( $order->get_items() as $item_id => $item ) {
-				if ( 'line_item' != $item['type'] || ! in_array( $product_id, $item['item_meta']['_product_id'] ) ) {
+				if ( 'line_item' != $item['type'] || ( isset( $item['item_meta'][ __( 'Booking ID', 'woocommerce-bookings' ) ] ) && is_array( $item['item_meta'][ __( 'Booking ID', 'woocommerce-bookings' ) ] ) && ! in_array( $post_id, $item['item_meta'][ __( 'Booking ID', 'woocommerce-bookings' ) ] ) ) ) {
 					continue;
 				}
 
@@ -440,7 +454,7 @@ class WC_Bookings_Details_Meta_Box {
 				$is_all_day = isset( $_POST['_booking_all_day'] ) && $_POST['_booking_all_day'] == 'yes';
 
 				if ( ! metadata_exists( 'order_item', $item_id, __( 'Booking ID', 'woocommerce-bookings' ) ) ) {
-					wc_add_order_item_meta( $item_id, __( 'Booking ID', 'woocommerce-bookings' ), intval( $booking_order_id ) );
+					wc_add_order_item_meta( $item_id, __( 'Booking ID', 'woocommerce-bookings' ), intval( $post_id ) );
 				}
 
 				// Update date

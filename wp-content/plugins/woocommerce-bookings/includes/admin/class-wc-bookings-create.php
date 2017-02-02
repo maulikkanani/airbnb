@@ -135,7 +135,7 @@ class WC_Bookings_Create {
 
 				// Create the booking itself
 				$new_booking = get_wc_booking( $new_booking_data );
-				$new_booking ->create( $create_order ? 'unpaid' : 'pending-confirmation' );
+				$new_booking ->create( $create_order ? 'unpaid' : 'confirmed' );
 
 				wp_safe_redirect( admin_url( 'post.php?post=' . ( $create_order ? $order_id : $new_booking->id ) . '&action=edit' ) );
 				exit;

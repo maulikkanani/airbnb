@@ -20,6 +20,23 @@ function wc_booking_sanitize_time( $raw_time ) {
 }
 
 /**
+ * Returns true if the product is a booking product, false if not
+ * @return bool
+ */
+function is_wc_booking_product( $product ) {
+	if ( empty( $product->product_type ) ) {
+		return false;
+	}
+
+	$booking_product_types = apply_filters( 'woocommerce_bookings_product_types', array( 'booking' ) );
+	if ( in_array( $product->product_type, $booking_product_types ) ) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
  * Convert key to a nice readable label
  * @param  string $key
  * @return string
@@ -33,7 +50,7 @@ function get_wc_booking_data_label( $key, $product ) {
 			'persons'  => __( 'Person(s)', 'woocommerce-bookings' )
 	) );
 
-	if ( ! in_array( $key, $labels ) ) {
+	if ( ! array_key_exists( $key, $labels ) ) {
 		return $key;
 	}
 
@@ -60,6 +77,10 @@ function get_wc_booking_statuses( $context = 'fully_booked' ) {
 			'unpaid',
 			'pending-confirmation',
 			'confirmed',
+			'paid',
+		) );
+	} else if ( 'scheduled' === $context ) {
+		return apply_filters( 'woocommerce_bookings_scheduled_statuses', array(
 			'paid',
 		) );
 	} else {
@@ -170,7 +191,7 @@ function wc_booking_requires_confirmation( $id ) {
 
 	if (
 		is_object( $product )
-		&& 'booking' == $product->product_type
+		&& is_wc_booking_product( $product )
 		&& $product->requires_confirmation()
 	) {
 		return true;
@@ -187,10 +208,12 @@ function wc_booking_requires_confirmation( $id ) {
 function wc_booking_cart_requires_confirmation() {
 	$requires = false;
 
-	foreach ( WC()->cart->cart_contents as $item ) {
-		if ( wc_booking_requires_confirmation( $item['product_id'] ) ) {
-			$requires = true;
-			break;
+	if ( ! empty ( WC()->cart->cart_contents ) ) {
+		foreach ( WC()->cart->cart_contents as $item ) {
+			if ( wc_booking_requires_confirmation( $item['product_id'] ) ) {
+				$requires = true;
+				break;
+			}
 		}
 	}
 

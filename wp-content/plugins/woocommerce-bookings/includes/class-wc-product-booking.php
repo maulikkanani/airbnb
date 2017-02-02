@@ -13,8 +13,35 @@ class WC_Product_Booking extends WC_Product {
 	 * Constructor
 	 */
 	public function __construct( $product ) {
-		$this->product_type = 'booking';
+		if ( empty ( $this->product_type ) ) {
+			$this->product_type = 'booking';
+		}
+
 		parent::__construct( $product );
+	}
+
+	/**
+	 * If this product class is a skelton/place holder class (used for booking addons)
+	 * @return boolean
+	 */
+	public function is_skeleton() {
+		return false;
+	}
+
+	/**
+	 * If this product class is an addon for bookings
+	 * @return boolean
+	 */
+	public function is_bookings_addon() {
+		return false;
+	}
+
+	/**
+	 * Extension/plugin/add-on name for the booking addon this product refers to
+	 * @return string
+	 */
+	public function bookings_addon_title() {
+		return '';
 	}
 
 	/**
@@ -686,7 +713,7 @@ class WC_Product_Booking extends WC_Product {
 		$day         = absint( date( 'd', $check_date ) );
 		$day_of_week = absint( date( 'N', $check_date ) );
 		$week        = absint( date( 'W', $check_date ) );
-		$bookable    = $this->get_default_availability();
+		$bookable    = $default_availability = $this->get_default_availability();
 
 		foreach ( $this->get_availability_rules( $resource_id ) as $rule ) {
 			$type  = $rule[0];
@@ -717,6 +744,25 @@ class WC_Product_Booking extends WC_Product {
 						break 2;
 					}
 				break;
+				case 'time':
+				case 'time:1':
+				case 'time:2':
+				case 'time:3':
+				case 'time:4':
+				case 'time:5':
+				case 'time:6':
+				case 'time:7':
+					if ( false === $default_availability && ( $day_of_week === $rules['day'] || 0 === $rules['day'] ) ) {
+						$bookable = $rules['rule'];
+						break 2;
+					}
+				break;
+				case 'time:range':
+					if ( false === $default_availability && ( isset( $rules[ $year ][ $month ][ $day ] ) ) ) {
+						$bookable = $rules[ $year ][ $month ][ $day ]['rule'];
+						break 2;
+					}
+				break;
 			}
 		}
 
@@ -739,36 +785,55 @@ class WC_Product_Booking extends WC_Product {
 			$rules = $rule[1];
 
 			if ( strrpos( $type, 'time' ) === 0 ) {
-				if ( ! empty( $rules['day'] ) ) {
-					if ( $rules['day'] != date( 'N', $start_time ) ) {
+
+				if ( 'time:range' === $type ) {
+					$year = date( 'Y', $start_time );
+					$month = date( 'n', $start_time );
+					$day = date( 'j', $start_time );
+
+					if ( ! isset( $rules[ $year ][ $month ][ $day ] ) ) {
 						continue;
 					}
+
+					$rule_val = $rules[ $year ][ $month ][ $day ]['rule'];
+					$from     = $rules[ $year ][ $month ][ $day ]['from'];
+					$to       = $rules[ $year ][ $month ][ $day ]['to'];
+				} else {
+					if ( ! empty( $rules['day'] ) ) {
+						if ( $rules['day'] != date( 'N', $start_time ) ) {
+							continue;
+						}
+					}
+
+					$rule_val = $rules['rule'];
+					$from     = $rules['from'];
+					$to       = $rules['to'];
 				}
 
 				$start_time_hi      = date( 'YmdHis', $start_time );
 				$end_time_hi        = date( 'YmdHis', $end_time );
-				$rule_start_time_hi = date( 'YmdHis', strtotime( $rules['from'], $start_time ) );
-				$rule_end_time_hi   = date( 'YmdHis', strtotime( $rules['to'], $start_time ) );
+				$rule_start_time_hi = date( 'YmdHis', strtotime( $from, $start_time ) );
+				$rule_end_time_hi   = date( 'YmdHis', strtotime( $to, $start_time ) );
 
 				// Reverse time rule - The end time is tomorrow e.g. 16:00 today - 12:00 tomorrow
 				if ( $rule_end_time_hi <= $rule_start_time_hi ) {
 					if ( $end_time_hi > $rule_start_time_hi ) {
-						$bookable = $rules['rule'];
+						$bookable = $rule_val;
 						break;
 					}
 					if ( $start_time_hi >= $rule_start_time_hi && $end_time_hi >= $rule_end_time_hi ) {
-						$bookable = $rules['rule'];
+						$bookable = $rule_val;
 						break;
 					}
 					if ( $start_time_hi <= $rule_start_time_hi && $end_time_hi <= $rule_end_time_hi ) {
-						$bookable = $rules['rule'];
+						$bookable = $rule_val;
 						break;
 					}
 
 				// Normal rule
 				} else {
 					if ( $start_time_hi >= $rule_start_time_hi && $end_time_hi <= $rule_end_time_hi ) {
-						$bookable = $rules['rule'];
+						$bookable = $rule_val;
 						break;
 					}
 				}
@@ -788,19 +853,23 @@ class WC_Product_Booking extends WC_Product {
 			$intervals        = array( $default_interval, $default_interval );
 		}
 
+		// If exists always treat booking_period in minutes.
 		$buffer_period = get_post_meta( $this->id, '_wc_booking_buffer_period', true );
+		if ( ! empty( $buffer_period ) && 'hour' === $this->get_duration_unit() ) {
+			$buffer_period = $buffer_period * 60;
+		}
 
 		list( $interval, $base_interval ) = $intervals;
 
 		$blocks = array();
 
 		// For day, minute and hour blocks we need to loop through each day in the range
-		if ( in_array( $this->get_duration_unit(), array( 'day', 'minute', 'hour' ) ) ) {
+		if ( in_array( $this->get_duration_unit(), array( 'night', 'day', 'minute', 'hour' ) ) ) {
 			$check_date = $start_date;
 
 			// <= fixes https://github.com/woothemes/woocommerce-bookings/issues/325
 			while ( $check_date <= $end_date ) {
-				if ( in_array( $this->get_duration_unit(), array( 'day' ) ) && ! $this->check_availability_rules_against_date( $check_date, $resource_id ) ) {
+				if ( in_array( $this->get_duration_unit(), array( 'day', 'night' ) ) && ! $this->check_availability_rules_against_date( $check_date, $resource_id ) ) {
 					$check_date = strtotime( "+1 day", $check_date );
 					continue;
 				}
@@ -822,20 +891,40 @@ class WC_Product_Booking extends WC_Product {
 
 					foreach ( $rules as $rule ) {
 						$type  = $rule[0];
-						$rules = $rule[1];
+						$_rules = $rule[1];
 
 						if ( strrpos( $type, 'time' ) === 0 ) {
-							$day_mod = 0;
-							if ( ! empty( $rules['day'] ) ) {
-								if ( $rules['day'] != date( 'N', $check_date ) ) {
-									$day_mod = 1440 * ( $rules['day'] - date( 'N', $check_date ) );
+
+							if ( 'time:range' === $type ) {
+								$year = date( 'Y', $check_date );
+								$month = date( 'n', $check_date );
+								$day = date( 'j', $check_date );
+
+								if ( ! isset( $_rules[ $year ][ $month ][ $day ] ) ) {
+									continue;
 								}
+
+								$day_mod = 0;
+								$from = $_rules[ $year ][ $month ][ $day ]['from'];
+								$to   = $_rules[ $year ][ $month ][ $day ]['to'];
+								$rule_val = $_rules[ $year ][ $month ][ $day ]['rule'];
+							} else {
+								$day_mod = 0;
+								if ( ! empty( $_rules['day'] ) ) {
+									if ( $_rules['day'] != date( 'N', $check_date ) ) {
+										$day_mod = 1440 * ( $_rules['day'] - date( 'N', $check_date ) );
+									}
+								}
+
+								$from     = $_rules['from'];
+								$to       = $_rules['to'];
+								$rule_val = $_rules['rule'];
 							}
 
-							$from_hour    = absint( date( 'H', strtotime( $rules['from'] ) ) );
-							$from_min     = absint( date( 'i', strtotime( $rules['from'] ) ) );
-							$to_hour      = absint( date( 'H', strtotime( $rules['to'] ) ) );
-							$to_min       = absint( date( 'i', strtotime( $rules['to'] ) ) );
+							$from_hour    = absint( date( 'H', strtotime( $from ) ) );
+							$from_min     = absint( date( 'i', strtotime( $from ) ) );
+							$to_hour      = absint( date( 'H', strtotime( $to ) ) );
+							$to_min       = absint( date( 'i', strtotime( $to ) ) );
 
 							// If "to" is set to midnight, it is safe to assume they mean the end of the day
 							// php wraps 24 hours to "12AM the next day"
@@ -854,7 +943,7 @@ class WC_Product_Booking extends WC_Product {
 							}
 
 							foreach ( $merge_ranges as $range ) {
-								if ( $bookable = $rules['rule'] ) {
+								if ( $bookable = $rule_val ) {
 									// If this time range is bookable, add to bookable minutes
 									$bookable_minutes = array_merge( $bookable_minutes, range( $range[0], $range[1] ) );
 								} else {
@@ -887,6 +976,21 @@ class WC_Product_Booking extends WC_Product {
 						}
 					}
 
+					/**
+					 * Find blocks that don't span any amount of time (same start + end)
+					 */
+					foreach ( $bookable_minute_blocks as $key => $bookable_minute_block ) {
+						if ( $bookable_minute_block[0] === $bookable_minute_block[1] ) {
+							$keys_to_remove[] = $key; // track which blocks need removed
+						}
+					}
+					// Remove all of our blocks
+					if ( ! empty ( $keys_to_remove ) ) {
+						foreach ( $keys_to_remove as $key ) {
+							unset( $bookable_minute_blocks[ $key ] );
+						}
+					}
+
 					// Create an array of already booked blocks
 					$booked_blocks = array();
 
@@ -903,7 +1007,6 @@ class WC_Product_Booking extends WC_Product {
 						$time_block_start        = strtotime( "midnight +{$time_block[0]} minutes", $check_date );
 						$minutes_in_block        = $time_block[1] - $time_block[0];
 						$base_intervals_in_block = floor( $minutes_in_block / $base_interval );
-
 						for ( $i = 0; $i < $base_intervals_in_block; $i ++ ) {
 							$from_interval = $i * $base_interval;
 							$start_time    = strtotime( "+{$from_interval} minutes", $time_block_start );
@@ -911,28 +1014,20 @@ class WC_Product_Booking extends WC_Product {
 							// Buffer time calculation
 							// we don't need to do this on the first set of minutes
 							if ( $i > 0 && ! empty ( $buffer_period ) ) {
-								if ( 'minute' === $this->get_duration_unit() ) {
-									$total_time = $from_interval + ( $buffer_period * $i );
-									$multiplier = 60;
-								} else {
-									$total_time = $from_interval + ( $buffer_period * $i );
-									$multiplier = 360;
-								}
-
-								$start_time    = strtotime( "+{$total_time} minutes", $time_block_start );
-								$end = strtotime( "midnight +{$time_block[1]} minutes", $check_date );
+								$total_time = $from_interval + ( $buffer_period * $i );
+								$start_time = strtotime( "+{$total_time} minutes", $time_block_start );
+								$end        = strtotime( "midnight +{$time_block[1]} minutes", $check_date );
 
 								if ( $start_time >= $end ) {
 									break;
 								}
 
-								if ( $i == ( $base_intervals_in_block - 1 ) ) {
-									$end_of_last = $start_time + ( $interval * $multiplier );
+								if ( $i === ( $base_intervals_in_block - 1 ) ) {
+									$end_of_last = $start_time + ( $interval * 60 );
 									if ( ! empty( $rules ) && $end_of_last > $end ) {
 										break;
 									}
 								}
-
 							}
 
 							// Break if start time is after the end date being calced
@@ -962,8 +1057,13 @@ class WC_Product_Booking extends WC_Product {
 							/**
 							 * Ensure block can fit the entire user set interval
 							 */
-							$to_interval         = $from_interval + $interval;
-							$end_time            = strtotime( "+{$to_interval} minutes", $time_block_start );
+							if ( $i > 0 && ! empty( $buffer_period ) ) {
+								$to_interval = $from_interval + ( $buffer_period * $i ) + $interval;
+							} else {
+								$to_interval = $from_interval + $interval;
+							}
+							$end_time = strtotime( "+{$to_interval} minutes", $time_block_start );
+
 							$time_block_end_time = strtotime( "midnight +{$time_block[1]} minutes", $check_date );
 							$loop_time           = $start_time;
 
@@ -1039,9 +1139,13 @@ class WC_Product_Booking extends WC_Product {
 		}
 
 		list( $interval, $base_interval ) = $intervals;
-
 		$available_blocks   = array();
-		$start_date         = current( $blocks );
+		if ( empty ( $from ) ) {
+			$start_date = current( $blocks );
+		} else {
+			$start_date = $from;
+		}
+
 		$end_date           = end( $blocks );
 		$base_interval_unit = in_array( $this->get_duration_unit(), array( 'hour', 'minute' ) ) ? 'mins' : $this->get_duration_unit();
 
@@ -1107,7 +1211,19 @@ class WC_Product_Booking extends WC_Product {
 			$available_blocks = $time_blocks;
 		}
 
-		return $available_blocks;
+		/**
+		 * Filter the available blocks for a product within a given range
+		 *
+		 * @since 1.9.8 introduced
+		 *
+		 * @param array $available_blocks
+		 * @param WC_Product $bookings_product
+		 * @param array $raw_range passed into this function.
+		 * @param array $intervals
+		 * @param integer $resource_id
+		 */
+		return apply_filters( 'wc_bookings_product_get_available_blocks', $available_blocks, $this, $blocks, $intervals, $resource_id );
+
 	}
 
 	/**
@@ -1132,15 +1248,45 @@ class WC_Product_Booking extends WC_Product {
 		$block_html        = '';
 
 		foreach ( $blocks as $block ) {
-			$available_qty       = $this->has_resources() && $booking_resource && $booking_resource->has_qty() ? $booking_resource->get_qty() : $this->get_qty();
+
+			// Figure out how much qty have, either based on combined resource quantity,
+			// single resource, or just product.
+			if ( $this->has_resources() && ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) ) {
+
+				$available_qty = 0;
+
+				foreach ( $this->get_resources() as $resource ) {
+
+					// Only include if it is available for this selection.
+					if ( ! $this->check_availability_rules_against_date( $from, $resource->get_id() ) ) {
+						continue;
+					}
+
+					$available_qty += $resource->get_qty();
+				}
+
+			} else if ( $this->has_resources() && $booking_resource && $booking_resource->has_qty() ) {
+
+				$available_qty = $booking_resource->get_qty();
+
+			} else {
+
+				$available_qty = $this->get_qty();
+
+			}
+
 			$qty_booked_in_block = 0;
 
 			foreach ( $existing_bookings as $existing_booking ) {
 				if ( $existing_booking->is_within_block( $block, strtotime( "+{$interval} minutes", $block ) ) ) {
 					$qty_to_add = $this->has_person_qty_multiplier() ? max( 1, array_sum( $existing_booking->get_persons() ) ) : 1;
-
 					if ( $this->has_resources() ) {
-						if ( $existing_booking->get_resource_id() === absint( $resource_id ) || ( ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) && $existing_booking->get_resource() && ! $existing_booking->get_resource()->has_qty() ) ) {
+						if ( $existing_booking->get_resource_id() === absint( $resource_id ) ) {
+							// Include the quantity to subtract if an existing booking matches the selected resource id
+							$qty_booked_in_block += $qty_to_add;
+						} else if ( ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) && $existing_booking->get_resource() ) {
+							// Include the quantity to subtract if the resource is auto selected (null/resource id empty)
+							// but the existing booking includes a resource
 							$qty_booked_in_block += $qty_to_add;
 						}
 					} else {

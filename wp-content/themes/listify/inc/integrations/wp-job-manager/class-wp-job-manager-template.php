@@ -228,6 +228,7 @@ class Listify_WP_Job_Manager_Template extends listify_Integration {
             'home-tabbed-listings.php',
             'home-taxonomy-image-grid.php',
             'home-map-listings.php'
+           // 'home-chicago-listings.php'
         );
 
         foreach ( $widgets as $widget ) {
@@ -253,6 +254,7 @@ class Listify_WP_Job_Manager_Template extends listify_Integration {
         register_widget( 'Listify_Widget_Map_Listings' );
 		register_widget( 'Listify_Widget_Tabbed_Listings' );
 		register_widget( 'Listify_Widget_Term_Lists' );
+             //   register_widget( 'Listify_Widget_Chicago_Listings' );
 
         unregister_widget( 'WP_Job_Manager_Widget_Recent_Jobs' );
         unregister_widget( 'WP_Job_Manager_Widget_Featured_Jobs' );

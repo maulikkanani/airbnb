@@ -45,6 +45,7 @@ class WC_Booking_Order_Manager {
 		add_action( "updated_post_meta", array( $this, 'updated_post_meta' ), 10, 4 );
 		add_action( "added_post_meta", array( $this, 'updated_post_meta' ), 10, 4 );
 		add_action( 'woocommerce_booking_in-cart_to_unpaid', array( $this, 'attach_new_user' ), 10, 1 );
+		add_action( 'woocommerce_booking_in-cart_to_pending-confirmation', array( $this, 'attach_new_user' ), 10, 1 );
 	}
 
 	/**

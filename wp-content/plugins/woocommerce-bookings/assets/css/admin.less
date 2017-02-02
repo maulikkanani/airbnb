@@ -22,6 +22,7 @@
 // Products list icon
 table.wp-list-table span.product-type.booking:before {
 	content: '\e00e';
+	font-family: 'woocommerce' !important;
 }
 
 
@@ -33,6 +34,7 @@ table.wp-list-table span.product-type.booking:before {
 			a {
 				&:before {
 					content: '\e027' !important;
+					font-family: 'woocommerce' !important;
 				}
 			}
 		}
@@ -40,6 +42,7 @@ table.wp-list-table span.product-type.booking:before {
 			a {
 				&:before {
 					content: '\e00e' !important;
+					font-family: 'woocommerce' !important;
 				}
 			}
 		}
@@ -47,6 +50,7 @@ table.wp-list-table span.product-type.booking:before {
 			a {
 				&:before {
 					content: '\e01e' !important;
+					font-family: 'woocommerce' !important;
 				}
 			}
 		}
@@ -54,6 +58,7 @@ table.wp-list-table span.product-type.booking:before {
 			a {
 				&:before {
 					content: '\e026' !important;
+					font-family: 'woocommerce' !important;
 				}
 			}
 		}
@@ -508,12 +513,12 @@ th.column-booking_status {
 }
 
 // Bookings data
-#bookings_product_data, #bookings_availability, #bookings_pricing {
+#bookings_product_data, #bookings_availability, #bookings_pricing, .bookings_extension {
 	.table_grid {
 		padding: 9px 9px 0;
 	}
 }
-#bookings_product_data, #bookings_persons, #bookings_availability, #bookings_pricing, #bookings_settings, #bookings_resources {
+#bookings_product_data, #bookings_persons, #bookings_availability, #bookings_pricing, #bookings_settings, #bookings_resources, .bookings_extension {
 	.options_group_heading {
 		background: #ececec;
 		border-bottom: 1px solid #dfdfdf;
@@ -653,8 +658,52 @@ th.column-booking_status {
 	}
 }
 
+#bookings_persons {
+	.woocommerce_bookable_persons {
+		h4 {
+			padding: 0px 0px 0px 15px;
+		}
+	}
+}
+
+.toolbar_links {
+	float: right;
+}
+
+.toolbar_links a {
+	margin-left: 15px;
+}
+
 #bookings_settings {
 	.hndle {
 		cursor: default;
 	}
+}
+
+.wc_booking_availability_type select, .wc_booking_pricing_type select {
+	white-space: pre-line;
+	height: 100%;
+}
+
+.bookings-datetime-select-both .from_time,
+.bookings-datetime-select-both .to_time {
+	margin-top: 1em;
+}
+
+.bookings-datetime-select-from select, .bookings-datetime-select-to input, .bookings-datetime-select-from input, .bookings-datetime-select-to select {
+	border: 1px solid #ccc !important;
+	border-radius: 5px !important;
+}
+
+.bookings-to-label-row p {
+	padding: 0 !important;
+	margin-top: .5em !important;
+}
+
+.bookings-to-label-row .bookings-datetimerange-second-label {
+	margin-top: 2em !important;
+}
+
+.hide_initial_booking_addon_options {
+	display: none;
 }

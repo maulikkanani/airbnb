@@ -45,7 +45,8 @@ class WC_Booking_Form {
 			'firstDay'                   => get_option( 'start_of_week' ),
 			'current_time'               => date( 'Ymd', current_time( 'timestamp' ) ),
 			'check_availability_against' => $this->product->wc_booking_check_availability_against,
-			'duration_unit'              => $this->product->wc_booking_duration_unit
+			'duration_unit'              => $this->product->wc_booking_duration_unit,
+			'resources_assignment'       => $this->product->wc_booking_resources_assignment,
 		);
 
 		if ( in_array( $this->product->wc_booking_duration_unit, array( 'minute', 'hour' ) ) ) {
@@ -71,7 +72,7 @@ class WC_Booking_Form {
 
 		// Variables for JS scripts
 		$booking_form_params = array(
-			'ajax_url'                   => WC()->ajax_url(),
+			'ajax_url'                   => admin_url( 'admin-ajax.php' ),
 			'i18n_date_unavailable'      => __( 'This date is unavailable', 'woocommerce-bookings' ),
 			'i18n_date_fully_booked'     => __( 'This date is fully booked and unavailable', 'woocommerce-bookings' ),
 			'i18n_date_partially_booked' => __( 'This date is partially booked - but bookings still remain', 'woocommerce-bookings' ),
@@ -146,6 +147,13 @@ class WC_Booking_Form {
 						}
 					}
 					break;
+				case 'night' :
+						if ( $this->product->wc_booking_duration > 1 ) {
+								$after = sprintf( __( '&times; %s nights', 'woocommerce-bookings' ), $this->product->wc_booking_duration );
+						} else {
+							$after = __( 'Nights(s)', 'woocommerce-bookings' );
+						}
+						break;
 				case 'hour' :
 					if ( $this->product->wc_booking_duration > 1 ) {
 						$after = sprintf( __( '&times; %s hours', 'woocommerce-bookings' ), $this->product->wc_booking_duration );
@@ -238,6 +246,9 @@ class WC_Booking_Form {
 						case 'day' :
 							$additional_cost[] = sprintf( __( '+%s per day', 'woocommerce-bookings' ), wc_price( $resource->get_block_cost() + $this->product->wc_booking_base_cost ) );
 							break;
+						case 'night' :
+							$additional_cost[] = sprintf( __( '+%s per night', 'woocommerce-bookings' ), wc_price( $resource->get_block_cost() + $this->product->wc_booking_base_cost ) );
+							break;
 						default :
 							$additional_cost[] = sprintf( __( '+%s per block', 'woocommerce-bookings' ), wc_price( $resource->get_block_cost() + $this->product->wc_booking_base_cost ) );
 							break;
@@ -245,7 +256,7 @@ class WC_Booking_Form {
 				}
 
 				if ( $additional_cost ) {
-					$additional_cost_string = ' (' . implode( ', +', $additional_cost ) . ')';
+					$additional_cost_string = ' (' . implode( ', ', $additional_cost ) . ')';
 				} else {
 					$additional_cost_string = '';
 				}
@@ -276,6 +287,7 @@ class WC_Booking_Form {
 				$picker = new WC_Booking_Form_Month_Picker( $this );
 				break;
 			case 'day' :
+			case 'night' :
 				include_once( 'class-wc-booking-form-date-picker.php' );
 				$picker = new WC_Booking_Form_Date_Picker( $this );
 				break;
@@ -431,6 +443,9 @@ class WC_Booking_Form {
 				case 'minute' :
 					$data['duration'] = $total_duration . ' ' . _n( 'minute', 'minutes', $total_duration, 'woocommerce-bookings' );
 					break;
+				case 'night' :
+					$data['duration'] = $total_duration . ' ' . _n( 'night', 'nights', $total_duration, 'woocommerce-bookings' );
+					break;
 				default :
 					$data['duration'] = $total_duration;
 					break;
@@ -446,6 +461,10 @@ class WC_Booking_Form {
 		if ( ! empty( $data['_time'] ) ) {
 			$data['_start_date'] = strtotime( "{$data['_year']}-{$data['_month']}-{$data['_day']} {$data['_time']}" );
 			$data['_end_date']   = strtotime( "+{$total_duration} {$booking_duration_unit}", $data['_start_date'] );
+			$data['_all_day']    = 0;
+		} else if ( 'night' === $this->product->get_duration_unit() ) {
+			$data['_start_date'] = strtotime( "{$data['_year']}-{$data['_month']}-{$data['_day']}" );
+			$data['_end_date']   = strtotime( "+{$total_duration} day", $data['_start_date'] );
 			$data['_all_day']    = 0;
 		} else {
 			$data['_start_date'] = strtotime( "{$data['_year']}-{$data['_month']}-{$data['_day']}" );
@@ -706,6 +725,7 @@ class WC_Booking_Form {
 			}
 		}
 
+		$override_blocks = array();
 		// Evaluate costs for each booked block
 		for ( $block = 0; $block < $blocks_booked; $block ++ ) {
 			$block_cost              = $base_block_cost + $person_block_costs;
@@ -713,6 +733,11 @@ class WC_Booking_Form {
 			$block_end_time_offset   = ( $block + 1 ) * $block_duration;
 			$block_start_time        = $this->get_formatted_times( strtotime( "+{$block_start_time_offset} {$block_unit}", $block_timestamp ) );
 			$block_end_time          = $this->get_formatted_times( strtotime( "+{$block_end_time_offset} {$block_unit}", $block_timestamp ) );
+
+			if ( in_array( $this->product->get_duration_unit(), array( 'night' ) ) ) {
+				$block_start_time        = $this->get_formatted_times( strtotime( "+{$block_start_time_offset} day", $block_timestamp ) );
+				$block_end_time = $this->get_formatted_times( strtotime( "+{$block_end_time_offset} day", $block_timestamp ) );
+			}
 
 			foreach ( $costs as $rule_key => $rule ) {
 				$type  = $rule[0];
@@ -722,13 +747,33 @@ class WC_Booking_Form {
 					if ( ! in_array( $this->product->get_duration_unit(), array( 'minute', 'hour' ) ) ) {
 						continue;
 					}
-					if ( ! empty( $rules['day'] ) ) {
-						if ( $rules['day'] != $block_start_time['day_of_week'] ) {
+
+					if ( 'time:range' === $type ) {
+						$year = date( 'Y', $block_start_time['timestamp'] );
+						$month = date( 'n', $block_start_time['timestamp'] );
+						$day = date( 'j', $block_start_time['timestamp'] );
+
+						if ( ! isset( $rules[ $year ][ $month ][ $day ] ) ) {
 							continue;
 						}
+
+						$rule_val = $rules[ $year ][ $month ][ $day ]['rule'];
+						$from     = $rules[ $year ][ $month ][ $day ]['from'];
+						$to       = $rules[ $year ][ $month ][ $day ]['to'];
+					} else {
+						if ( ! empty( $rules['day'] ) ) {
+							if ( $rules['day'] != $block_start_time['day_of_week'] ) {
+								continue;
+							}
+						}
+
+						$rule_val = $rules['rule'];
+						$from     = $rules['from'];
+						$to       = $rules['to'];
 					}
-					$rule_start_time_hi = date( "YmdHi", strtotime( str_replace( ':', '', $rules['from'] ), $block_start_time['timestamp'] ) );
-					$rule_end_time_hi   = date( "YmdHi", strtotime( str_replace( ':', '', $rules['to'] ), $block_start_time['timestamp'] ) );
+
+					$rule_start_time_hi = date( "YmdHi", strtotime( str_replace( ':', '', $from ), $block_start_time['timestamp'] ) );
+					$rule_end_time_hi   = date( "YmdHi", strtotime( str_replace( ':', '', $to ), $block_start_time['timestamp'] ) );
 					$matched            = false;
 
 					// Reverse time rule - The end time is tomorrow e.g. 16:00 today - 12:00 tomorrow
@@ -752,8 +797,8 @@ class WC_Booking_Form {
 					}
 
 					if ( $matched ) {
-						$block_cost = $this->apply_cost( $block_cost, $rules['rule']['block'][0], $rules['rule']['block'][1] );
-						$base_cost  = $this->apply_base_cost( $base_cost, $rules['rule']['base'][0], $rules['rule']['base'][1], $rule_key );
+						$block_cost = $this->apply_cost( $block_cost, $rule_val['block'][0], $rule_val['block'][1] );
+						$base_cost  = $this->apply_base_cost( $base_cost, $rule_val['base'][0], $rule_val['base'][1], $rule_key );
 					}
 				} else {
 					switch ( $type ) {
@@ -766,10 +811,21 @@ class WC_Booking_Form {
 								$checking_date = $this->get_formatted_times( $check_date );
 								$date_key      = $type == 'days' ? 'day_of_week' : substr( $type, 0, -1 );
 
+								// cater to months beyond this year
+								if ( 'month' === $date_key && intval( $checking_date['year'] ) > intval( date( 'Y' ) ) ) {
+
+									$month_beyond_this_year = intval( $checking_date['month'] ) + 12;
+									$checking_date['month'] = (string) $month_beyond_this_year;
+
+								}
+
 								if ( isset( $rules[ $checking_date[ $date_key ] ] ) ) {
 									$rule       = $rules[ $checking_date[ $date_key ] ];
 									$block_cost = $this->apply_cost( $block_cost, $rule['block'][0], $rule['block'][1] );
 									$base_cost  = $this->apply_base_cost( $base_cost, $rule['base'][0], $rule['base'][1], $rule_key );
+									if ( $rule['override'] && empty( $override_blocks[ $check_date ] ) ) {
+										$override_blocks[ $check_date ] = $rule['override'];
+									}
 								}
 								$check_date = strtotime( "+1 {$type}", $check_date );
 							}
@@ -783,6 +839,9 @@ class WC_Booking_Form {
 									$rule       = $rules[ $checking_date['year'] ][ $checking_date['month'] ][ $checking_date['day'] ];
 									$block_cost = $this->apply_cost( $block_cost, $rule['block'][0], $rule['block'][1] );
 									$base_cost  = $this->apply_base_cost( $base_cost, $rule['base'][0], $rule['base'][1], $rule_key );
+									if ( $rule['override'] && empty( $override_blocks[ $check_date ] ) ) {
+										$override_blocks[ $check_date ] = $rule['override'];
+									}
 								}
 								$check_date = strtotime( "+1 day", $check_date );
 							}
@@ -807,6 +866,11 @@ class WC_Booking_Form {
 				}
 			}
 			$total_block_cost += $block_cost;
+		}
+
+		foreach ( $override_blocks as $over_cost ) {
+			$total_block_cost = $total_block_cost - $base_block_cost;
+			$total_block_cost += $over_cost;
 		}
 
 		// Person multiplier mutliplies all costs
@@ -839,6 +903,9 @@ class WC_Booking_Form {
 			case 'minus' :
 				$new_cost = $base - $cost;
 				break;
+			case 'equals':
+				$new_cost = $cost;
+				break;
 			default :
 				$new_cost = $base + $cost;
 				break;
@@ -867,6 +934,9 @@ class WC_Booking_Form {
 				break;
 			case 'minus' :
 				$new_cost = $base - $cost;
+				break;
+			case 'equals' :
+				$new_cost = $cost;
 				break;
 			default :
 				$new_cost = $base + $cost;

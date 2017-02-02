@@ -88,8 +88,9 @@
 					<tr>
 						<th class="sort" width="1%">&nbsp;</th>
 						<th><?php _e( 'Range type', 'woocommerce-bookings' ); ?></th>
-						<th><?php _e( 'From', 'woocommerce-bookings' ); ?></th>
-						<th><?php _e( 'To', 'woocommerce-bookings' ); ?></th>
+						<th><?php _e( 'Range', 'woocommerce-bookings' ); ?></th>
+						<th></th>
+						<th></th>
 						<th><?php _e( 'Bookable', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'If not bookable, users won\'t be able to choose this block for their booking.', 'woocommerce-bookings' ); ?>">[?]</a></th>
 						<th><?php _e( 'Priority', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php esc_html_e( 'The lower the priority number, the earlier this rule gets applied. By default, global rules take priority over product rules which take priority over resource rules. By using priority numbers you can execute rules in different orders.', 'woocommerce-bookings' ); ?>">[?]</a></th>
 						<th class="remove" width="1%">&nbsp;</th>

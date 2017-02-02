@@ -1,11 +1,16 @@
 jQuery(document).ready(function($) {
 
-	$('#bookings_availability, #bookings_pricing').on('change', '.wc_booking_availability_type select, .wc_booking_pricing_type select', function(){
+	$( '#bookings_availability, #bookings_pricing, .bookings_extension' ).on( 'change', '.wc_booking_availability_type select, .wc_booking_pricing_type select', function() {
 		var value = $(this).val();
 		var row   = $(this).closest('tr');
 
 		$(row).find('.from_date, .from_day_of_week, .from_month, .from_week, .from_time, .from').hide();
 		$(row).find('.to_date, .to_day_of_week, .to_month, .to_week, .to_time, .to').hide();
+		$( '.repeating-label' ).hide();
+		$( '.bookings-datetime-select-to' ).removeClass( 'bookings-datetime-select-both' );
+		$( '.bookings-datetime-select-from' ).removeClass( 'bookings-datetime-select-both' );
+		$( '.bookings-to-label-row .bookings-datetimerange-second-label' ).hide();
+
 
 		if ( value == 'custom' ) {
 			$(row).find('.from_date, .to_date').show();
@@ -21,6 +26,14 @@ jQuery(document).ready(function($) {
 		}
 		if ( value.match( "^time" ) ) {
 			$(row).find('.from_time, .to_time').show();
+			// Show the date range as well if "time range for custom dates" is selected
+			if ( 'time:range' === value ) {
+				$(row).find('.from_date, .to_date').show();
+				$( '.repeating-label' ).show();
+				$( '.bookings-datetime-select-to' ).addClass( 'bookings-datetime-select-both' );
+				$( '.bookings-datetime-select-from' ).addClass( 'bookings-datetime-select-both' );
+				$( '.bookings-to-label-row .bookings-datetimerange-second-label' ).show();
+			}
 		}
 		if ( value == 'persons' || value == 'duration' || value == 'blocks' ) {
 			$(row).find('.from, .to').show();
@@ -82,8 +95,10 @@ jQuery(document).ready(function($) {
 			$('.availability_time, ._wc_booking_first_block_time_field').hide();
 			$( '._wc_booking_buffer_period_unit' ).text( wc_bookings_writepanel_js_params.i18n_days );
 		} else {
+			var unit_text = 'hour' === $( this ).val() ? wc_bookings_writepanel_js_params.i18n_hours : wc_bookings_writepanel_js_params.i18n_minutes;
+
 			$( '._wc_booking_buffer_period' ).show();
-			$( '._wc_booking_buffer_period_unit' ).text( wc_bookings_writepanel_js_params.i18n_minutes );
+			$( '._wc_booking_buffer_period_unit' ).text( unit_text );
 		}
 	});
 
@@ -258,8 +273,6 @@ jQuery(document).ready(function($) {
 
 	// Add a resource
 	jQuery('#bookings_resources').on('click', 'button.add_resource', function(){
-		jQuery('.woocommerce_bookable_resources').block({ message: null });
-
 		var loop              = jQuery('.woocommerce_booking_resource').size();
 		var add_resource_id   = jQuery('select.add_resource_id').val();
 		var add_resource_name = '';
@@ -271,6 +284,8 @@ jQuery(document).ready(function($) {
 				return false;
 			}
 		}
+
+		jQuery( '.woocommerce_bookable_resources' ).block( { message: null } );
 
 		var data = {
 			action:            'woocommerce_add_bookable_resource',

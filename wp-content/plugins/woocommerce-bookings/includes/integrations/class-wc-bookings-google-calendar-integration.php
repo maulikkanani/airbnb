@@ -36,13 +36,13 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 		// Actions.
 		add_action( 'woocommerce_update_options_integration_' .  $this->id, array( $this, 'process_admin_options' ) );
 		add_action( 'woocommerce_api_wc_bookings_google_calendar' , array( $this, 'oauth_redirect' ) );
-		add_action( 'woocommerce_booking_confirmed', array( $this, 'sync_booking' ) );
-		add_action( 'woocommerce_booking_paid', array( $this, 'sync_booking' ) );
-		add_action( 'woocommerce_booking_complete', array( $this, 'sync_booking' ) );
+		add_action( 'woocommerce_booking_confirmed', array( $this, 'sync_new_booking' ) );
+		add_action( 'woocommerce_booking_paid', array( $this, 'sync_new_booking' ) );
+		add_action( 'woocommerce_booking_complete', array( $this, 'sync_new_booking' ) );
 		add_action( 'woocommerce_booking_cancelled', array( $this, 'remove_booking' ) );
-		// add_action( 'woocommerce_booking_process_meta', array( $this, 'sync_edited' ) );
+		add_action( 'woocommerce_booking_process_meta', array( $this, 'sync_edited_booking' ) );
 		add_action( 'trashed_post', array( $this, 'remove_booking' ) );
-		add_action( 'untrashed_post', array( $this, 'sync_edited' ) );
+		add_action( 'untrashed_post', array( $this, 'sync_unstrashed_booking' ) );
 
 		if ( is_admin() ) {
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
@@ -424,6 +424,21 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 	}
 
 	/**
+	 * Sync new Booking with Google Calendar.
+	 *
+	 * @param  int $booking_id Booking ID
+	 *
+	 * @return void
+	 */
+	public function sync_new_booking( $booking_id ) {
+		if ( $this->is_edited_from_meta_box() ) {
+			return;
+		}
+
+		$this->sync_booking( $booking_id );
+	}
+
+	/**
 	 * Sync Booking with Google Calendar
 	 *
 	 * @param  int $booking_id Booking ID
@@ -437,78 +452,79 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 		$api_url      = $this->calendars_uri . $this->calendar_id . '/events';
 		$access_token = $this->get_access_token();
 		$timezone     = wc_booking_get_timezone_string();
+		$summary      = '#' . $booking->id;
+		$description  = '';
 
 		// Need a order.
-		if ( ! $order ) {
-			return;
-		}
+		if ( $order ) {
+			$order_items  = $order->get_items();
+			// Need order items.
+			if ( $order_items ) {
+				foreach ( $order->get_items() as $item_id => $item ) {
+					if ( 'line_item' != $item['type'] ) {
+						continue;
+					}
 
-		$summary     = '#' . $booking->id;
-		$description = '';
-		$order_items = $order->get_items();
+					$summary .= ' - ' . $item['name'];
 
-		// Need order items.
-		if ( ! $order_items ) {
-			return;
-		}
+					if ( $metadata = $order->has_meta( $item_id ) ) {
+						foreach ( $metadata as $meta ) {
 
-		foreach ( $order->get_items() as $item_id => $item ) {
-			if ( 'line_item' != $item['type'] ) {
-				continue;
+							// Skip hidden core fields
+							if ( in_array( $meta['meta_key'], apply_filters( 'woocommerce_hidden_order_itemmeta', array(
+								'_qty',
+								'_tax_class',
+								'_product_id',
+								'_variation_id',
+								'_line_subtotal',
+								'_line_subtotal_tax',
+								'_line_total',
+								'_line_tax',
+							) ) ) ) {
+								continue;
+							}
+
+							// Booking fields.
+							if ( in_array( $meta['meta_key'], array( __( 'Booking Date', 'woocommerce-bookings' ), __( 'Booking Time', 'woocommerce-bookings' ) ) ) ) {
+								continue;
+							}
+
+							$meta_value = $meta['meta_value'];
+
+							// Skip serialised meta
+							if ( is_serialized( $meta_value ) ) {
+								continue;
+							}
+
+							// Get attribute data
+							if ( taxonomy_exists( $meta['meta_key'] ) ) {
+								global $wpdb;
+								$term           = get_term_by( 'slug', $meta['meta_value'], $meta['meta_key'] );
+								$attribute_name = str_replace( 'pa_', '', wc_clean( $meta['meta_key'] ) );
+								$attribute      = $wpdb->get_var(
+									$wpdb->prepare( "
+											SELECT attribute_label
+											FROM {$wpdb->prefix}woocommerce_attribute_taxonomies
+											WHERE attribute_name = %s;
+										",
+										$attribute_name
+									)
+								);
+
+								$meta['meta_key']   = ( ! is_wp_error( $attribute ) && $attribute ) ? $attribute : $attribute_name;
+								$meta['meta_value'] = ( isset( $term->name ) ) ? $term->name : $meta['meta_value'];
+							}
+
+							$description .= sprintf( __( '%s: %s', 'woocommerce-bookings' ), rawurldecode( $meta['meta_key'] ), rawurldecode( $meta_value ) ) . PHP_EOL;
+		 				}
+					}
+				}
 			}
-
-			$summary .= ' - ' . $item['name'];
-
-			if ( $metadata = $order->has_meta( $item_id ) ) {
-				foreach ( $metadata as $meta ) {
-
-					// Skip hidden core fields
-					if ( in_array( $meta['meta_key'], apply_filters( 'woocommerce_hidden_order_itemmeta', array(
-						'_qty',
-						'_tax_class',
-						'_product_id',
-						'_variation_id',
-						'_line_subtotal',
-						'_line_subtotal_tax',
-						'_line_total',
-						'_line_tax',
-					) ) ) ) {
-						continue;
-					}
-
-					// Booking fields.
-					if ( in_array( $meta['meta_key'], array( __( 'Booking Date', 'woocommerce-bookings' ), __( 'Booking Time', 'woocommerce-bookings' ) ) ) ) {
-						continue;
-					}
-
-					$meta_value = $meta['meta_value'];
-
-					// Skip serialised meta
-					if ( is_serialized( $meta_value ) ) {
-						continue;
-					}
-
-					// Get attribute data
-					if ( taxonomy_exists( $meta['meta_key'] ) ) {
-						$term           = get_term_by( 'slug', $meta['meta_value'], $meta['meta_key'] );
-						$attribute_name = str_replace( 'pa_', '', wc_clean( $meta['meta_key'] ) );
-						$attribute      = $wpdb->get_var(
-							$wpdb->prepare( "
-									SELECT attribute_label
-									FROM {$wpdb->prefix}woocommerce_attribute_taxonomies
-									WHERE attribute_name = %s;
-								",
-								$attribute_name
-							)
-						);
-
-						$meta['meta_key']   = ( ! is_wp_error( $attribute ) && $attribute ) ? $attribute : $attribute_name;
-						$meta['meta_value'] = ( isset( $term->name ) ) ? $term->name : $meta['meta_value'];
-					}
-
-					$description .= sprintf( __( '%s: %s', 'woocommerce-bookings' ), rawurldecode( $meta['meta_key'] ), rawurldecode( $meta_value ) ) . PHP_EOL;
- 				}
-			}
+		} else {
+			// there is no order -- just pull what we can from the booking
+			$product_id = $booking->product_id;
+			$product = wc_get_product( $product_id );
+			$summary .= ' - ' . $product->post->post_title;
 		}
 
 		// Set the event data
@@ -584,6 +600,32 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 	}
 
 	/**
+	 * Sync Booking with Google Calendar when booking is edited.
+	 *
+	 * @param  int $booking_id Booking ID
+	 *
+	 * @return void
+	 */
+	public function sync_edited_booking( $booking_id ) {
+		if ( ! $this->is_edited_from_meta_box() ) {
+			return;
+		}
+
+		$this->maybe_sync_booking_from_status( $booking_id );
+	}
+
+	/**
+	 * Sync Booking with Google Calendar when booking is untrashed.
+	 *
+	 * @param  int $booking_id Booking ID
+	 *
+	 * @return void
+	 */
+	public function sync_unstrashed_booking( $booking_id ) {
+		$this->maybe_sync_booking_from_status( $booking_id );
+	}
+
+	/**
 	 * Remove/cancel the booking in Google Calendar
 	 *
 	 * @param  int $booking_id Booking ID
@@ -629,13 +671,13 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 	}
 
 	/**
-	 * Sync Booking with Google Calendar when booking is edited
+	 * Maybe remove / sync booking based on booking status.
 	 *
-	 * @param  int $booking_id Booking ID
+	 * @param int $booking_id Booking ID
 	 *
 	 * @return void
 	 */
-	public function sync_edited( $booking_id ) {
+	public function maybe_sync_booking_from_status( $booking_id ) {
 		global $wpdb;
 
 		$status = $wpdb->get_var( $wpdb->prepare( "SELECT post_status FROM $wpdb->posts WHERE post_type = 'wc_booking' AND ID = %d", $booking_id ) );
@@ -645,5 +687,18 @@ class WC_Bookings_Google_Calendar_Integration extends WC_Integration {
 		} else if ( in_array( $status, array( 'confirmed', 'paid', 'complete' ) ) ) {
 			$this->sync_booking( $booking_id );
 		}
+	}
+
+	/**
+	 * Is edited from post.php's meta box.
+	 *
+	 * @return bool
+	 */
+	public function is_edited_from_meta_box() {
+		return (
+			! empty( $_POST['wc_bookings_details_meta_box_nonce'] )
+			&&
+			wp_verify_nonce( $_POST['wc_bookings_details_meta_box_nonce'], 'wc_bookings_details_meta_box' )
+		);
 	}
 }

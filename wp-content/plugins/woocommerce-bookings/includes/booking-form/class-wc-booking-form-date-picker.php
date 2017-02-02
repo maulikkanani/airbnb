@@ -29,12 +29,14 @@ class WC_Booking_Form_Date_Picker extends WC_Booking_Form_Picker {
 		$this->args['min_date_js']             = $this->get_min_date();
 		$this->args['max_date_js']             = $this->get_max_date();
 		$this->args['duration_type']           = $this->booking_form->product->get_duration_type();
+		$this->args['duration_unit']           = $this->booking_form->product->get_duration_unit();
 		$this->args['is_range_picker_enabled'] = $this->booking_form->product->is_range_picker_enabled();
 		$this->args['display']                 = $this->booking_form->product->wc_booking_calendar_display_mode;
 		$this->args['availability_rules']      = array();
 		$this->args['availability_rules'][0]   = $this->booking_form->product->get_availability_rules();
 		$this->args['label']                   = $this->get_field_label( __( 'Date', 'woocommerce-bookings' ) );
 		$this->args['default_date']            = date( 'Y-m-d', $this->get_default_date() );
+		$this->args['product_type']            = $this->booking_form->product->product_type;
 
 		if ( $this->booking_form->product->has_resources() ) {
 			foreach ( $this->booking_form->product->get_resources() as $resource ) {
@@ -51,6 +53,19 @@ class WC_Booking_Form_Date_Picker extends WC_Booking_Form_Picker {
 	 * by looking at the fist available block. Otherwise, the current date is used.
 	 */
 	function get_default_date() {
+
+		/**
+		 * Filter woocommerce_bookings_override_form_default_date
+		 *
+		 * @since 1.9.8
+		 * @param int $default_date unix time stamp.
+		 * @param WC_Booking_Form_Picker $form_instance
+		 */
+		$override_default_date = apply_filters( 'woocommerce_bookings_override_form_default_date', null, $this );
+		if ( $override_default_date ) {
+			return $override_default_date;
+		}
+
 		$now = strtotime( 'midnight', current_time( 'timestamp' ) );
 		$min = $this->booking_form->product->get_min_date();
 		if ( empty ( $min ) ) {

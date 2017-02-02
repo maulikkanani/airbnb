@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Bookings
 Plugin URI: http://www.woothemes.com/products/woocommerce-bookings/
 Description: Setup bookable products such as for reservations, services and hires.
-Version: 1.8.4
+Version: 1.9.9
 Author: WooThemes
 Author URI: http://woothemes.com
 Text Domain: woocommerce-bookings
@@ -41,7 +41,7 @@ class WC_Bookings {
 	 * Constructor
 	 */
 	public function __construct() {
-		define( 'WC_BOOKINGS_VERSION', '1.8.4' );
+		define( 'WC_BOOKINGS_VERSION', '1.9.9' );
 		define( 'WC_BOOKINGS_TEMPLATE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/' );
 		define( 'WC_BOOKINGS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 		define( 'WC_BOOKINGS_MAIN_FILE', __FILE__ );
@@ -214,6 +214,7 @@ KEY resource_id (resource_id)
 
 		// Products
 		include( 'includes/class-wc-product-booking.php' );
+		include( 'includes/class-wc-product-class-loader.php' );
 		include( 'includes/class-wc-product-booking-resource.php' );
 		include( 'includes/class-wc-product-booking-rule-manager.php' );
 
@@ -237,6 +238,7 @@ KEY resource_id (resource_id)
 	public function admin_includes() {
 		include( 'includes/admin/class-wc-bookings-admin.php' );
 		include( 'includes/admin/class-wc-bookings-ajax.php' );
+		include( 'includes/admin/class-wc-bookings-addons.php' );
 	}
 
 	/**

@@ -135,6 +135,24 @@ class WC_Product_Booking_Rule_Manager {
 	}
 
 	/**
+	 * Get a time range for a set of custom dates
+	 * @param  string $from_date
+	 * @param  string $to_date
+	 * @param  string $from_time
+	 * @param  string $to_time
+	 * @param  mixed $value
+	 * @return array
+	 */
+	private static function get_time_range_for_custom_date( $from_date, $to_date, $from_time, $to_time, $value ) {
+		$time_range = array(
+			'from' => $from_time,
+			'to'   => $to_time,
+			'rule' => $value,
+		);
+		return self::get_custom_range( $from_date, $to_date, $time_range );
+	}
+
+	/**
 	 * Get duration range
 	 * @param  [type] $from
 	 * @param  [type] $to
@@ -187,26 +205,33 @@ class WC_Product_Booking_Rule_Manager {
 	public static function process_cost_rules( $rules ) {
 		$costs = array();
 		$index = 1;
-
 		// Go through rules
 		foreach ( $rules as $key => $fields ) {
-			if ( empty( $fields['cost'] ) && empty( $fields['base_cost'] ) ) {
+			if ( empty( $fields['cost'] ) && empty( $fields['base_cost'] ) && empty( $fields['override_block'] ) ) {
 				continue;
 			}
 
-			$cost          = apply_filters( 'woocommerce_bookings_process_cost_rules_cost', $fields['cost'], $fields, $key );
-			$modifier      = $fields['modifier'];
-			$base_cost     = apply_filters( 'woocommerce_bookings_process_cost_rules_base_cost', $fields['base_cost'], $fields, $key );
-			$base_modifier = $fields['base_modifier'];
-			$type_function = strrpos( $fields['type'], 'time:' ) === 0 ? 'get_time_range' : 'get_' . $fields['type'] . '_range';
+			$cost           = apply_filters( 'woocommerce_bookings_process_cost_rules_cost', $fields['cost'], $fields, $key );
+			$modifier       = $fields['modifier'];
+			$base_cost      = apply_filters( 'woocommerce_bookings_process_cost_rules_base_cost', $fields['base_cost'], $fields, $key );
+			$base_modifier  = $fields['base_modifier'];
+			$override_block = apply_filters( 'woocommerce_bookings_process_cost_rules_override_block', ( isset( $fields['override_block'] ) ? $fields['override_block'] : '' ), $fields, $key );
 
-			$type_costs    = self::$type_function( $fields['from'], $fields['to'], array(
-				'base'  => array( $base_modifier, $base_cost ),
-				'block' => array( $modifier, $cost )
-			) );
+			$cost_array = array(
+				'base'     => array( $base_modifier, $base_cost ),
+				'block'    => array( $modifier, $cost ),
+				'override' => $override_block,
+			);
+
+			$type_function = self::get_type_function( $fields['type'] );
+			if ( 'get_time_range_for_custom_date' === $type_function ) {
+				$type_costs = self::$type_function( $fields['from_date'], $fields['to_date'], $fields['from'], $fields['to'], $cost_array );
+			} else {
+				$type_costs = self::$type_function( $fields['from'], $fields['to'], $cost_array );
+			}
 
 			// Ensure day gets specified for time: rules
-			if ( strrpos( $fields['type'], 'time:' ) === 0 ) {
+			if ( strrpos( $fields['type'], 'time:' ) === 0 && 'time:range' !== $fields['type'] ) {
 				list( , $day ) = explode( ':', $fields['type'] );
 				$type_costs['day'] = absint( $day );
 			}
@@ -218,6 +243,18 @@ class WC_Product_Booking_Rule_Manager {
 		}
 
 		return $costs;
+	}
+
+	/**
+	 * Returns a function name (for this class) that returns our time or date range
+	 * @param  string $type rule type
+	 * @return string       function name
+	 */
+	public static function get_type_function( $type ) {
+		if ( 'time:range' === $type ) {
+			return 'get_time_range_for_custom_date';
+		}
+		return strrpos( $type, 'time:' ) === 0 ? 'get_time_range' : 'get_' . $type . '_range';
 	}
 
 	/**
@@ -248,26 +285,38 @@ class WC_Product_Booking_Rule_Manager {
 			if ( empty( $fields['bookable'] ) ) {
 				continue;
 			}
-			$type_function     = strrpos( $fields['type'], 'time:' ) === 0 ? 'get_time_range' : 'get_' . $fields['type'] . '_range';
-			$type_availability = self::$type_function( $fields['from'], $fields['to'], $fields['bookable'] === 'yes' ? true : false );
+
+			$type_function     = self::get_type_function( $fields['type'] );
+			if ( 'get_time_range_for_custom_date' === $type_function ) {
+				$type_availability = self::$type_function( $fields['from_date'], $fields['to_date'], $fields['from'], $fields['to'], $fields['bookable'] === 'yes' ? true : false );
+			} else {
+				$type_availability = self::$type_function( $fields['from'], $fields['to'], $fields['bookable'] === 'yes' ? true : false );
+			}
+
 			$priority = ( isset( $fields['priority'] ) ? $fields['priority'] : 10 );
 
 			// Ensure day gets specified for time: rules
-			if ( strrpos( $fields['type'], 'time:' ) === 0 ) {
+			if ( strrpos( $fields['type'], 'time:' ) === 0 && 'time:range' !== $fields['type'] ) {
 				list( , $day ) = explode( ':', $fields['type'] );
 				$type_availability['day'] = absint( $day );
 			}
 
 			// Enable days when user defines time rules, but not day rules
 			if ( ! in_array( 'custom', $rule_types ) && ! in_array( 'days', $rule_types ) && ! in_array( 'months', $rule_types ) && ! in_array( 'weeks', $rule_types ) ) {
-				if ( strrpos( $fields['type'], 'time:' ) === 0 ) {
-					list( , $day ) = explode( ':', $fields['type'] );
-					if ( $fields['bookable'] === 'yes' ) {
-						$processed_rules[] = array( 'days', self::get_days_range( $day, $day, true ), $priority, $which );
+				if ( 'time:range' === $fields['type'] ) {
+					if ( 'yes' === $fields['bookable'] ) {
+						$processed_rules[] = array( 'custom', self::get_custom_range( $fields['from_date'], $fields['to_date'], true ), $priority, $which );
 					}
-				} elseif ( strrpos( $fields['type'], 'time' ) === 0 ) {
-					if ( $fields['bookable'] === 'yes' ) {
-						$processed_rules[] = array( 'days', self::get_days_range( 0, 7, true ), $priority, $which );
+				} else {
+					if ( strrpos( $fields['type'], 'time:' ) === 0 ) {
+						list( , $day ) = explode( ':', $fields['type'] );
+						if ( $fields['bookable'] === 'yes' ) {
+							$processed_rules[] = array( 'days', self::get_days_range( $day, $day, true ), $priority, $which );
+						}
+					} elseif ( strrpos( $fields['type'], 'time' ) === 0 ) {
+						if ( $fields['bookable'] === 'yes' ) {
+							$processed_rules[] = array( 'days', self::get_days_range( 0, 7, true ), $priority, $which );
+						}
 					}
 				}
 			}

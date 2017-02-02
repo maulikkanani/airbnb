@@ -3,7 +3,7 @@
 
 	$intervals['months'] = array(
 		'1' => __( 'January', 'woocommerce-bookings' ),
-		'2' => __( 'Febuary', 'woocommerce-bookings' ),
+		'2' => __( 'February', 'woocommerce-bookings' ),
 		'3' => __( 'March', 'woocommerce-bookings' ),
 		'4' => __( 'April', 'woocommerce-bookings' ),
 		'5' => __( 'May', 'woocommerce-bookings' ),
@@ -48,7 +48,7 @@
 	<td>
 		<div class="select wc_booking_pricing_type">
 			<select name="wc_booking_pricing_type[]">
-				<option value="custom" <?php selected( $pricing['type'], 'custom' ); ?>><?php _e( 'Custom date range', 'woocommerce-bookings' ); ?></option>
+				<option value="custom" <?php selected( $pricing['type'], 'custom' ); ?>><?php _e( 'Date range', 'woocommerce-bookings' ); ?></option>
 				<option value="months" <?php selected( $pricing['type'], 'months' ); ?>><?php _e( 'Range of months', 'woocommerce-bookings' ); ?></option>
 				<option value="weeks" <?php selected( $pricing['type'], 'weeks' ); ?>><?php _e( 'Range of weeks', 'woocommerce-bookings' ); ?></option>
 				<option value="days" <?php selected( $pricing['type'], 'days' ); ?>><?php _e( 'Range of days', 'woocommerce-bookings' ); ?></option>
@@ -57,6 +57,7 @@
 				<option value="blocks" <?php selected( $pricing['type'], 'blocks' ); ?>><?php _e( 'Block count', 'woocommerce-bookings' ); ?></option>
 				<optgroup label="<?php _e( 'Time Ranges', 'woocommerce-bookings' ); ?>">
 					<option value="time" <?php selected( $pricing['type'], 'time' ); ?>><?php _e( 'Time Range (all week)', 'woocommerce-bookings' ); ?></option>
+					<option value="time:range" <?php selected( $pricing['type'], 'time:range' ); ?>><?php _e( 'Date Range with time', 'woocommerce-bookings' ); ?></option>
 					<?php foreach ( $intervals['days'] as $key => $label ) : ?>
 						<option value="time:<?php echo $key; ?>" <?php selected( $pricing['type'], 'time:' . $key ) ?>><?php echo $label; ?></option>
 					<?php endforeach; ?>
@@ -64,7 +65,8 @@
 			</select>
 		</div>
 	</td>
-	<td>
+	<td style="border-right:0;">
+	<div class="bookings-datetime-select-from">
 		<div class="select from_day_of_week">
 			<select name="wc_booking_pricing_from_day_of_week[]">
 				<?php foreach ( $intervals['days'] as $key => $label ) : ?>
@@ -87,7 +89,15 @@
 			</select>
 		</div>
 		<div class="from_date">
-			<input type="text" class="date-picker" name="wc_booking_pricing_from_date[]" value="<?php if ( $pricing['type'] == 'custom' && ! empty( $pricing['from'] ) ) echo $pricing['from'] ?>" />
+			<?php
+			$from_date = '';
+			if ( 'custom' === $pricing['type'] && ! empty( $pricing['from'] ) ) {
+				$from_date = $pricing['from'];
+			} else if ( 'time:range' === $pricing['type'] && ! empty( $pricing['from_date'] ) ) {
+				$from_date = $pricing['from_date'];
+			}
+			?>
+			<input type="text" class="date-picker" name="wc_booking_pricing_from_date[]" value="<?php echo esc_attr( $from_date ); ?>" />
 		</div>
 
 		<div class="from_time">
@@ -97,8 +107,14 @@
 		<div class="from">
 			<input type="number" step="1" name="wc_booking_pricing_from[]" value="<?php if ( ! empty( $pricing['from'] ) && is_numeric( $pricing['from'] ) ) echo $pricing['from'] ?>" />
 		</div>
+	</div>
+	</td>
+	<td style="border-right:0;" width="25px;" class="bookings-to-label-row">
+		<p><?php _e( 'to', 'woocommerce-bookings' ); ?></p>
+		<p class="bookings-datetimerange-second-label"><?php _e( 'to', 'woocommerce-bookings' ); ?></p>
 	</td>
 	<td>
+	<div class="bookings-datetime-select-to">
 		<div class="select to_day_of_week">
 			<select name="wc_booking_pricing_to_day_of_week[]">
 				<?php foreach ( $intervals['days'] as $key => $label ) : ?>
@@ -121,7 +137,15 @@
 			</select>
 		</div>
 		<div class="to_date">
-			<input type="text" class="date-picker" name="wc_booking_pricing_to_date[]" value="<?php if ( $pricing['type'] == 'custom' && ! empty( $pricing['to'] ) ) echo $pricing['to']; ?>" />
+			<?php
+			$to_date = '';
+			if ( 'custom' === $pricing['type'] && ! empty( $pricing['to'] ) ) {
+				$to_date = $pricing['to'];
+			} else if ( 'time:range' === $pricing['type'] && ! empty( $pricing['to_date'] ) ) {
+				$to_date = $pricing['to_date'];
+			}
+			?>
+			<input type="text" class="date-picker" name="wc_booking_pricing_to_date[]" value="<?php echo esc_attr( $to_date ); ?>" />
 		</div>
 
 		<div class="to_time">
@@ -131,6 +155,7 @@
 		<div class="to">
 			<input type="number" step="1" name="wc_booking_pricing_to[]" value="<?php if ( ! empty( $pricing['to'] ) && is_numeric( $pricing['to'] ) ) echo $pricing['to'] ?>" />
 		</div>
+	</div>
 	</td>
 	<td>
 		<div class="select">
@@ -141,8 +166,6 @@
 				<option <?php selected( $pricing['base_modifier'], 'divide' ); ?> value="divide">&divide;</option>
 			</select>
 		</div>
-	</td>
-	<td>
 		<input type="number" step="0.01" name="wc_booking_pricing_base_cost[]" value="<?php if ( ! empty( $pricing['base_cost'] ) ) echo $pricing['base_cost']; ?>" placeholder="0" />
         <?php do_action( 'woocommerce_bookings_after_booking_pricing_base_cost', $pricing, $post_id ); ?>
 	</td>
@@ -155,8 +178,6 @@
 				<option <?php selected( $pricing['modifier'], 'divide' ); ?> value="divide">&divide;</option>
 			</select>
 		</div>
-	</td>
-	<td>
 		<input type="number" step="0.01" name="wc_booking_pricing_cost[]" value="<?php if ( ! empty( $pricing['cost'] ) ) echo $pricing['cost']; ?>" placeholder="0" />
         <?php do_action( 'woocommerce_bookings_after_booking_pricing_cost', $pricing, $post_id ); ?>
 	</td>

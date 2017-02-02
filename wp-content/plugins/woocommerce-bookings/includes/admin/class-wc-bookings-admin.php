@@ -7,11 +7,14 @@ if ( ! defined( 'ABSPATH' ) )
  * Booking admin
  */
 class WC_Bookings_Admin {
+	private static $_this;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
+		self::$_this = $this;
+
 		add_action( 'woocommerce_duplicate_product', array( $this, 'woocommerce_duplicate_product' ), 10, 2 );
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 		add_action( 'woocommerce_admin_order_item_headers', array( $this, 'bookings_link_header' ) );
@@ -37,6 +40,15 @@ class WC_Bookings_Admin {
 		add_action( 'wp_ajax_woocommerce_remove_bookable_person', array( $this, 'remove_bookable_person' ) );
 
 		include( 'class-wc-bookings-menus.php' );
+	}
+
+	/**
+	 * Public access to instance object
+	 *
+	 * @return object
+	 */
+	public static function get_instance() {
+		return self::$_this;
 	}
 
 	/**
@@ -237,6 +249,9 @@ class WC_Bookings_Admin {
 				)
 			);
 
+			// set default availability quantity
+			update_post_meta( $resource_id, 'qty', 1 );
+
 			$resource = get_post( $resource_id );
 			ob_start();
 			include( 'views/html-booking-resource.php' );
@@ -278,7 +293,7 @@ class WC_Bookings_Admin {
 		$loop    = intval( $_POST['loop'] );
 
 		$person_type = array(
-			'post_title'   => sprintf( __( 'Person Type #%d', 'woocommerce-bookings' ), ( $loop + 1 ) ),
+			'post_title'   => '',
 			'post_content' => '',
 			'post_status'  => 'publish',
 			'post_author'  => get_current_user_id(),
@@ -394,6 +409,7 @@ class WC_Bookings_Admin {
 			'nonce_add_resource'     => wp_create_nonce( 'add-bookable-resource' ),
 
 			'i18n_minutes'           => esc_js( __( 'minutes', 'woocommerce-bookings' ) ),
+			'i18n_hours'             => esc_js( __( 'hours', 'woocommerce-bookings' ) ),
 			'i18n_days'              => esc_js( __( 'days', 'woocommerce-bookings' ) ),
 
 			'i18n_new_resource_name' => esc_js( __( 'Enter a name for the new resource', 'woocommerce-bookings' ) ),
@@ -523,6 +539,13 @@ class WC_Bookings_Admin {
 					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_from_time" ][ $i ] );
 					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_to_time" ][ $i ] );
 				break;
+				case 'time:range' :
+					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_from_time" ][ $i ] );
+					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_to_time" ][ $i ] );
+
+					$availability[ $i ]['from_date'] = wc_clean( $_POST[ 'wc_booking_availability_from_date' ][ $i ] );
+					$availability[ $i ]['to_date']   = wc_clean( $_POST[ 'wc_booking_availability_to_date' ][ $i ] );
+				break;
 			}
 		}
 		update_post_meta( $post_id, '_wc_booking_availability', $availability );
@@ -564,6 +587,13 @@ class WC_Bookings_Admin {
 				case 'time:7' :
 					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
 					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+				break;
+				case 'time:range' :
+					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+
+					$pricing[ $i ]['from_date'] = wc_clean( $_POST[ 'wc_booking_pricing_from_date' ][ $i ] );
+					$pricing[ $i ]['to_date']   = wc_clean( $_POST[ 'wc_booking_pricing_to_date' ][ $i ] );
 				break;
 				default :
 					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from" ][ $i ] );

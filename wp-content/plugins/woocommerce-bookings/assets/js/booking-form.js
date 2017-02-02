@@ -12,12 +12,17 @@ jQuery(document).ready(function($) {
 
 	$('.wc-bookings-booking-form')
 		.on('change', 'input, select', function() {
-			var index = $('.wc-bookings-booking-form').index(this);
+			var name  = $(this).attr('name');
 
-			if ( xhr[index] ) {
-				xhr[index].abort();
+			var $fieldset = $(this).closest('fieldset');
+			var $picker   = $fieldset.find( '.picker:eq(0)' );
+			if ( $picker.data( 'is_range_picker_enabled' ) ) {
+				if ( 'wc_bookings_field_duration' !== name ) {
+					return;
+				}
 			}
 
+			var index = $('.wc-bookings-booking-form').index(this);
 			$form = $(this).closest('form');
 
 			var required_fields = $form.find('input.required_for_calculation');
@@ -34,7 +39,6 @@ jQuery(document).ready(function($) {
 			}
 
 			$form.find('.wc-bookings-booking-cost').block({message: null, overlayCSS: {background: '#fff', backgroundSize: '16px 16px', opacity: 0.6}}).show();
-
 			xhr[index] = $.ajax({
 				type: 		'POST',
 				url: 		booking_form_params.ajax_url,

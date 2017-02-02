@@ -24,7 +24,7 @@
 
 		<div class="toolbar">
 			<h3><?php _e( 'Person types', 'woocommerce-bookings' ); ?></h3>
-			<a href="#" class="close_all"><?php _e( 'Close all', 'woocommerce-bookings' ); ?></a><a href="#" class="expand_all"><?php _e( 'Expand all', 'woocommerce-bookings' ); ?></a>
+			<span class="toolbar_links"><a href="#" class="close_all"><?php _e( 'Close all', 'woocommerce-bookings' ); ?></a><a href="#" class="expand_all"><?php _e( 'Expand all', 'woocommerce-bookings' ); ?></a></span>
 		</div>
 
 		<div class="woocommerce_bookable_persons wc-metaboxes">

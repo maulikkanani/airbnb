@@ -292,7 +292,7 @@ class WC_Bookings_CPT {
 				$order = $booking->get_order();
 
 				if ( $order ) {
-					echo '<a href="' . admin_url( 'post.php?post=' . $order->id . '&action=edit' ) . '">#' . $order->get_order_number() . '</a> - ' . esc_html( $order->status );
+					echo '<a href="' . admin_url( 'post.php?post=' . $order->id . '&action=edit' ) . '">#' . $order->get_order_number() . '</a> - ' . esc_html( wc_get_order_status_name( $order->get_status() ) );
 				} else {
 					echo '-';
 				}
@@ -489,6 +489,8 @@ class WC_Bookings_CPT {
 				esc_attr( $_GET['s'] )
 			)
 		);
+		// ensure db query doesn't throw an error due to empty post_parent value
+		$order_ids = empty( $order_ids ) ? array( '-1' ) : $order_ids;
 
 		// Remove s - we don't want to search order name
 		unset( $wp->query_vars['s'] );

@@ -93,11 +93,10 @@ class WC_Bookings_Controller {
 			}
 		}
 
-		$booking_statuses = get_wc_booking_statuses();
-		$existing_bookings  = WC_Bookings_Controller::get_bookings_for_objects( $find_bookings_for, $booking_statuses );
+		$existing_bookings  = WC_Bookings_Controller::get_bookings_for_objects( $find_bookings_for );
 
 		// Is today fully booked/no longer available?
-		$blocks_in_range  = $product->get_blocks_in_range( strtotime( 'midnight' ), strtotime( 'tomorrow midnight' ) );
+		$blocks_in_range  = $product->get_blocks_in_range( strtotime( 'midnight' ), strtotime( 'tomorrow midnight -1 min' ) );
 		$available_blocks = $product->get_available_blocks( $blocks_in_range );
 
 		if ( sizeof( $available_blocks ) < sizeof( $blocks_in_range ) ) {
@@ -267,10 +266,24 @@ class WC_Bookings_Controller {
 			set_transient( $transient_name, $booking_ids, DAY_IN_SECONDS * 30 );
 		}
 
-		$bookings = array();
+		$booking_objects_transient_name =  'obj_' . $transient_name;
 
-		foreach ( $booking_ids as $booking_id ) {
-			$bookings[] = get_wc_booking( $booking_id );
+		$bookings = get_transient( $booking_objects_transient_name );
+
+		// Fix issue caused in 1.9.6. Storing false to transient will return it
+		// as empty string via get_transient.
+		//
+		// See https://github.com/woothemes/woocommerce-bookings/issues/688
+		if ( ! is_array( $bookings ) ) {
+			$bookings = array();
+
+			foreach ( $booking_ids as $booking_id ) {
+
+				$bookings[] = get_wc_booking( $booking_id );
+
+			}
+
+			set_transient( $booking_objects_transient_name, $bookings, DAY_IN_SECONDS * 30 );
 		}
 
 		return $bookings;

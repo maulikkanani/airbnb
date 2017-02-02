@@ -1,59 +1,63 @@
-# Copyright (C) 2015
-# This file is distributed under the same license as the  package.
+# Copyright (C) 2016 WooThemes
+# This file is distributed under the GNU General Public License v3.0.
 # Translators:
-# 田中　昌平 <shohei.tanaka@artisanworkshop.biz>, 2014
+# 田中　昌平 <shohei.tanaka@artisanworkshop.biz>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-bookings\n"
-"POT-Creation-Date: 2015-01-22 12:49:01+00:00\n"
-"PO-Revision-Date: 2015-01-22 12:49+0000\n"
-"Last-Translator: Mike Jolley <mike.jolley@me.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/woocommerce-bookings/language/ja/)\n"
+"Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
+"POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
+"PO-Revision-Date: 2016-02-04 16:00+0000\n"
+"Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
+"Language-Team: Japanese (http://www.transifex.com/woothemes/woocommerce-bookings/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: grunt-wp-i18n 0.5.3\n"
+
+#: includes/addons/accommodation-booking.php:17
+msgid "Accommodation booking"
+msgstr ""
 
 #: includes/admin/class-wc-bookable-resource-cpt.php:40
 msgid "Bookable resource name"
 msgstr "予約可能なリソースの名前"
 
-#: includes/admin/class-wc-bookable-resource-cpt.php:58
+#: includes/admin/class-wc-bookable-resource-cpt.php:56
+#: includes/admin/views/html-booking-person.php:22
 msgid "Name"
 msgstr "商品名"
 
-#: includes/admin/class-wc-bookable-resource-cpt.php:59
+#: includes/admin/class-wc-bookable-resource-cpt.php:57
 msgid "Parent products"
-msgstr ""
+msgstr "親商品"
 
-#: includes/admin/class-wc-bookable-resource-cpt.php:60
-#: includes/admin/class-wc-bookings-cpt.php:206
+#: includes/admin/class-wc-bookable-resource-cpt.php:58
+#: includes/admin/class-wc-bookings-cpt.php:209
 msgid "Actions"
 msgstr "処理"
 
-#: includes/admin/class-wc-bookable-resource-cpt.php:90
-msgid "%s"
-msgstr ""
-
-#: includes/admin/class-wc-bookable-resource-cpt.php:98
+#: includes/admin/class-wc-bookable-resource-cpt.php:96
+#: includes/admin/class-wc-bookings-cpt.php:256
 #: includes/admin/class-wc-bookings-customer-meta-box.php:90
-#: includes/admin/class-wc-bookings-details-meta-box.php:78
-#: includes/admin/class-wc-bookings-details-meta-box.php:136
-#: includes/emails/class-wc-email-booking-cancelled.php:68
-#: includes/emails/class-wc-email-booking-confirmed.php:67
-#: includes/emails/class-wc-email-booking-notification.php:73
-#: includes/emails/class-wc-email-booking-notification.php:76
-#: includes/emails/class-wc-email-booking-notification.php:79
-#: includes/emails/class-wc-email-booking-notification.php:82
-#: includes/emails/class-wc-email-booking-reminder.php:62
-#: includes/emails/class-wc-email-new-booking.php:73
+#: includes/admin/class-wc-bookings-details-meta-box.php:96
+#: includes/admin/class-wc-bookings-details-meta-box.php:104
+#: includes/admin/class-wc-bookings-details-meta-box.php:160
+#: includes/emails/class-wc-email-booking-cancelled.php:80
+#: includes/emails/class-wc-email-booking-confirmed.php:70
+#: includes/emails/class-wc-email-booking-notification.php:71
+#: includes/emails/class-wc-email-booking-notification.php:74
+#: includes/emails/class-wc-email-booking-notification.php:77
+#: includes/emails/class-wc-email-booking-notification.php:80
+#: includes/emails/class-wc-email-booking-reminder.php:65
+#: includes/emails/class-wc-email-new-booking.php:95
 msgid "N/A"
 msgstr "N/A"
 
-#: includes/admin/class-wc-bookable-resource-cpt.php:105
-#: woocommmerce-bookings.php:265 woocommmerce-bookings.php:305
+#: includes/admin/class-wc-bookable-resource-cpt.php:103
+#: woocommmerce-bookings.php:268 woocommmerce-bookings.php:308
 msgid "Edit"
 msgstr "編集"
 
@@ -63,129 +67,152 @@ msgstr "リソースの詳細"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:40
 msgid "Available Quantity"
-msgstr ""
+msgstr "利用可能な数"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:40
 msgid "The quantity of this resource available at any given time."
 msgstr ""
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:51
-#: includes/admin/views/html-booking-availability.php:78
-#: includes/admin/views/html-booking-pricing.php:26
-#: includes/admin/views/html-global-availability-settings.php:57
+#: includes/admin/views/html-booking-availability.php:90
+#: includes/admin/views/html-booking-pricing.php:32
+#: includes/admin/views/html-global-availability-settings.php:65
 msgid "Range type"
 msgstr "範囲の種類"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:52
-#: includes/admin/views/html-booking-availability.php:79
-#: includes/admin/views/html-booking-pricing.php:27
-#: includes/admin/views/html-global-availability-settings.php:58
-msgid "From"
-msgstr "開始"
+#: includes/admin/views/html-booking-availability.php:91
+#: includes/admin/views/html-booking-pricing.php:33
+#: includes/admin/views/html-global-availability-settings.php:66
+msgid "Range"
+msgstr ""
 
-#: includes/admin/class-wc-bookable-resource-details-meta-box.php:53
-#: includes/admin/views/html-booking-availability.php:80
-#: includes/admin/views/html-booking-pricing.php:28
-#: includes/admin/views/html-global-availability-settings.php:59
-msgid "To"
-msgstr "終了"
-
-#: includes/admin/class-wc-bookable-resource-details-meta-box.php:54
-#: includes/admin/views/html-booking-availability.php:81
-#: includes/admin/views/html-global-availability-settings.php:60
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:55
+#: includes/admin/views/html-booking-availability.php:94
+#: includes/admin/views/html-global-availability-settings.php:69
 msgid "Bookable"
 msgstr "予約可能か"
 
-#: includes/admin/class-wc-bookable-resource-details-meta-box.php:54
-#: includes/admin/views/html-booking-availability.php:81
-#: includes/admin/views/html-global-availability-settings.php:60
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:55
+#: includes/admin/views/html-booking-availability.php:94
+#: includes/admin/views/html-global-availability-settings.php:69
 msgid ""
 "If not bookable, users won't be able to choose this block for their booking."
 msgstr "「いいえ」の場合、顧客はこのブロックを予約できなくなります。"
 
-#: includes/admin/class-wc-bookable-resource-details-meta-box.php:66
-#: includes/admin/views/html-booking-availability.php:93
-#: includes/admin/views/html-booking-pricing.php:42
-#: includes/admin/views/html-global-availability-settings.php:72
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:56
+#: includes/admin/views/html-booking-availability.php:95
+#: includes/admin/views/html-global-availability-settings.php:70
+msgid "Priority"
+msgstr "優先順位"
+
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:56
+#: includes/admin/views/html-booking-availability.php:95
+#: includes/admin/views/html-global-availability-settings.php:70
+msgid ""
+"The lower the priority number, the earlier this rule gets applied. By "
+"default, global rules take priority over product rules which take priority "
+"over resource rules. By using priority numbers you can execute rules in "
+"different orders."
+msgstr ""
+
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:68
+#: includes/admin/views/html-booking-availability.php:107
+#: includes/admin/views/html-booking-pricing.php:49
+#: includes/admin/views/html-global-availability-settings.php:82
 msgid "Add Range"
 msgstr "範囲追加"
 
-#: includes/admin/class-wc-bookable-resource-details-meta-box.php:67
-#: includes/admin/views/html-booking-availability.php:94
-#: includes/admin/views/html-global-availability-settings.php:73
-msgid "Rules further down the table will override those at the top."
-msgstr "テーブルの下の規則上部より優先されます。"
+#: includes/admin/class-wc-bookable-resource-details-meta-box.php:69
+#: includes/admin/views/html-booking-availability.php:108
+#: includes/admin/views/html-global-availability-settings.php:83
+msgid ""
+"Rules with lower numbers will execute first. Rules further down this table "
+"with the same priority will also execute first."
+msgstr ""
 
-#: includes/admin/class-wc-bookings-admin.php:52
-#: includes/admin/class-wc-bookings-admin.php:55
-#: includes/admin/class-wc-bookings-admin.php:57
+#: includes/admin/class-wc-bookings-addons.php:23
+#: woocommmerce-bookings.php:304
+msgid "Bookings"
+msgstr "予約"
+
+#: includes/admin/class-wc-bookings-admin.php:89
+#: includes/admin/class-wc-bookings-admin.php:92
+#: includes/admin/class-wc-bookings-admin.php:94
 msgid "Booking updated."
-msgstr ""
+msgstr "予約を更新しました。"
 
-#: includes/admin/class-wc-bookings-admin.php:53
+#: includes/admin/class-wc-bookings-admin.php:90
 msgid "Custom field updated."
-msgstr ""
+msgstr "カスタムフィールド更新しました。"
 
-#: includes/admin/class-wc-bookings-admin.php:54
+#: includes/admin/class-wc-bookings-admin.php:91
 msgid "Custom field deleted."
-msgstr ""
+msgstr "カスタムフィールドを削除しました。"
 
-#: includes/admin/class-wc-bookings-admin.php:58
+#: includes/admin/class-wc-bookings-admin.php:95
 msgid "Booking saved."
-msgstr ""
+msgstr "予約を保存しました。"
 
-#: includes/admin/class-wc-bookings-admin.php:59
+#: includes/admin/class-wc-bookings-admin.php:96
 msgid "Booking submitted."
-msgstr ""
+msgstr "予約を送信しました。"
 
-#: includes/admin/class-wc-bookings-admin.php:85
+#: includes/admin/class-wc-bookings-admin.php:122
 msgid "View booking &rarr;"
 msgstr "予約を表示 &rarr;"
 
-#: includes/admin/class-wc-bookings-admin.php:173
+#: includes/admin/class-wc-bookings-admin.php:210
 msgid "The resource has already been linked to this product"
 msgstr ""
 
-#: includes/admin/class-wc-bookings-admin.php:209
+#: includes/admin/class-wc-bookings-admin.php:246
 msgid "Unable to add resource"
 msgstr ""
 
-#: includes/admin/class-wc-bookings-admin.php:246
-#: includes/admin/class-wc-bookings-admin.php:602
-msgid "Person Type #%d"
-msgstr "担当者の種類 #%d"
-
-#: includes/admin/class-wc-bookings-admin.php:295
+#: includes/admin/class-wc-bookings-admin.php:330
 msgid "Bookable product"
 msgstr "予約商品"
 
-#: includes/admin/class-wc-bookings-admin.php:353
+#: includes/admin/class-wc-bookings-admin.php:388
 msgid "Are you sure you want to remove this person type?"
-msgstr "本当にこの担当者の種類を削除しますか？"
+msgstr "本当にこのお客様の種類を削除しますか？"
 
-#: includes/admin/class-wc-bookings-admin.php:357
+#: includes/admin/class-wc-bookings-admin.php:392
 msgid "Are you sure you want to remove this resource?"
 msgstr "本当にこのリソースを削除しますか？"
 
-#: includes/admin/class-wc-bookings-admin.php:361
+#: includes/admin/class-wc-bookings-admin.php:396
+msgid "minutes"
+msgstr "分"
+
+#: includes/admin/class-wc-bookings-admin.php:397
+msgid "days"
+msgstr "日"
+
+#: includes/admin/class-wc-bookings-admin.php:399
 msgid "Enter a name for the new resource"
 msgstr ""
 
-#: includes/admin/class-wc-bookings-admin.php:652
-msgid "Has persons"
-msgstr "担当者が必要"
+#: includes/admin/class-wc-bookings-admin.php:656
+msgid "Person Type #%d"
+msgstr "お客様の種類 #%d"
 
-#: includes/admin/class-wc-bookings-admin.php:653
+#: includes/admin/class-wc-bookings-admin.php:707
+msgid "Has persons"
+msgstr "予約に人数が必要"
+
+#: includes/admin/class-wc-bookings-admin.php:708
 msgid ""
 "Enable this if this bookable product can be booked by a customer defined "
 "number of persons."
 msgstr "顧客がこの予約商品に対して人数を指定することができる場合、チェックします。"
 
-#: includes/admin/class-wc-bookings-admin.php:659
+#: includes/admin/class-wc-bookings-admin.php:714
 msgid "Has resources"
 msgstr "リソースが必要"
 
-#: includes/admin/class-wc-bookings-admin.php:660
+#: includes/admin/class-wc-bookings-admin.php:715
 msgid ""
 "Enable this if this bookable product has multiple bookable resources, for "
 "example room types or instructors."
@@ -203,77 +230,77 @@ msgstr "トークンが長過ぎます。戻って再度試して下さい。"
 msgid "This booking is unavailable."
 msgstr "この予約は利用できません。"
 
-#: includes/admin/class-wc-bookings-ajax.php:83
+#: includes/admin/class-wc-bookings-ajax.php:89
 msgid "Booking cost"
 msgstr "予約費用"
 
-#: includes/admin/class-wc-bookings-ajax.php:142
+#: includes/admin/class-wc-bookings-ajax.php:121
+msgid "Please enter a valid date."
+msgstr ""
+
+#: includes/admin/class-wc-bookings-ajax.php:155
 msgid "No blocks available."
 msgstr "利用可能なブロックがありません。"
 
-#: includes/admin/class-wc-bookings-ajax.php:176
-#: includes/admin/class-wc-bookings-details-meta-box.php:32
-msgctxt "hash before order number"
-msgid "#"
-msgstr "#"
-
-#: includes/admin/class-wc-bookings-calendar.php:95
-#: includes/admin/class-wc-bookings-calendar.php:198
+#: includes/admin/class-wc-bookings-calendar.php:103
+#: includes/admin/class-wc-bookings-calendar.php:210
 msgid "Booked by"
 msgstr "予約者"
 
-#: includes/admin/class-wc-bookings-calendar.php:99
+#: includes/admin/class-wc-bookings-calendar.php:107
+#: includes/admin/class-wc-bookings-details-meta-box.php:215
 msgid "All Day"
 msgstr "終日"
 
-#: includes/admin/class-wc-bookings-calendar.php:104
-#: includes/admin/class-wc-bookings-calendar.php:201
+#: includes/admin/class-wc-bookings-calendar.php:112
+#: includes/admin/class-wc-bookings-calendar.php:213
 #: includes/class-wc-bookings-ics-exporter.php:160
 msgid "Resource #"
 msgstr "リソース #"
 
-#: includes/admin/class-wc-bookings-cpt.php:84
+#: includes/admin/class-wc-bookings-cpt.php:88
 msgid "Confirm bookings"
 msgstr "確認済の予約"
 
-#: includes/admin/class-wc-bookings-cpt.php:86
+#: includes/admin/class-wc-bookings-cpt.php:90
 msgid "Unconfirm bookings"
 msgstr "未確認の予約"
 
-#: includes/admin/class-wc-bookings-cpt.php:88
+#: includes/admin/class-wc-bookings-cpt.php:92
 msgid "Cancel bookings"
 msgstr "キャンセルされた予約"
 
-#: includes/admin/class-wc-bookings-cpt.php:90
+#: includes/admin/class-wc-bookings-cpt.php:94
 msgid "Mark bookings as paid"
 msgstr "支払済の予約"
 
-#: includes/admin/class-wc-bookings-cpt.php:92
+#: includes/admin/class-wc-bookings-cpt.php:96
 msgid "Mark bookings as unpaid"
 msgstr "未払の予約"
 
-#: includes/admin/class-wc-bookings-cpt.php:166
+#: includes/admin/class-wc-bookings-cpt.php:170
 msgid "Booking status changed."
 msgid_plural "%s booking statuses changed."
 msgstr[0] "予約の状況を変更しました。"
 
-#: includes/admin/class-wc-bookings-cpt.php:180
+#: includes/admin/class-wc-bookings-cpt.php:184
 msgid "Booking Title"
 msgstr "予約タイトル"
 
-#: includes/admin/class-wc-bookings-cpt.php:199
+#: includes/admin/class-wc-bookings-cpt.php:201
 #: templates/myaccount/my-bookings.php:20
 msgid "Status"
 msgstr "状況"
 
-#: includes/admin/class-wc-bookings-cpt.php:200
+#: includes/admin/class-wc-bookings-cpt.php:202
 #: templates/myaccount/my-bookings.php:15
 msgid "ID"
 msgstr "ID"
 
-#: includes/admin/class-wc-bookings-cpt.php:201
-#: includes/admin/class-wc-bookings-details-meta-box.php:153
-#: templates/emails/admin-new-booking.php:19
+#: includes/admin/class-wc-bookings-cpt.php:203
+#: includes/admin/class-wc-bookings-details-meta-box.php:177
+#: templates/emails/admin-booking-cancelled.php:18
+#: templates/emails/admin-new-booking.php:25
 #: templates/emails/customer-booking-cancelled.php:21
 #: templates/emails/customer-booking-confirmed.php:21
 #: templates/emails/customer-booking-notification.php:14
@@ -281,74 +308,76 @@ msgstr "ID"
 msgid "Booked Product"
 msgstr "予約商品"
 
-#: includes/admin/class-wc-bookings-cpt.php:202
+#: includes/admin/class-wc-bookings-cpt.php:204
+msgid "# of Persons"
+msgstr ""
+
+#: includes/admin/class-wc-bookings-cpt.php:205
 msgid "Booked By"
 msgstr "予約者"
 
-#: includes/admin/class-wc-bookings-cpt.php:203
+#: includes/admin/class-wc-bookings-cpt.php:206
+#: templates/emails/customer-booking-confirmed.php:68
 #: templates/myaccount/my-bookings.php:17
 msgid "Order"
 msgstr "注文"
 
-#: includes/admin/class-wc-bookings-cpt.php:204
+#: includes/admin/class-wc-bookings-cpt.php:207
+#: includes/admin/class-wc-bookings-details-meta-box.php:211
 #: templates/myaccount/my-bookings.php:18
 msgid "Start Date"
 msgstr "開始日"
 
-#: includes/admin/class-wc-bookings-cpt.php:205
+#: includes/admin/class-wc-bookings-cpt.php:208
+#: includes/admin/class-wc-bookings-details-meta-box.php:213
 #: templates/myaccount/my-bookings.php:19
 msgid "End Date"
 msgstr "終了日"
 
-#: includes/admin/class-wc-bookings-cpt.php:247
+#: includes/admin/class-wc-bookings-cpt.php:252
 msgid "Booking #%d"
 msgstr "予約 #%d"
 
-#: includes/admin/class-wc-bookings-cpt.php:292
+#: includes/admin/class-wc-bookings-cpt.php:312
 msgid "View"
 msgstr "表示"
 
-#: includes/admin/class-wc-bookings-cpt.php:299
+#: includes/admin/class-wc-bookings-cpt.php:319
 msgid "Confirm"
 msgstr "確認"
 
-#: includes/admin/class-wc-bookings-cpt.php:390
+#: includes/admin/class-wc-bookings-cpt.php:410
 msgid "All Bookable Products"
 msgstr "全ての予約商品"
 
-#: includes/admin/class-wc-bookings-create.php:21
+#: includes/admin/class-wc-bookings-create.php:19
 msgid "Error - please try again"
 msgstr "エラーが発生しました - 再度試して下さい"
 
-#: includes/admin/class-wc-bookings-create.php:31
+#: includes/admin/class-wc-bookings-create.php:29
 msgid "Please choose a bookable product"
 msgstr "予約商品を選択して下さい"
 
-#: includes/admin/class-wc-bookings-create.php:39
-#: includes/admin/class-wc-bookings-create.php:88
+#: includes/admin/class-wc-bookings-create.php:37
+#: includes/admin/class-wc-bookings-create.php:90
 msgid "Invalid order ID provided"
 msgstr ""
 
-#: includes/admin/class-wc-bookings-create.php:82
+#: includes/admin/class-wc-bookings-create.php:84
 msgid "Error: Could not create order"
 msgstr "エラー:注文を作成できません"
 
-#: includes/admin/class-wc-bookings-create.php:106
+#: includes/admin/class-wc-bookings-create.php:110
 msgid "Error: Could not create item"
 msgstr "エラー:アイテムを作成できません"
 
-#: includes/admin/class-wc-bookings-create.php:169
+#: includes/admin/class-wc-bookings-create.php:175
 msgid "Order &ndash; %s"
 msgstr "注文 &ndash; %s"
 
-#: includes/admin/class-wc-bookings-create.php:169
-msgctxt "Order date parsed by strftime"
-msgid "%b %d, %Y @ %I:%M %p"
-msgstr "%Y %m %d (%b) @ %H:%i %s"
-
 #: includes/admin/class-wc-bookings-customer-meta-box.php:15
 msgid "Customer details"
-msgstr ""
+msgstr "お客様詳細"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:30
 msgid "Name:"
@@ -368,11 +397,11 @@ msgstr ""
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:62
 msgid "No billing address set."
-msgstr ""
+msgstr "お客様情報が設定されていません"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:67
 msgid "Email:"
-msgstr ""
+msgstr "Eメール:"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:73
 msgid "Phone:"
@@ -380,156 +409,215 @@ msgstr ""
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:81
 msgid "View Order"
-msgstr ""
+msgstr "注文を見る"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:15
-msgid "Booking details"
+#: includes/admin/class-wc-bookings-details-meta-box.php:67
+msgid "Booking Details"
 msgstr "予約詳細"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:40
+#: includes/admin/class-wc-bookings-details-meta-box.php:44
 msgid ""
 "This booking is scheduled over 2 years into the future. Please ensure this "
 "is correct."
 msgstr ""
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:45
+#: includes/admin/class-wc-bookings-details-meta-box.php:49
 msgid ""
 "This booking is scheduled over the products allowed max booking date (%s). "
 "Please ensure this is correct."
 msgstr ""
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:49
+#: includes/admin/class-wc-bookings-details-meta-box.php:53
 msgid "This booking has an end date set before the start date."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:58
-msgid "Booking Details"
-msgstr "予約詳細"
+msgid ""
+"This booking is missing a required add-on (product type: %s). Some "
+"information is shown below but might be incomplete. Please install the "
+"missing add-on through the plugins screen."
+msgstr ""
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:61
+#: includes/admin/class-wc-bookings-details-meta-box.php:70
 msgid "Booking number: #%s."
 msgstr "予約番号: #%s."
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:65
+#: includes/admin/class-wc-bookings-details-meta-box.php:74
 msgid "Order number: %s."
 msgstr "注文番号:%s."
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:73
+#: includes/admin/class-wc-bookings-details-meta-box.php:78
+msgid "Booking type: %s"
+msgstr ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:85
 msgid "General Details"
 msgstr "一般事項"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:76
+#: includes/admin/class-wc-bookings-details-meta-box.php:88
 msgid "Order ID:"
 msgstr "受注ID:"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:77
+#: includes/admin/class-wc-bookings-details-meta-box.php:95
 msgid "Select an order&hellip;"
 msgstr "受注を選択&hellip;"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:87
+#: includes/admin/class-wc-bookings-details-meta-box.php:108
 msgid "Date created:"
 msgstr "作成日:"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:88
+#: includes/admin/class-wc-bookings-details-meta-box.php:109
 msgid "h"
 msgstr "時"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:88
+#: includes/admin/class-wc-bookings-details-meta-box.php:109
 msgid "m"
 msgstr "分"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:93
-msgid "unpaid"
-msgstr "未払"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:94
-msgid "in-cart"
-msgstr ""
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:95
-msgid "pending-confirmation"
-msgstr ""
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:96
-msgid "confirmed"
-msgstr "確認済"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:97
-msgid "paid"
-msgstr "支払済"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:98
-msgid "cancelled"
-msgstr "キャンセル済"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:99
-msgid "complete"
-msgstr "完了"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:104
+#: includes/admin/class-wc-bookings-details-meta-box.php:118
 msgid "Booking Status:"
 msgstr "予約状態:"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:115
+#: includes/admin/class-wc-bookings-details-meta-box.php:129
 msgid "Customer:"
 msgstr "顧客:"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:117
-#: includes/admin/views/html-create-booking-page.php:19
+#: includes/admin/class-wc-bookings-details-meta-box.php:138
+#: includes/admin/class-wc-bookings-details-meta-box.php:147
+#: includes/admin/views/html-create-booking-page.php:20
+#: includes/admin/views/html-create-booking-page.php:23
 msgid "Guest"
 msgstr "ゲスト"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:132
+#: includes/admin/class-wc-bookings-details-meta-box.php:156
 msgid "Booking Specification"
 msgstr "予約明細"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:155
+#: includes/admin/class-wc-bookings-details-meta-box.php:179
 msgid "Parent Booking ID"
 msgstr "親予約ID"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:162
+#: includes/admin/class-wc-bookings-details-meta-box.php:188
+#: includes/admin/class-wc-bookings-details-meta-box.php:196
 #: includes/class-wc-bookings-ics-exporter.php:169
-#: includes/wc-bookings-functions.php:38
-#: templates/emails/admin-new-booking.php:47
+#: includes/wc-bookings-functions.php:50
+#: templates/emails/admin-booking-cancelled.php:47
+#: templates/emails/admin-new-booking.php:53
 #: templates/emails/customer-booking-cancelled.php:49
 #: templates/emails/customer-booking-confirmed.php:49
 #: templates/emails/customer-booking-notification.php:42
 #: templates/emails/customer-booking-reminder.php:46
-#: templates/emails/plain/admin-new-booking.php:33
+#: templates/emails/plain/admin-booking-cancelled.php:29
+#: templates/emails/plain/admin-new-booking.php:39
 #: templates/emails/plain/customer-booking-cancelled.php:33
 #: templates/emails/plain/customer-booking-confirmed.php:33
 #: templates/emails/plain/customer-booking-notification.php:31
 #: templates/emails/plain/customer-booking-reminder.php:33
 msgid "Person(s)"
-msgstr "担当者"
+msgstr "人数"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:172
+#: includes/admin/class-wc-bookings-details-meta-box.php:207
 msgid "Booking Date/Time"
 msgstr "予約日時"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:176
-msgid "Start date"
-msgstr "開始日"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:178
-msgid "End date"
-msgstr "終了日"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:180
-msgid "All day"
-msgstr "終日"
-
-#: includes/admin/class-wc-bookings-details-meta-box.php:180
+#: includes/admin/class-wc-bookings-details-meta-box.php:215
 msgid "Check this box if the booking is for all day."
 msgstr "予約を終日にする"
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:182
-msgid "Start time"
-msgstr "開始時間"
+#: includes/admin/class-wc-bookings-details-meta-box.php:217
+msgid "Start Time"
+msgstr ""
 
-#: includes/admin/class-wc-bookings-details-meta-box.php:184
-msgid "End time"
-msgstr "終了時間"
+#: includes/admin/class-wc-bookings-details-meta-box.php:219
+msgid "End Time"
+msgstr ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:382
+msgid "Booking #%d status changed manually from \"%s\" to \"%s"
+msgstr ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:456
+#: includes/admin/class-wc-bookings-details-meta-box.php:457
+#: includes/class-wc-booking-cart-manager.php:294
+#: includes/class-wc-booking-order-manager.php:358
+#: templates/emails/admin-booking-cancelled.php:23
+#: templates/emails/admin-new-booking.php:29
+#: templates/emails/customer-booking-cancelled.php:25
+#: templates/emails/customer-booking-confirmed.php:25
+#: templates/emails/customer-booking-notification.php:18
+#: templates/emails/customer-booking-reminder.php:22
+msgid "Booking ID"
+msgstr "予約ID"
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:462
+#: includes/admin/class-wc-bookings-details-meta-box.php:463
+#: includes/admin/class-wc-bookings-details-meta-box.php:465
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:473
+#: includes/wc-bookings-functions.php:47
+msgid "Booking Date"
+msgstr "予約日"
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:471
+#: includes/admin/class-wc-bookings-details-meta-box.php:472
+#: includes/admin/class-wc-bookings-details-meta-box.php:474
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:473
+#: includes/wc-bookings-functions.php:48
+msgid "Booking Time"
+msgstr "予約時間"
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:480
+#: includes/admin/class-wc-bookings-details-meta-box.php:481
+#: includes/admin/class-wc-bookings-details-meta-box.php:484
+#: includes/wc-bookings-functions.php:46
+#: templates/emails/admin-booking-cancelled.php:28
+#: templates/emails/admin-new-booking.php:34
+#: templates/emails/customer-booking-cancelled.php:30
+#: templates/emails/customer-booking-confirmed.php:30
+#: templates/emails/customer-booking-notification.php:23
+#: templates/emails/customer-booking-reminder.php:27
+msgid "Booking Type"
+msgstr "予約タイプ"
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:502
+#: includes/admin/views/html-booking-tab.php:4
+#: includes/booking-form/class-wc-booking-form.php:214
+#: includes/booking-form/class-wc-booking-form.php:407
+msgid "Persons"
+msgstr "人数"
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:529
+msgid "%y year"
+msgid_plural "%y years"
+msgstr[0] ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:530
+msgid "%m month"
+msgid_plural "%m months"
+msgstr[0] ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:531
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:532
+msgid "%h hour"
+msgid_plural "%h hours"
+msgstr[0] ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:533
+msgid "%i minute"
+msgid_plural "%i minutes"
+msgstr[0] ""
+
+#: includes/admin/class-wc-bookings-details-meta-box.php:541
+#: includes/admin/class-wc-bookings-details-meta-box.php:542
+#: includes/admin/class-wc-bookings-details-meta-box.php:545
+#: includes/booking-form/class-wc-booking-form.php:175
+#: includes/wc-bookings-functions.php:49
+msgid "Duration"
+msgstr "期間"
 
 #: includes/admin/class-wc-bookings-menus.php:70
 #: includes/admin/views/html-create-booking-page-2.php:4
@@ -549,27 +637,22 @@ msgid "Send Notification"
 msgstr "通知の送信"
 
 #: includes/admin/class-wc-bookings-menus.php:73
-msgid "WC Bookings Settings"
-msgstr "予約設定"
+msgid "Global Availability"
+msgstr ""
 
-#: includes/admin/class-wc-bookings-menus.php:73
-#: includes/gateways/class-wc-bookings-gateway.php:29
-msgid "Settings"
-msgstr "設定"
-
-#: includes/admin/class-wc-bookings-menus.php:127
+#: includes/admin/class-wc-bookings-menus.php:125
 msgid "Please choose a product"
 msgstr "商品を選択して下さい"
 
-#: includes/admin/class-wc-bookings-menus.php:130
+#: includes/admin/class-wc-bookings-menus.php:128
 msgid "Please enter a message"
 msgstr "メッセージを入力して下さい"
 
-#: includes/admin/class-wc-bookings-menus.php:133
+#: includes/admin/class-wc-bookings-menus.php:131
 msgid "Please enter a subject"
 msgstr "件名を入力して下さい"
 
-#: includes/admin/class-wc-bookings-menus.php:150
+#: includes/admin/class-wc-bookings-menus.php:148
 msgid "Notification sent successfully"
 msgstr "通知は正常に送信されました"
 
@@ -589,8 +672,8 @@ msgstr "1月"
 
 #: includes/admin/views/html-booking-availability-fields.php:6
 #: includes/admin/views/html-booking-pricing-fields.php:6
-msgid "Febuary"
-msgstr "2月"
+msgid "February"
+msgstr ""
 
 #: includes/admin/views/html-booking-availability-fields.php:7
 #: includes/admin/views/html-booking-pricing-fields.php:7
@@ -682,41 +765,53 @@ msgstr "日曜日"
 msgid "Week %s"
 msgstr "第 %s 週"
 
-#: includes/admin/views/html-booking-availability-fields.php:42
-#: includes/admin/views/html-booking-pricing-fields.php:46
-msgid "Custom date range"
-msgstr "日付指定での範囲"
+#: includes/admin/views/html-booking-availability-fields.php:46
+#: includes/admin/views/html-booking-pricing-fields.php:51
+msgid "Date range"
+msgstr ""
 
-#: includes/admin/views/html-booking-availability-fields.php:43
-#: includes/admin/views/html-booking-pricing-fields.php:47
+#: includes/admin/views/html-booking-availability-fields.php:47
+#: includes/admin/views/html-booking-pricing-fields.php:52
 msgid "Range of months"
 msgstr "月の範囲"
 
-#: includes/admin/views/html-booking-availability-fields.php:44
-#: includes/admin/views/html-booking-pricing-fields.php:48
+#: includes/admin/views/html-booking-availability-fields.php:48
+#: includes/admin/views/html-booking-pricing-fields.php:53
 msgid "Range of weeks"
 msgstr "週の範囲"
 
-#: includes/admin/views/html-booking-availability-fields.php:45
-#: includes/admin/views/html-booking-pricing-fields.php:49
+#: includes/admin/views/html-booking-availability-fields.php:49
+#: includes/admin/views/html-booking-pricing-fields.php:54
 msgid "Range of days"
 msgstr "曜日の範囲"
 
-#: includes/admin/views/html-booking-availability-fields.php:46
-#: includes/admin/views/html-booking-pricing-fields.php:53
+#: includes/admin/views/html-booking-availability-fields.php:50
+#: includes/admin/views/html-booking-pricing-fields.php:58
 msgid "Time Ranges"
 msgstr "時間の範囲"
 
-#: includes/admin/views/html-booking-availability-fields.php:47
-#: includes/admin/views/html-booking-pricing-fields.php:54
+#: includes/admin/views/html-booking-availability-fields.php:51
+#: includes/admin/views/html-booking-pricing-fields.php:59
 msgid "Time Range (all week)"
 msgstr "時間の範囲(1週間全て)"
 
-#: includes/admin/views/html-booking-availability-fields.php:117
+#: includes/admin/views/html-booking-availability-fields.php:52
+#: includes/admin/views/html-booking-pricing-fields.php:60
+msgid "Date Range with time"
+msgstr ""
+
+#: includes/admin/views/html-booking-availability-fields.php:100
+#: includes/admin/views/html-booking-availability-fields.php:101
+#: includes/admin/views/html-booking-pricing-fields.php:113
+#: includes/admin/views/html-booking-pricing-fields.php:114
+msgid "to"
+msgstr "to"
+
+#: includes/admin/views/html-booking-availability-fields.php:146
 msgid "No"
 msgstr "いいえ"
 
-#: includes/admin/views/html-booking-availability-fields.php:118
+#: includes/admin/views/html-booking-availability-fields.php:147
 msgid "Yes"
 msgstr "はい"
 
@@ -732,20 +827,20 @@ msgstr "ブロックごとに許容される最大の予約。リソース レ�
 
 #: includes/admin/views/html-booking-availability.php:12
 msgid "Minimum block bookable"
-msgstr "最小予約ブロック"
+msgstr "最短予約開始可能範囲"
 
 #: includes/admin/views/html-booking-availability.php:15
 #: includes/admin/views/html-booking-availability.php:32
 #: includes/admin/views/html-booking-data.php:16
 #: includes/admin/views/html-booking-data.php:97
-#: includes/booking-form/class-wc-booking-form.php:118
+#: includes/booking-form/class-wc-booking-form.php:124
 msgid "Month(s)"
 msgstr "月"
 
 #: includes/admin/views/html-booking-availability.php:16
 #: includes/admin/views/html-booking-availability.php:33
-#: includes/booking-form/class-wc-booking-form.php:125
-#: includes/booking-form/class-wc-booking-form.php:137
+#: includes/booking-form/class-wc-booking-form.php:131
+#: includes/booking-form/class-wc-booking-form.php:143
 msgid "Week(s)"
 msgstr "週"
 
@@ -753,7 +848,7 @@ msgstr "週"
 #: includes/admin/views/html-booking-availability.php:34
 #: includes/admin/views/html-booking-data.php:17
 #: includes/admin/views/html-booking-data.php:98
-#: includes/booking-form/class-wc-booking-form.php:133
+#: includes/booking-form/class-wc-booking-form.php:139
 msgid "Day(s)"
 msgstr "日"
 
@@ -761,7 +856,7 @@ msgstr "日"
 #: includes/admin/views/html-booking-availability.php:35
 #: includes/admin/views/html-booking-data.php:18
 #: includes/admin/views/html-booking-data.php:99
-#: includes/booking-form/class-wc-booking-form.php:147
+#: includes/booking-form/class-wc-booking-form.php:160
 msgid "Hour(s)"
 msgstr "時間"
 
@@ -772,41 +867,49 @@ msgstr "先日付まで"
 
 #: includes/admin/views/html-booking-availability.php:29
 msgid "Maximum block bookable"
-msgstr "最大予約ブロック"
+msgstr "予約可能最終範囲"
 
-#: includes/admin/views/html-booking-availability.php:42
+#: includes/admin/views/html-booking-availability.php:44
+msgid "Require a buffer period of"
+msgstr ""
+
+#: includes/admin/views/html-booking-availability.php:47
+msgid "between bookings"
+msgstr ""
+
+#: includes/admin/views/html-booking-availability.php:54
 msgid "All dates are..."
 msgstr "全ての日付は..."
 
-#: includes/admin/views/html-booking-availability.php:46
+#: includes/admin/views/html-booking-availability.php:58
 msgid "available by default"
 msgstr "規定で利用可能"
 
-#: includes/admin/views/html-booking-availability.php:47
+#: includes/admin/views/html-booking-availability.php:59
 msgid "not-available by default"
 msgstr "規定で利用不可"
 
-#: includes/admin/views/html-booking-availability.php:49
+#: includes/admin/views/html-booking-availability.php:61
 msgid "This option affects how you use the rules below."
 msgstr "このオプションは、以下のルールの使用に影響します。"
 
-#: includes/admin/views/html-booking-availability.php:56
+#: includes/admin/views/html-booking-availability.php:68
 msgid "Check rules against..."
 msgstr "ルールに反しているかチェックする..."
 
-#: includes/admin/views/html-booking-availability.php:60
+#: includes/admin/views/html-booking-availability.php:72
 msgid "All blocks being booked"
 msgstr "予約されているすべてのブロック"
 
-#: includes/admin/views/html-booking-availability.php:61
+#: includes/admin/views/html-booking-availability.php:73
 msgid "The starting block only"
 msgstr "開始ブロックのみ"
 
-#: includes/admin/views/html-booking-availability.php:63
+#: includes/admin/views/html-booking-availability.php:75
 msgid "This option affects how bookings are checked for availability."
 msgstr "このオプションは、利用可能な予約のチェック方法に影響します。"
 
-#: includes/admin/views/html-booking-availability.php:68
+#: includes/admin/views/html-booking-availability.php:80
 msgid "First block starts at..."
 msgstr "最初のブロックの始まりは..."
 
@@ -893,7 +996,7 @@ msgid "Booking can be cancelled until"
 msgstr ""
 
 #: includes/admin/views/html-booking-data.php:100
-#: includes/booking-form/class-wc-booking-form.php:154
+#: includes/booking-form/class-wc-booking-form.php:167
 msgid "Minute(s)"
 msgstr "分"
 
@@ -913,31 +1016,27 @@ msgstr "クリックで切り替えます"
 
 #: includes/admin/views/html-booking-person.php:21
 msgid "Person Type Name"
-msgstr "担当者の種類の名前"
-
-#: includes/admin/views/html-booking-person.php:22
-msgid "Person Type #"
-msgstr "担当者の種類 #"
+msgstr "お客様の種類の名前"
 
 #: includes/admin/views/html-booking-person.php:25
 #: includes/admin/views/html-booking-resource.php:23
 msgid "Base Cost"
 msgstr "基本費用"
 
-#: includes/admin/views/html-booking-person.php:29
-#: includes/admin/views/html-booking-resource.php:27
+#: includes/admin/views/html-booking-person.php:30
+#: includes/admin/views/html-booking-resource.php:28
 msgid "Block Cost"
 msgstr ""
 
-#: includes/admin/views/html-booking-person.php:35
+#: includes/admin/views/html-booking-person.php:37
 msgid "Description"
 msgstr "概要"
 
-#: includes/admin/views/html-booking-person.php:39
+#: includes/admin/views/html-booking-person.php:41
 msgid "Min"
 msgstr "最小"
 
-#: includes/admin/views/html-booking-person.php:43
+#: includes/admin/views/html-booking-person.php:45
 msgid "Max"
 msgstr "最大"
 
@@ -979,14 +1078,14 @@ msgstr "これを有効にすると、ブロック（上記）の最大予約数
 
 #: includes/admin/views/html-booking-persons.php:19
 msgid "Enable person types"
-msgstr "担当者の種類を有効にする"
+msgstr "お客様の種類を有効にする"
 
 #: includes/admin/views/html-booking-persons.php:19
 #: includes/admin/views/html-booking-persons.php:47
 msgid ""
 "Person types allow you to offer different booking costs for different types "
 "of individuals, for example, adults and children."
-msgstr "担当者の種類とは、例えば「大人」と「子供」で異なる予約費用を提供できるようになります。"
+msgstr "お客様の種類とは、例えば「大人」と「子供」で異なる予約費用を提供できるようになります。"
 
 #: includes/admin/views/html-booking-persons.php:26
 msgid "Person types"
@@ -1006,20 +1105,20 @@ msgstr "全て展開"
 msgid "Add Person Type"
 msgstr "人の種類を追加"
 
-#: includes/admin/views/html-booking-pricing-fields.php:50
+#: includes/admin/views/html-booking-pricing-fields.php:55
 msgid "Time Range"
 msgstr "時間の範囲"
 
-#: includes/admin/views/html-booking-pricing-fields.php:51
+#: includes/admin/views/html-booking-pricing-fields.php:56
 msgid "Person count"
 msgstr "人数"
 
-#: includes/admin/views/html-booking-pricing-fields.php:52
+#: includes/admin/views/html-booking-pricing-fields.php:57
 msgid "Block count"
 msgstr "ブロック数"
 
 #: includes/admin/views/html-booking-pricing.php:4
-#: includes/admin/views/html-booking-pricing.php:29
+#: includes/admin/views/html-booking-pricing.php:36
 msgid "Base cost"
 msgstr "基本費用"
 
@@ -1027,37 +1126,37 @@ msgstr "基本費用"
 msgid "One-off cost for the booking as a whole."
 msgstr "予約毎の費用とします。"
 
-#: includes/admin/views/html-booking-pricing.php:9
-#: includes/admin/views/html-booking-pricing.php:30
+#: includes/admin/views/html-booking-pricing.php:11
+#: includes/admin/views/html-booking-pricing.php:37
 msgid "Block cost"
 msgstr "ブロック費用"
 
-#: includes/admin/views/html-booking-pricing.php:9
+#: includes/admin/views/html-booking-pricing.php:11
 msgid ""
 "This is the cost per block booked. All other costs (for resources and "
 "persons) are added to this."
 msgstr "予約されたブロックあたりの費用です。 他のすべての費用（リソースと人）は、これに加算されます。"
 
-#: includes/admin/views/html-booking-pricing.php:14
+#: includes/admin/views/html-booking-pricing.php:18
 msgid "Display cost"
 msgstr ""
 
-#: includes/admin/views/html-booking-pricing.php:14
+#: includes/admin/views/html-booking-pricing.php:18
 msgid ""
 "The cost is displayed to the user on the frontend. Leave blank to have it "
 "calculated for you. If a booking has varying costs, this will be prefixed "
 "with the word \"from:\"."
 msgstr ""
 
-#: includes/admin/views/html-booking-pricing.php:29
+#: includes/admin/views/html-booking-pricing.php:36
 msgid "Enter a cost for this rule. Applied to the booking as a whole."
 msgstr "このルールの費用を入力します。予約全体に適用されます。"
 
-#: includes/admin/views/html-booking-pricing.php:30
+#: includes/admin/views/html-booking-pricing.php:37
 msgid "Enter a cost for this rule. Applied to each booking block."
-msgstr "このルールの費用を入力します。予約ブロックごとに適用されます。"
+msgstr "このルールの費用を入力します。予約範囲ごとに適用されます。"
 
-#: includes/admin/views/html-booking-pricing.php:43
+#: includes/admin/views/html-booking-pricing.php:50
 msgid "All matching rules will be applied to the booking."
 msgstr "規則に一致する全ての予約に適用されます。"
 
@@ -1066,7 +1165,7 @@ msgid "Edit resource"
 msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:5
-#: includes/booking-form/class-wc-booking-form.php:253
+#: includes/booking-form/class-wc-booking-form.php:269
 msgid "Type"
 msgstr "タイプ"
 
@@ -1097,8 +1196,8 @@ msgid ""
 msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:17
-#: includes/admin/views/html-booking-tab.php:1 woocommmerce-bookings.php:259
-#: woocommmerce-bookings.php:275
+#: includes/admin/views/html-booking-tab.php:1 woocommmerce-bookings.php:262
+#: woocommmerce-bookings.php:278
 msgid "Resources"
 msgstr "リソース"
 
@@ -1129,12 +1228,6 @@ msgstr "利用可能"
 #: includes/admin/views/html-booking-tab.php:3
 msgid "Costs"
 msgstr "費用"
-
-#: includes/admin/views/html-booking-tab.php:4
-#: includes/booking-form/class-wc-booking-form.php:201
-#: includes/booking-form/class-wc-booking-form.php:390
-msgid "Persons"
-msgstr "人数"
 
 #: includes/admin/views/html-calendar-day.php:3
 msgid "Bookings by day"
@@ -1167,11 +1260,6 @@ msgstr "月間予約"
 msgid "Day View"
 msgstr "日別表示"
 
-#: includes/admin/views/html-calendar-month.php:63
-msgctxt "date format"
-msgid "l"
-msgstr ""
-
 #: includes/admin/views/html-create-booking-page-2.php:13
 msgid "Booking Data"
 msgstr "予約データ"
@@ -1187,51 +1275,52 @@ msgstr "顧客への新しい予約を作成できます。ユーザ、もしく
 msgid "Customer"
 msgstr "顧客"
 
-#: includes/admin/views/html-create-booking-page.php:25
+#: includes/admin/views/html-create-booking-page.php:29
 msgid "Bookable Product"
 msgstr "予約商品"
 
-#: includes/admin/views/html-create-booking-page.php:29
+#: includes/admin/views/html-create-booking-page.php:33
 msgid "Select a bookable product..."
 msgstr "予約商品を選択して下さい..."
 
-#: includes/admin/views/html-create-booking-page.php:38
+#: includes/admin/views/html-create-booking-page.php:42
 msgid "Create Order"
 msgstr "受注作成"
 
-#: includes/admin/views/html-create-booking-page.php:44
+#: includes/admin/views/html-create-booking-page.php:48
 msgid ""
 "Create a new corresponding order for this new booking. Please note - the "
 "booking will not be active until the order is processed/completed."
 msgstr ""
 
-#: includes/admin/views/html-create-booking-page.php:50
+#: includes/admin/views/html-create-booking-page.php:54
 msgid "Assign this booking to an existing order with this ID:"
 msgstr ""
 
-#: includes/admin/views/html-create-booking-page.php:57
+#: includes/admin/views/html-create-booking-page.php:61
 msgid "Don't create an order for this booking."
 msgstr ""
 
-#: includes/admin/views/html-create-booking-page.php:65
+#: includes/admin/views/html-create-booking-page.php:70
+#: includes/booking-form/class-wc-booking-form.php:39
 msgid "Next"
 msgstr "次へ"
 
-#: includes/admin/views/html-global-availability-settings.php:41
+#: includes/admin/views/html-global-availability-settings.php:49
 msgid "Settings saved"
 msgstr "設定を保存しました"
 
-#: includes/admin/views/html-global-availability-settings.php:49
+#: includes/admin/views/html-global-availability-settings.php:57
 msgid "Global availability"
 msgstr "利用可能設定"
 
-#: includes/admin/views/html-global-availability-settings.php:51
+#: includes/admin/views/html-global-availability-settings.php:59
 msgid ""
 "The availability rules you define here will affect all bookable products in "
 "your store."
 msgstr "ここで定義した利用可能ルールはあなたのストアのすべての予約商品に影響します。"
 
-#: includes/admin/views/html-global-availability-settings.php:93
+#: includes/admin/views/html-global-availability-settings.php:103
 msgid "Save Changes"
 msgstr "変更を保存"
 
@@ -1252,10 +1341,11 @@ msgid "Select a booking product..."
 msgstr "予約商品を選択して下さい..."
 
 #: includes/admin/views/html-notifications-page.php:25
-#: includes/emails/class-wc-email-booking-cancelled.php:131
-#: includes/emails/class-wc-email-booking-confirmed.php:150
-#: includes/emails/class-wc-email-booking-reminder.php:121
-#: includes/emails/class-wc-email-new-booking.php:137
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:139
+#: includes/emails/class-wc-email-booking-cancelled.php:143
+#: includes/emails/class-wc-email-booking-confirmed.php:153
+#: includes/emails/class-wc-email-booking-reminder.php:124
+#: includes/emails/class-wc-email-new-booking.php:185
 msgid "Subject"
 msgstr "件名"
 
@@ -1285,15 +1375,18 @@ msgstr "添付"
 msgid "Attach <code>.ics</code> file"
 msgstr "<code>.ics</code> ファイルを添付"
 
-#: includes/booking-form/class-wc-booking-form-date-picker.php:36
+#: includes/booking-form/class-wc-booking-form-date-picker.php:37
 #: includes/booking-form/class-wc-booking-form-datetime-picker.php:30
 msgid "Date"
 msgstr "日"
 
 #: includes/booking-form/class-wc-booking-form-month-picker.php:29
-#: templates/booking-form/date-picker.php:21
-#: templates/booking-form/date-picker.php:36
+#: templates/booking-form/date-picker.php:22
+#: templates/booking-form/date-picker.php:33
+#: templates/booking-form/date-picker.php:47
+#: templates/booking-form/date-picker.php:58
 #: templates/booking-form/datetime-picker.php:17
+#: templates/booking-form/datetime-picker.php:28
 msgid "Month"
 msgstr "予約月"
 
@@ -1309,186 +1402,232 @@ msgstr "終了"
 msgid "Today"
 msgstr "今日"
 
-#: includes/booking-form/class-wc-booking-form.php:73
+#: includes/booking-form/class-wc-booking-form.php:38
+msgid "Previous"
+msgstr "前"
+
+#: includes/booking-form/class-wc-booking-form.php:75
 msgid "This date is unavailable"
 msgstr "この日は無効です"
 
-#: includes/booking-form/class-wc-booking-form.php:74
+#: includes/booking-form/class-wc-booking-form.php:76
+msgid "This date is fully booked and unavailable"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:77
+msgid "This date is partially booked - but bookings still remain"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:78
+msgid "This date is available"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:79
 msgid "Choose a Start Date"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:75
+#: includes/booking-form/class-wc-booking-form.php:80
 msgid "Choose an End Date"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:76
+#: includes/booking-form/class-wc-booking-form.php:81
 msgid "Dates"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:116
+#: includes/booking-form/class-wc-booking-form.php:82
+msgid "Please select the options for your booking above first"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:122
 msgid "&times; %s Months"
 msgstr "&times; %s ヶ月"
 
-#: includes/booking-form/class-wc-booking-form.php:123
-#: includes/booking-form/class-wc-booking-form.php:139
+#: includes/booking-form/class-wc-booking-form.php:129
+#: includes/booking-form/class-wc-booking-form.php:145
 msgid "&times; %s weeks"
 msgstr "&times; %s 週間"
 
-#: includes/booking-form/class-wc-booking-form.php:131
+#: includes/booking-form/class-wc-booking-form.php:137
 msgid "&times; %s days"
 msgstr "&times; %s 日"
 
-#: includes/booking-form/class-wc-booking-form.php:145
+#: includes/booking-form/class-wc-booking-form.php:151
+msgid "&times; %s nights"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:153
+msgid "Nights(s)"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:158
 msgid "&times; %s hours"
 msgstr "&times; %s 時間"
 
-#: includes/booking-form/class-wc-booking-form.php:152
+#: includes/booking-form/class-wc-booking-form.php:165
 msgid "&times; %s minutes"
 msgstr "&times; %s 分"
 
-#: includes/booking-form/class-wc-booking-form.php:162
-#: includes/wc-bookings-functions.php:36
-msgid "Duration"
-msgstr "期間"
-
-#: includes/booking-form/class-wc-booking-form.php:230
+#: includes/booking-form/class-wc-booking-form.php:243
 msgid "+%s per month"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:233
+#: includes/booking-form/class-wc-booking-form.php:246
 msgid "+%s per day"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:236
+#: includes/booking-form/class-wc-booking-form.php:249
+msgid "+%s per night"
+msgstr ""
+
+#: includes/booking-form/class-wc-booking-form.php:252
 msgid "+%s per block"
 msgstr ""
 
-#: includes/booking-form/class-wc-booking-form.php:413
+#: includes/booking-form/class-wc-booking-form.php:430
 msgid "month"
 msgid_plural "months"
 msgstr[0] "月"
 
-#: includes/booking-form/class-wc-booking-form.php:417
+#: includes/booking-form/class-wc-booking-form.php:434
 msgid "day"
 msgid_plural "days"
 msgstr[0] "日"
 
-#: includes/booking-form/class-wc-booking-form.php:419
+#: includes/booking-form/class-wc-booking-form.php:436
 msgid "week"
 msgid_plural "weeks"
 msgstr[0] "週"
 
-#: includes/booking-form/class-wc-booking-form.php:423
+#: includes/booking-form/class-wc-booking-form.php:440
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "時"
 
-#: includes/booking-form/class-wc-booking-form.php:426
+#: includes/booking-form/class-wc-booking-form.php:443
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "分"
 
-#: includes/booking-form/class-wc-booking-form.php:483
+#: includes/booking-form/class-wc-booking-form.php:446
+msgid "night"
+msgid_plural "nights"
+msgstr[0] ""
+
+#: includes/booking-form/class-wc-booking-form.php:507
 msgid "Please choose a resource type"
 msgstr "リソースの種類を選択して下さい"
 
-#: includes/booking-form/class-wc-booking-form.php:494
+#: includes/booking-form/class-wc-booking-form.php:518
 msgid "Duration is required - please enter a duration greater than zero above"
 msgstr "期間は必須 - 0を超える期間を入力して下さい。"
 
-#: includes/booking-form/class-wc-booking-form.php:497
+#: includes/booking-form/class-wc-booking-form.php:521
 msgid "The maximum duration is %d"
 msgstr "最大期間は %d"
 
-#: includes/booking-form/class-wc-booking-form.php:500
+#: includes/booking-form/class-wc-booking-form.php:524
 msgid "The minimum duration is %d"
 msgstr "最小期間は %d"
 
-#: includes/booking-form/class-wc-booking-form.php:506
+#: includes/booking-form/class-wc-booking-form.php:530
 msgid "Date is required - please choose one above"
 msgstr "日付は必須 - 選択して下さい"
 
-#: includes/booking-form/class-wc-booking-form.php:509
+#: includes/booking-form/class-wc-booking-form.php:533
 msgid "Time is required - please choose one above"
 msgstr "時間は必須 - 選択して下さい"
 
-#: includes/booking-form/class-wc-booking-form.php:512
-#: includes/booking-form/class-wc-booking-form.php:515
+#: includes/booking-form/class-wc-booking-form.php:536
+#: includes/booking-form/class-wc-booking-form.php:539
 msgid "You must choose a future date and time."
 msgstr "将来の日付と時刻を選択する必要があります。"
 
-#: includes/booking-form/class-wc-booking-form.php:530
+#: includes/booking-form/class-wc-booking-form.php:554
 msgid "The earliest booking possible is currently %s."
 msgstr "可能な初期の予約は、現在 %s です。"
 
-#: includes/booking-form/class-wc-booking-form.php:536
+#: includes/booking-form/class-wc-booking-form.php:560
 msgid "The latest booking possible is currently %s."
 msgstr "最新の予約可能数は、現在 %s です。"
 
-#: includes/booking-form/class-wc-booking-form.php:545
+#: includes/booking-form/class-wc-booking-form.php:569
 msgid "Persons are required - please enter the number of persons above"
 msgstr "人数は必須です - 上記に人数を入力してください。"
 
-#: includes/booking-form/class-wc-booking-form.php:548
+#: includes/booking-form/class-wc-booking-form.php:572
 msgid "The maximum persons per group is %d"
 msgstr "グループ毎の最大人数は %d"
 
-#: includes/booking-form/class-wc-booking-form.php:551
+#: includes/booking-form/class-wc-booking-form.php:575
 msgid "The minimum persons per group is %d"
 msgstr "グループ毎の最小人数は %d"
 
-#: includes/booking-form/class-wc-booking-form.php:559
+#: includes/booking-form/class-wc-booking-form.php:583
 msgid "The maximum %s per group is %d"
 msgstr "1 グループあたり最大 %s は %d です"
 
-#: includes/booking-form/class-wc-booking-form.php:564
+#: includes/booking-form/class-wc-booking-form.php:588
 msgid "The minimum %s per group is %d"
 msgstr "1 グループあたり最小 %s は %d です"
 
-#: includes/booking-form/class-wc-booking-form.php:580
+#: includes/booking-form/class-wc-booking-form.php:604
 msgid "Sorry, the selected block is not available"
 msgstr "申し訳ありません、選択されたブロックは利用可能ではありません"
 
-#: includes/class-wc-booking-cart-manager.php:137
+#: includes/booking-form/class-wc-booking-form.php:722
+msgid "The duration of this booking must be at least %s days."
+msgstr ""
+
+#: includes/class-wc-booking-cart-manager.php:175
 msgid "A booking for %s has been removed from your cart due to inactivity."
 msgstr ""
 
-#: includes/class-wc-booking-cart-manager.php:314
+#: includes/class-wc-booking-cart-manager.php:354
 msgid ""
 "A booking that requires confirmation has been removed from your cart. It is "
 "not possible to complete the purchased along with a booking that doesn't "
 "require confirmation."
 msgstr "確認が必要です、予約がカートから削除されました。確認を必要としない予約と一緒にご購入を完了することはできません。"
 
-#: includes/class-wc-booking-form-handler.php:37
+#: includes/class-wc-booking-coupon.php:43
+msgid "Booking Person Discount (Amount Off Per Person)"
+msgstr ""
+
+#: includes/class-wc-booking-form-handler.php:38
 msgid "Your booking was cancelled."
 msgstr ""
 
-#: includes/class-wc-booking-form-handler.php:41
+#: includes/class-wc-booking-form-handler.php:42
 msgid ""
 "Your booking can no longer be cancelled. Please contact us if you need "
 "assistance."
 msgstr ""
 
-#: includes/class-wc-booking-form-handler.php:43
+#: includes/class-wc-booking-form-handler.php:44
 msgid "Invalid booking."
 msgstr ""
 
-#: includes/class-wc-booking.php:148
+#: includes/class-wc-booking-order-manager.php:361
+msgid ""
+"The product %s has been removed from the order because the booking #%d "
+"cannot be confirmed."
+msgstr ""
+
+#: includes/class-wc-booking.php:150
 msgid "Booking &ndash; %s"
 msgstr "予約 &ndash; %s"
 
-#: includes/class-wc-booking.php:148
-msgctxt "Booking date parsed by strftime"
-msgid "%b %d, %Y @ %I:%M %p"
-msgstr "%Y %m %d (%b) @ %H:%m:%s"
+#: includes/class-wc-booking.php:312
+msgid "Booking #%d status changed from \"%s\" to \"%s"
+msgstr ""
 
 #: includes/class-wc-bookings-ics-exporter.php:149
 msgid "Bookings from %s"
 msgstr "予約開始 %s"
 
 #: includes/class-wc-bookings-ics-exporter.php:170
-#: templates/emails/plain/admin-new-booking.php:34
+#: templates/emails/plain/admin-booking-cancelled.php:30
+#: templates/emails/plain/admin-new-booking.php:40
 #: templates/emails/plain/customer-booking-cancelled.php:34
 #: templates/emails/plain/customer-booking-confirmed.php:34
 #: templates/emails/plain/customer-booking-notification.php:32
@@ -1500,132 +1639,169 @@ msgstr "%s: %d"
 msgid "Booking description:"
 msgstr "予約概要:"
 
-#: includes/class-wc-product-booking.php:226
+#: includes/class-wc-product-booking.php:265
 msgid "From: %s"
 msgstr "From: %s"
 
-#: includes/class-wc-product-booking.php:231
+#: includes/class-wc-product-booking.php:270
 msgid "Free"
 msgstr ""
 
-#: includes/class-wc-product-booking.php:406
+#: includes/class-wc-product-booking.php:445
 msgid "Check Availability"
 msgstr "利用可能か確認"
 
-#: includes/class-wc-product-booking.php:406
+#: includes/class-wc-product-booking.php:445
 msgid "Book now"
 msgstr "今すぐ予約"
 
-#: includes/class-wc-product-booking.php:491
+#: includes/class-wc-product-booking.php:530
 msgid "This block cannot be booked."
 msgstr "このブロックは予約することはできません。"
 
-#: includes/class-wc-product-booking.php:545
+#: includes/class-wc-product-booking.php:586
 msgid "There is %d place remaining"
 msgid_plural "There are %d places remaining"
-msgstr[0] ""
+msgstr[0] "%d枠が空いています。"
 
-#: includes/class-wc-product-booking.php:550
-#: includes/class-wc-product-booking.php:556
+#: includes/class-wc-product-booking.php:591
+#: includes/class-wc-product-booking.php:597
 msgid "There is %d place remaining on %s"
 msgid_plural "There are %d places remaining on %s"
 msgstr[0] ""
 
-#: includes/emails/class-wc-email-booking-cancelled.php:20
-#: includes/emails/class-wc-email-booking-cancelled.php:23
-msgid "Booking Cancelled"
+#: includes/class-wc-product-booking.php:1276
+msgid "%d left"
+msgid_plural "%d left"
+msgstr[0] ""
+
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:20
+msgid "Admin Booking Cancelled"
 msgstr ""
 
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:21
 #: includes/emails/class-wc-email-booking-cancelled.php:21
 msgid ""
 "Booking cancelled emails are sent when the status of a booking goes to "
 "cancelled."
 msgstr ""
 
-#: includes/emails/class-wc-email-booking-cancelled.php:24
-msgid "[{blogname}] Your booking of \"{product_title}\" has been cancelled"
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:23
+#: includes/emails/class-wc-email-booking-cancelled.php:20
+#: includes/emails/class-wc-email-booking-cancelled.php:23
+msgid "Booking Cancelled"
 msgstr ""
 
-#: includes/emails/class-wc-email-booking-cancelled.php:125
-#: includes/emails/class-wc-email-booking-confirmed.php:144
-#: includes/emails/class-wc-email-booking-notification.php:142
-#: includes/emails/class-wc-email-booking-reminder.php:115
-#: includes/emails/class-wc-email-new-booking.php:124
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:24
+msgid "[{blogname}] A booking of \"{product_title}\" has been cancelled"
+msgstr ""
+
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:126
+#: includes/emails/class-wc-email-booking-cancelled.php:137
+#: includes/emails/class-wc-email-booking-confirmed.php:147
+#: includes/emails/class-wc-email-booking-notification.php:140
+#: includes/emails/class-wc-email-booking-reminder.php:118
+#: includes/emails/class-wc-email-new-booking.php:172
 msgid "Enable/Disable"
 msgstr "有効/無効"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:127
-#: includes/emails/class-wc-email-booking-confirmed.php:146
-#: includes/emails/class-wc-email-booking-notification.php:144
-#: includes/emails/class-wc-email-booking-reminder.php:117
-#: includes/emails/class-wc-email-new-booking.php:126
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:128
+#: includes/emails/class-wc-email-booking-cancelled.php:139
+#: includes/emails/class-wc-email-booking-confirmed.php:149
+#: includes/emails/class-wc-email-booking-notification.php:142
+#: includes/emails/class-wc-email-booking-reminder.php:120
+#: includes/emails/class-wc-email-new-booking.php:174
 msgid "Enable this email notification"
 msgstr "このメール通知を有効にします。"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:133
-#: includes/emails/class-wc-email-booking-confirmed.php:152
-#: includes/emails/class-wc-email-booking-reminder.php:123
-#: includes/emails/class-wc-email-new-booking.php:139
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:132
+#: includes/emails/class-wc-email-new-booking.php:178
+msgid "Recipient(s)"
+msgstr "受信者"
+
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:134
+#: includes/emails/class-wc-email-new-booking.php:180
+msgid ""
+"Enter recipients (comma separated) for this email. Defaults to "
+"<code>%s</code>."
+msgstr "このメールの受信者 (半角カンマ区切り) を入力します。デフォルトは <code>%s</code> です。"
+
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:141
+#: includes/emails/class-wc-email-booking-cancelled.php:145
+#: includes/emails/class-wc-email-booking-confirmed.php:155
+#: includes/emails/class-wc-email-booking-reminder.php:126
+#: includes/emails/class-wc-email-new-booking.php:187
 msgid ""
 "This controls the email subject line. Leave blank to use the default "
 "subject: <code>%s</code>."
 msgstr "メールの件名を制御します。既定の件名を使用する空白のままにします: <code>%s</code>。"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:138
-#: includes/emails/class-wc-email-booking-confirmed.php:157
-#: includes/emails/class-wc-email-booking-reminder.php:128
-#: includes/emails/class-wc-email-new-booking.php:144
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:146
+#: includes/emails/class-wc-email-booking-cancelled.php:150
+#: includes/emails/class-wc-email-booking-confirmed.php:160
+#: includes/emails/class-wc-email-booking-reminder.php:131
+#: includes/emails/class-wc-email-new-booking.php:199
 msgid "Email Heading"
 msgstr "メール見出し"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:140
-#: includes/emails/class-wc-email-booking-confirmed.php:159
-#: includes/emails/class-wc-email-booking-reminder.php:130
-#: includes/emails/class-wc-email-new-booking.php:146
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:148
+#: includes/emails/class-wc-email-booking-cancelled.php:152
+#: includes/emails/class-wc-email-booking-confirmed.php:162
+#: includes/emails/class-wc-email-booking-reminder.php:133
+#: includes/emails/class-wc-email-new-booking.php:201
 msgid ""
 "This controls the main heading contained within the email notification. "
 "Leave blank to use the default heading: <code>%s</code>."
 msgstr "メール通知内に含まれる主要な見出しを制御します。デフォルトの見出しを使用する空白のままにします: <code>%s</code>。"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:145
-#: includes/emails/class-wc-email-booking-confirmed.php:164
-#: includes/emails/class-wc-email-booking-notification.php:148
-#: includes/emails/class-wc-email-booking-reminder.php:135
-#: includes/emails/class-wc-email-new-booking.php:151
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:153
+#: includes/emails/class-wc-email-booking-cancelled.php:157
+#: includes/emails/class-wc-email-booking-confirmed.php:167
+#: includes/emails/class-wc-email-booking-notification.php:146
+#: includes/emails/class-wc-email-booking-reminder.php:138
+#: includes/emails/class-wc-email-new-booking.php:213
 msgid "Email type"
 msgstr "メール形式"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:147
-#: includes/emails/class-wc-email-booking-confirmed.php:166
-#: includes/emails/class-wc-email-booking-notification.php:150
-#: includes/emails/class-wc-email-booking-reminder.php:137
-#: includes/emails/class-wc-email-new-booking.php:153
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:155
+#: includes/emails/class-wc-email-booking-cancelled.php:159
+#: includes/emails/class-wc-email-booking-confirmed.php:169
+#: includes/emails/class-wc-email-booking-notification.php:148
+#: includes/emails/class-wc-email-booking-reminder.php:140
+#: includes/emails/class-wc-email-new-booking.php:215
 msgid "Choose which format of email to send."
 msgstr "送信するメール形式を選択して下さい。"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:151
-#: includes/emails/class-wc-email-booking-confirmed.php:170
-#: includes/emails/class-wc-email-booking-notification.php:154
-#: includes/emails/class-wc-email-booking-reminder.php:141
-#: includes/emails/class-wc-email-new-booking.php:157
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:159
+#: includes/emails/class-wc-email-booking-cancelled.php:163
+#: includes/emails/class-wc-email-booking-confirmed.php:173
+#: includes/emails/class-wc-email-booking-notification.php:152
+#: includes/emails/class-wc-email-booking-reminder.php:144
+#: includes/emails/class-wc-email-new-booking.php:219
 msgid "Plain text"
 msgstr "プレーンテキスト"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:152
-#: includes/emails/class-wc-email-booking-confirmed.php:171
-#: includes/emails/class-wc-email-booking-notification.php:155
-#: includes/emails/class-wc-email-booking-reminder.php:142
-#: includes/emails/class-wc-email-new-booking.php:158
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:160
+#: includes/emails/class-wc-email-booking-cancelled.php:164
+#: includes/emails/class-wc-email-booking-confirmed.php:174
+#: includes/emails/class-wc-email-booking-notification.php:153
+#: includes/emails/class-wc-email-booking-reminder.php:145
+#: includes/emails/class-wc-email-new-booking.php:220
 msgid "HTML"
 msgstr "HTML"
 
-#: includes/emails/class-wc-email-booking-cancelled.php:153
-#: includes/emails/class-wc-email-booking-confirmed.php:172
-#: includes/emails/class-wc-email-booking-notification.php:156
-#: includes/emails/class-wc-email-booking-reminder.php:143
-#: includes/emails/class-wc-email-new-booking.php:159
+#: includes/emails/class-wc-email-admin-booking-cancelled.php:161
+#: includes/emails/class-wc-email-booking-cancelled.php:165
+#: includes/emails/class-wc-email-booking-confirmed.php:175
+#: includes/emails/class-wc-email-booking-notification.php:154
+#: includes/emails/class-wc-email-booking-reminder.php:146
+#: includes/emails/class-wc-email-new-booking.php:221
 msgid "Multipart"
 msgstr "マルチパート"
+
+#: includes/emails/class-wc-email-booking-cancelled.php:24
+msgid "[{blogname}] Your booking of \"{product_title}\" has been cancelled"
+msgstr ""
 
 #: includes/emails/class-wc-email-booking-confirmed.php:21
 #: includes/emails/class-wc-email-booking-confirmed.php:24
@@ -1669,35 +1845,58 @@ msgstr "予約通知は、顧客が予約を忘れないようにするために
 msgid "[{blogname}] A reminder about your booking of \"{product_title}\""
 msgstr "[{blogname}] \"{product_title}\" の予約リマインダー"
 
-#: includes/emails/class-wc-email-new-booking.php:21
-#: woocommmerce-bookings.php:307
+#: includes/emails/class-wc-email-new-booking.php:27
+#: woocommmerce-bookings.php:310
 msgid "New Booking"
 msgstr "新しい予約"
 
-#: includes/emails/class-wc-email-new-booking.php:22
+#: includes/emails/class-wc-email-new-booking.php:28
 msgid ""
-"New booking emails are sent to the admin when a new booking is created."
-msgstr "新しい予約が作成されたときに管理者にメール送信されます。"
+"New booking emails are sent to the admin when a new booking is created and "
+"paid. This email is also received when a Pending confirmation booking is "
+"created."
+msgstr ""
 
-#: includes/emails/class-wc-email-new-booking.php:24
+#: includes/emails/class-wc-email-new-booking.php:30
 msgid "New booking"
 msgstr "新しい予約"
 
-#: includes/emails/class-wc-email-new-booking.php:25
+#: includes/emails/class-wc-email-new-booking.php:31
+msgid "Confirm booking"
+msgstr ""
+
+#: includes/emails/class-wc-email-new-booking.php:32
 msgid ""
 "[{blogname}] New booking for {product_title} (Order {order_number}) - "
 "{order_date}"
 msgstr "[{blogname}] {product_title} への新しい予約  (注文番号 {order_number}) - {order_date}"
 
-#: includes/emails/class-wc-email-new-booking.php:130
-msgid "Recipient(s)"
-msgstr "受信者"
-
-#: includes/emails/class-wc-email-new-booking.php:132
+#: includes/emails/class-wc-email-new-booking.php:33
 msgid ""
-"Enter recipients (comma separated) for this email. Defaults to "
+"[{blogname}] A new booking for {product_title} (Order {order_number}) is "
+"awaiting your approval - {order_date}"
+msgstr ""
+
+#: includes/emails/class-wc-email-new-booking.php:192
+msgid "Subject (Pending confirmation)"
+msgstr ""
+
+#: includes/emails/class-wc-email-new-booking.php:194
+msgid ""
+"This controls the email subject line for Pending confirmation bookings. "
+"Leave blank to use the default subject: <code>%s</code>."
+msgstr ""
+
+#: includes/emails/class-wc-email-new-booking.php:206
+msgid "Email Heading (Pending confirmation)"
+msgstr ""
+
+#: includes/emails/class-wc-email-new-booking.php:208
+msgid ""
+"This controls the main heading contained within the email notification for "
+"Pending confirmation bookings. Leave blank to use the default heading: "
 "<code>%s</code>."
-msgstr "このメールの受信者 (半角カンマ区切り) を入力します。デフォルトは <code>%s</code> です。"
+msgstr ""
 
 #: includes/gateways/class-wc-bookings-gateway.php:18
 msgid "Check booking availability"
@@ -1706,6 +1905,10 @@ msgstr "予約が利用可能か確認"
 #: includes/gateways/class-wc-bookings-gateway.php:20
 msgid "Request Confirmation"
 msgstr "リクエストの確認"
+
+#: includes/gateways/class-wc-bookings-gateway.php:29
+msgid "Settings"
+msgstr "設定"
 
 #: includes/gateways/class-wc-bookings-gateway.php:33
 msgid ""
@@ -1731,89 +1934,89 @@ msgid ""
 " as we've confirmed availability."
 msgstr "予約の確認を待っています。利用可能かの確認後すぐにメールで通知します。"
 
-#: includes/integrations/class-wc-bookings-addons.php:28
+#: includes/integrations/class-wc-bookings-addons.php:47
 msgid "Bookings: Multiply cost by person count"
 msgstr "予約: 人数分の費用を乗じる"
 
-#: includes/integrations/class-wc-bookings-addons.php:32
+#: includes/integrations/class-wc-bookings-addons.php:51
 msgid "Bookings: Multiply cost by block count"
 msgstr "予約: ブロック数分の費用を乗じる"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:19
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:17
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:411
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:413
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:415
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:419
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:421
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:423
 msgid "Google Calendar"
 msgstr "Google カレンダー"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:20
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:18
 msgid "WooCommerce Bookings - Google Calendar integration."
 msgstr "WooCommerce Bookings - Google カレンダー 統合"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:71
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:69
 msgid "Client ID"
 msgstr "クライアント ID"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:73
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:71
 msgid "Enter with your Google Client ID."
 msgstr "GoogleクライアントIDを入力して下さい。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:78
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:76
 msgid "Client Secret"
 msgstr "クライアント選択"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:80
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:78
 msgid "Enter with your Google Client Secret."
 msgstr "Google Client Secretを入力します。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:85
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:83
 msgid "Calendar ID"
 msgstr "カレンダー ID"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:87
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:85
 msgid "Enter with your Calendar ID."
 msgstr "カレンダーIDを入力して下さい。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:92
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:90
 msgid "Authorization"
 msgstr "承認"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:96
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:94
 msgid "Testing"
 msgstr "テスト中"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:101
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:99
 msgid "Debug Log"
 msgstr "デバックログ"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:103
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:101
 msgid "Enable logging"
 msgstr "ログを有効"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:105
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:103
 msgid "Log Google Calendar events, such as API requests, inside %s"
 msgstr "%s 内の API リクエストなどの Google カレンダーのイベントを記録する"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:158
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:156
 msgid "Connect with Google"
 msgstr "Googleに接続"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:160
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:158
 msgid "Successfully authenticated."
 msgstr "承認は成功しました。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:161
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:159
 msgid "Disconnect"
 msgstr "切断"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:163
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:161
 msgid ""
 "Unable to authenticate, you must enter with your <strong>Client ID</strong>,"
 " <strong>Client Secret</strong> and <strong>Calendar ID</strong>."
 msgstr "認証できません、<strong>Client ID</strong>, <strong>Client Secret</strong> そして <strong>Calendar ID</strong>を正しく入力して下さい。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:180
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:178
 msgid ""
 "To use this integration you need create a project in %s. Once your project "
 "has been created, you must enable the <strong>Google Calendar API</strong> "
@@ -1823,128 +2026,116 @@ msgid ""
 " <code>%s</code>."
 msgstr "この統合を使用するには、%s でプロジェクトを作成する必要があります。<strong>Google カレンダー API</strong> を有効にする必要があります。あなたのプロジェクトが作成されたら <strong>Api & auth > Api</strong>、最終的に <strong>Api & auth > 資格情報</strong>、OAuth クライアント <strong>Web アプリケーション</strong> を作成して、<code>%s</code> として <strong>承認されているリダイレクト URI</strong> を設定する必要があります。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:180
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:178
 msgid "Google Developers Console"
 msgstr "Google Developers Console"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:362
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:360
 msgid "Permission denied!"
 msgstr "拒否されました!"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:400
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:398
 msgid "Invalid request!"
 msgstr "正しくないリクエストです!"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:413
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:411
 msgid "Account connected successfully!"
 msgstr "アカウントの接続に成功しました!"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:415
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:413
 msgid ""
 "Failed to connect to your account, please try again, if the problem "
 "persists, turn on Debug Log option and see what is happening."
 msgstr "あなたのアカウント接続に失敗、やり直してください。問題が解決しない場合、デバッグ ログ オプションを有効にし、何が起こっているを参照してください。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:421
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:419
 msgid "Account disconnected successfully!"
 msgstr "アカウントの切断に成功しました!"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:423
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:421
 msgid ""
 "Failed to disconnect to your account, please try again, if the problem "
 "persists, turn on Debug Log option and see what is happening."
 msgstr "あなたのアカウントに切断に失敗しました、もう一度試してください。問題が解決しない場合、デバッグ ログ オプションを有効にし、何が起こっているを参照してください。"
 
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:482
-#: includes/wc-bookings-functions.php:32
-msgid "Booking Date"
-msgstr "予約日"
-
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:482
-#: includes/wc-bookings-functions.php:34
-msgid "Booking Time"
-msgstr "予約時間"
-
-#: includes/integrations/class-wc-bookings-google-calendar-integration.php:509
+#: includes/integrations/class-wc-bookings-google-calendar-integration.php:502
 msgid "%s: %s"
+msgstr "%s時 %s分"
+
+#: templates/booking-form/date-picker.php:5
+#: templates/booking-form/datetime-picker.php:6
+msgid "F j, Y"
 msgstr ""
 
-#: includes/wc-bookings-functions.php:30
-#: templates/emails/admin-new-booking.php:28
-#: templates/emails/customer-booking-cancelled.php:30
-#: templates/emails/customer-booking-confirmed.php:30
-#: templates/emails/customer-booking-notification.php:23
-#: templates/emails/customer-booking-reminder.php:27
-msgid "Booking Type"
-msgstr "予約タイプ"
-
-#: templates/booking-form/date-picker.php:7
-#: templates/booking-form/datetime-picker.php:8
+#: templates/booking-form/date-picker.php:9
+#: templates/booking-form/datetime-picker.php:10
 msgid "Choose..."
 msgstr "選択..."
 
-#: templates/booking-form/date-picker.php:14
+#: templates/booking-form/date-picker.php:16
 msgid "Start"
 msgstr ""
 
-#: templates/booking-form/date-picker.php:17
+#: templates/booking-form/date-picker.php:21
 #: templates/booking-form/date-picker.php:32
-#: templates/booking-form/datetime-picker.php:13
-msgid "YYYY"
-msgstr "YYYY"
-
-#: templates/booking-form/date-picker.php:18
-#: templates/booking-form/date-picker.php:33
-#: templates/booking-form/datetime-picker.php:14
-msgid "Year"
-msgstr "年"
-
-#: templates/booking-form/date-picker.php:20
-#: templates/booking-form/date-picker.php:35
+#: templates/booking-form/date-picker.php:46
+#: templates/booking-form/date-picker.php:57
 #: templates/booking-form/datetime-picker.php:16
+#: templates/booking-form/datetime-picker.php:27
 msgid "mm"
 msgstr "mm"
 
-#: templates/booking-form/date-picker.php:23
-#: templates/booking-form/date-picker.php:38
+#: templates/booking-form/date-picker.php:24
+#: templates/booking-form/date-picker.php:29
+#: templates/booking-form/date-picker.php:49
+#: templates/booking-form/date-picker.php:54
 #: templates/booking-form/datetime-picker.php:19
+#: templates/booking-form/datetime-picker.php:24
 msgid "dd"
 msgstr "dd"
 
-#: templates/booking-form/date-picker.php:24
-#: templates/booking-form/date-picker.php:39
+#: templates/booking-form/date-picker.php:25
+#: templates/booking-form/date-picker.php:30
+#: templates/booking-form/date-picker.php:50
+#: templates/booking-form/date-picker.php:55
 #: templates/booking-form/datetime-picker.php:20
+#: templates/booking-form/datetime-picker.php:25
 msgid "Day"
 msgstr "曜日"
 
-#: templates/booking-form/date-picker.php:30
+#: templates/booking-form/date-picker.php:36
+#: templates/booking-form/date-picker.php:61
+#: templates/booking-form/datetime-picker.php:32
+msgid "YYYY"
+msgstr "YYYY"
+
+#: templates/booking-form/date-picker.php:37
+#: templates/booking-form/date-picker.php:62
+#: templates/booking-form/datetime-picker.php:33
+msgid "Year"
+msgstr "年"
+
+#: templates/booking-form/date-picker.php:43
 msgid "End"
 msgstr ""
 
-#: templates/booking-form/datetime-picker.php:25
+#: templates/booking-form/datetime-picker.php:38
 msgid "Time"
 msgstr "時間"
 
-#: templates/booking-form/datetime-picker.php:27
+#: templates/booking-form/datetime-picker.php:40
 msgid "Choose a date above to see available times."
 msgstr "利用可能時間を表示する上記の日付を選択します。"
 
-#: templates/emails/admin-new-booking.php:13
-#: templates/emails/plain/admin-new-booking.php:12
+#: templates/emails/admin-booking-cancelled.php:12
+#: templates/emails/plain/admin-booking-cancelled.php:9
 msgid ""
-"A new booking has been made by %s. The details of this booking are as "
-"follows:"
-msgstr "%S で、新しい予約をしました。この予約の詳細は次のとおりです。"
+"The following booking has been cancelled by the customer. The details of the"
+" cancelled booking can be found below."
+msgstr ""
 
-#: templates/emails/admin-new-booking.php:23
-#: templates/emails/customer-booking-cancelled.php:25
-#: templates/emails/customer-booking-confirmed.php:25
-#: templates/emails/customer-booking-notification.php:18
-#: templates/emails/customer-booking-reminder.php:22
-msgid "Booking ID"
-msgstr "予約ID"
-
-#: templates/emails/admin-new-booking.php:33
+#: templates/emails/admin-booking-cancelled.php:33
+#: templates/emails/admin-new-booking.php:39
 #: templates/emails/customer-booking-cancelled.php:35
 #: templates/emails/customer-booking-confirmed.php:35
 #: templates/emails/customer-booking-notification.php:28
@@ -1952,7 +2143,8 @@ msgstr "予約ID"
 msgid "Booking Start Date"
 msgstr "予約開始日"
 
-#: templates/emails/admin-new-booking.php:37
+#: templates/emails/admin-booking-cancelled.php:37
+#: templates/emails/admin-new-booking.php:43
 #: templates/emails/customer-booking-cancelled.php:39
 #: templates/emails/customer-booking-confirmed.php:39
 #: templates/emails/customer-booking-notification.php:32
@@ -1960,12 +2152,28 @@ msgstr "予約開始日"
 msgid "Booking End Date"
 msgstr "予約終了日"
 
-#: templates/emails/admin-new-booking.php:58
-msgid "You can view this booking in the dashboard here: %s"
+#: templates/emails/admin-booking-cancelled.php:58
+#: templates/emails/admin-new-booking.php:68
+#: templates/emails/plain/admin-booking-cancelled.php:36
+msgid "You can view and edit this booking in the dashboard here: %s"
 msgstr ""
 
-#: templates/emails/admin-new-booking.php:61
-#: templates/emails/plain/admin-new-booking.php:41
+#: templates/emails/admin-new-booking.php:10
+#: templates/emails/plain/admin-new-booking.php:12
+msgid ""
+"A booking has been made by %s and is awaiting your approval. The details of "
+"this booking are as follows:"
+msgstr ""
+
+#: templates/emails/admin-new-booking.php:12
+#: templates/emails/plain/admin-new-booking.php:14
+msgid ""
+"A new booking has been made by %s. The details of this booking are as "
+"follows:"
+msgstr "%S で、新しい予約をしました。この予約の詳細は次のとおりです。"
+
+#: templates/emails/admin-new-booking.php:65
+#: templates/emails/plain/admin-new-booking.php:47
 msgid ""
 "This booking is awaiting your approval. Please check it and inform the "
 "customer if the date is available or not."
@@ -2007,10 +2215,6 @@ msgstr "この予約への支払いは次のリンクを使用してください
 msgid "Pay for booking"
 msgstr "予約への支払い"
 
-#: templates/emails/customer-booking-confirmed.php:68
-msgid "Order:"
-msgstr "注文:"
-
 #: templates/emails/customer-booking-confirmed.php:73
 msgid "Product"
 msgstr "商品"
@@ -2027,7 +2231,8 @@ msgstr "価格"
 msgid "This is a reminder that your booking will take place tomorrow."
 msgstr "これは明日の予約のリマインダーです。"
 
-#: templates/emails/plain/admin-new-booking.php:17
+#: templates/emails/plain/admin-booking-cancelled.php:13
+#: templates/emails/plain/admin-new-booking.php:23
 #: templates/emails/plain/customer-booking-cancelled.php:17
 #: templates/emails/plain/customer-booking-confirmed.php:17
 #: templates/emails/plain/customer-booking-notification.php:15
@@ -2035,7 +2240,8 @@ msgstr "これは明日の予約のリマインダーです。"
 msgid "Booked: %s"
 msgstr "予約済: %s"
 
-#: templates/emails/plain/admin-new-booking.php:18
+#: templates/emails/plain/admin-booking-cancelled.php:14
+#: templates/emails/plain/admin-new-booking.php:24
 #: templates/emails/plain/customer-booking-cancelled.php:18
 #: templates/emails/plain/customer-booking-confirmed.php:18
 #: templates/emails/plain/customer-booking-notification.php:16
@@ -2043,7 +2249,8 @@ msgstr "予約済: %s"
 msgid "Booking ID: %s"
 msgstr "予約ID: %s"
 
-#: templates/emails/plain/admin-new-booking.php:21
+#: templates/emails/plain/admin-booking-cancelled.php:17
+#: templates/emails/plain/admin-new-booking.php:27
 #: templates/emails/plain/customer-booking-cancelled.php:21
 #: templates/emails/plain/customer-booking-confirmed.php:21
 #: templates/emails/plain/customer-booking-notification.php:19
@@ -2051,7 +2258,8 @@ msgstr "予約ID: %s"
 msgid "Booking Type: %s"
 msgstr "予約の種類: %s"
 
-#: templates/emails/plain/admin-new-booking.php:24
+#: templates/emails/plain/admin-booking-cancelled.php:20
+#: templates/emails/plain/admin-new-booking.php:30
 #: templates/emails/plain/customer-booking-cancelled.php:24
 #: templates/emails/plain/customer-booking-confirmed.php:24
 #: templates/emails/plain/customer-booking-notification.php:22
@@ -2059,7 +2267,8 @@ msgstr "予約の種類: %s"
 msgid "Booking Start Date: %s"
 msgstr "予約開始日: %s"
 
-#: templates/emails/plain/admin-new-booking.php:25
+#: templates/emails/plain/admin-booking-cancelled.php:21
+#: templates/emails/plain/admin-new-booking.php:31
 #: templates/emails/plain/customer-booking-cancelled.php:25
 #: templates/emails/plain/customer-booking-confirmed.php:25
 #: templates/emails/plain/customer-booking-notification.php:23
@@ -2101,204 +2310,241 @@ msgstr "予約済"
 
 #: templates/myaccount/my-bookings.php:47
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: templates/single-product/add-to-cart/booking.php:17
 msgid "Your browser must support JavaScript in order to make a booking."
 msgstr "ブラウザーは、予約を作るために JavaScript をサポートしている必要があります。"
 
-#: woocommmerce-bookings.php:248
+#: woocommmerce-bookings.php:251
 msgid "Person Type"
 msgstr "人の種類"
 
-#: woocommmerce-bookings.php:261
+#: woocommmerce-bookings.php:264
 msgid "Bookable resources"
 msgstr ""
 
-#: woocommmerce-bookings.php:262
+#: woocommmerce-bookings.php:265
 msgid "Bookable resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:263
+#: woocommmerce-bookings.php:266
 msgid "Add Resource"
 msgstr "リソース追加"
 
-#: woocommmerce-bookings.php:264
+#: woocommmerce-bookings.php:267
 msgid "Add New Resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:266
+#: woocommmerce-bookings.php:269
 msgid "Edit Resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:267
+#: woocommmerce-bookings.php:270
 msgid "New Resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:268 woocommmerce-bookings.php:269
+#: woocommmerce-bookings.php:271 woocommmerce-bookings.php:272
 msgid "View Resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:270
+#: woocommmerce-bookings.php:273
 msgid "Search Resource"
 msgstr ""
 
-#: woocommmerce-bookings.php:271
+#: woocommmerce-bookings.php:274
 msgid "No Resource found"
 msgstr ""
 
-#: woocommmerce-bookings.php:272
+#: woocommmerce-bookings.php:275
 msgid "No Resource found in trash"
 msgstr ""
 
-#: woocommmerce-bookings.php:273
+#: woocommmerce-bookings.php:276
 msgid "Parent Resources"
 msgstr ""
 
-#: woocommmerce-bookings.php:274
-msgctxt "Admin menu name"
-msgid "Resources"
-msgstr "リソース"
-
-#: woocommmerce-bookings.php:277
+#: woocommmerce-bookings.php:280
 msgid "Bookable resources are bookable within a bookings product."
 msgstr ""
 
-#: woocommmerce-bookings.php:299 woocommmerce-bookings.php:302
+#: woocommmerce-bookings.php:302 woocommmerce-bookings.php:305
 msgid "Booking"
 msgstr "予約"
 
-#: woocommmerce-bookings.php:301
-msgid "Bookings"
-msgstr "予約"
-
-#: woocommmerce-bookings.php:303
+#: woocommmerce-bookings.php:306
 msgid "Add Booking"
 msgstr "新規追加"
 
-#: woocommmerce-bookings.php:304
+#: woocommmerce-bookings.php:307
 msgid "Add New Booking"
 msgstr "新規予約"
 
-#: woocommmerce-bookings.php:306
+#: woocommmerce-bookings.php:309
 msgid "Edit Booking"
 msgstr "予約編集"
 
-#: woocommmerce-bookings.php:308 woocommmerce-bookings.php:309
+#: woocommmerce-bookings.php:311 woocommmerce-bookings.php:312
 msgid "View Booking"
 msgstr "予約を表示"
 
-#: woocommmerce-bookings.php:310
+#: woocommmerce-bookings.php:313
 msgid "Search Bookings"
 msgstr "予約検索"
 
-#: woocommmerce-bookings.php:311
+#: woocommmerce-bookings.php:314
 msgid "No Bookings found"
 msgstr "予約はありません"
 
-#: woocommmerce-bookings.php:312
+#: woocommmerce-bookings.php:315
 msgid "No Bookings found in trash"
 msgstr "ゴミ箱に予約はありません"
 
-#: woocommmerce-bookings.php:313
+#: woocommmerce-bookings.php:316
 msgid "Parent Bookings"
 msgstr "親予約"
 
-#: woocommmerce-bookings.php:314
-msgctxt "Admin menu name"
-msgid "Bookings"
-msgstr "予約"
-
-#: woocommmerce-bookings.php:315
+#: woocommmerce-bookings.php:318
 msgid "All Bookings"
 msgstr "全ての予約"
 
-#: woocommmerce-bookings.php:317
+#: woocommmerce-bookings.php:320
 msgid "This is where bookings are stored."
 msgstr "ここに予約が保存されます。"
 
-#: woocommmerce-bookings.php:339
-msgctxt "woocommerce-bookings"
-msgid "Complete"
-msgstr "完了"
-
-#: woocommmerce-bookings.php:344
+#: woocommmerce-bookings.php:347
 msgid "Complete <span class=\"count\">(%s)</span>"
 msgid_plural "Complete <span class=\"count\">(%s)</span>"
 msgstr[0] "完了 <span class=\"count\">(%s)</span>"
 
-#: woocommmerce-bookings.php:347
-msgctxt "woocommerce-bookings"
-msgid "Paid &amp; Confirmed"
-msgstr ""
-
-#: woocommmerce-bookings.php:352
+#: woocommmerce-bookings.php:355
 msgid "Paid &amp; Confirmed <span class=\"count\">(%s)</span>"
 msgid_plural "Paid &amp; Confirmed <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 
-#: woocommmerce-bookings.php:355
-msgctxt "woocommerce-bookings"
-msgid "Confirmed"
-msgstr "確認済"
-
-#: woocommmerce-bookings.php:360
+#: woocommmerce-bookings.php:363
 msgid "Confirmed <span class=\"count\">(%s)</span>"
 msgid_plural "Confirmed <span class=\"count\">(%s)</span>"
 msgstr[0] "確認済 <span class=\"count\">(%s)</span>"
 
-#: woocommmerce-bookings.php:363
-msgctxt "woocommerce-bookings"
-msgid "Un-paid"
-msgstr "未払"
-
-#: woocommmerce-bookings.php:368
+#: woocommmerce-bookings.php:371
 msgid "Un-paid <span class=\"count\">(%s)</span>"
 msgid_plural "Un-paid <span class=\"count\">(%s)</span>"
 msgstr[0] "未払 <span class=\"count\">(%s)</span>"
 
-#: woocommmerce-bookings.php:371
-msgctxt "woocommerce-bookings"
-msgid "Pending Confirmation"
-msgstr "支払保留中"
-
-#: woocommmerce-bookings.php:376
+#: woocommmerce-bookings.php:379
 msgid "Pending Confirmation <span class=\"count\">(%s)</span>"
 msgid_plural "Pending Confirmation <span class=\"count\">(%s)</span>"
 msgstr[0] "未確認 <span class=\"count\">(%s)</span>"
 
-#: woocommmerce-bookings.php:379
-msgctxt "woocommerce-bookings"
-msgid "Cancelled"
-msgstr "キャンセル済"
-
-#: woocommmerce-bookings.php:384
+#: woocommmerce-bookings.php:387
 msgid "Cancelled <span class=\"count\">(%s)</span>"
 msgid_plural "Cancelled <span class=\"count\">(%s)</span>"
 msgstr[0] "キャンセル済 <span class=\"count\">(%s)</span>"
 
-#: woocommmerce-bookings.php:387
-msgctxt "woocommerce-bookings"
-msgid "In Cart"
-msgstr ""
-
-#: woocommmerce-bookings.php:392
+#: woocommmerce-bookings.php:395
 msgid "In Cart <span class=\"count\">(%s)</span>"
 msgid_plural "In Cart <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 
-#: woocommmerce-bookings.php:439
+#: woocommmerce-bookings.php:450
 msgid "View Documentation"
 msgstr ""
 
-#: woocommmerce-bookings.php:439
+#: woocommmerce-bookings.php:450
 msgid "Docs"
-msgstr ""
+msgstr "ドキュメント"
 
-#: woocommmerce-bookings.php:440
+#: woocommmerce-bookings.php:451
 msgid "Visit Premium Customer Support Forum"
+msgstr "プレミアムカスタマーサポートに訪問する"
+
+#: woocommmerce-bookings.php:451
+msgid "Premium Support"
+msgstr "プレミアムサポート"
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Bookings"
 msgstr ""
 
-#: woocommmerce-bookings.php:440
-msgid "Premium Support"
+#. Plugin URI of the plugin/theme
+msgid "http://www.woothemes.com/products/woocommerce-bookings/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Setup bookable products such as for reservations, services and hires."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WooThemes"
+msgstr "WooThemes"
+
+#. Author URI of the plugin/theme
+msgid "http://woothemes.com"
+msgstr "http://woothemes.com"
+
+#: includes/admin/class-wc-bookings-ajax.php:189
+#: includes/admin/class-wc-bookings-details-meta-box.php:36
+msgctxt "hash before order number"
+msgid "#"
+msgstr "#"
+
+#: includes/admin/class-wc-bookings-create.php:175
+msgctxt "Order date parsed by strftime"
+msgid "%b %d, %Y @ %I:%M %p"
+msgstr "%Y %m %d (%b) @ %H:%i %s"
+
+#: includes/admin/views/html-calendar-month.php:63
+msgctxt "date format"
+msgid "l"
+msgstr ""
+
+#: includes/class-wc-booking.php:150
+msgctxt "Booking date parsed by strftime"
+msgid "%b %d, %Y @ %I:%M %p"
+msgstr "%Y %m %d (%b) @ %H:%m:%s"
+
+#: woocommmerce-bookings.php:277
+msgctxt "Admin menu name"
+msgid "Resources"
+msgstr "リソース"
+
+#: woocommmerce-bookings.php:317
+msgctxt "Admin menu name"
+msgid "Bookings"
+msgstr "予約"
+
+#: woocommmerce-bookings.php:342
+msgctxt "woocommerce-bookings"
+msgid "Complete"
+msgstr "完了"
+
+#: woocommmerce-bookings.php:350
+msgctxt "woocommerce-bookings"
+msgid "Paid &amp; Confirmed"
+msgstr ""
+
+#: woocommmerce-bookings.php:358
+msgctxt "woocommerce-bookings"
+msgid "Confirmed"
+msgstr "確認済"
+
+#: woocommmerce-bookings.php:366
+msgctxt "woocommerce-bookings"
+msgid "Un-paid"
+msgstr "未払"
+
+#: woocommmerce-bookings.php:374
+msgctxt "woocommerce-bookings"
+msgid "Pending Confirmation"
+msgstr "支払保留中"
+
+#: woocommmerce-bookings.php:382
+msgctxt "woocommerce-bookings"
+msgid "Cancelled"
+msgstr "キャンセル済"
+
+#: woocommmerce-bookings.php:390
+msgctxt "woocommerce-bookings"
+msgid "In Cart"
 msgstr ""

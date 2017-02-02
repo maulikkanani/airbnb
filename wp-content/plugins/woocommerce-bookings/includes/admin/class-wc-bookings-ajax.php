@@ -86,7 +86,7 @@ class WC_Bookings_Ajax {
 
 		die( json_encode( array(
 			'result' => 'SUCCESS',
-			'html'   => __( 'Booking cost', 'woocommerce-bookings' ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>'
+			'html'   => apply_filters( 'woocommerce_bookings_booking_cost_string', __( 'Booking cost', 'woocommerce-bookings' ), $product ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>'
 		) ) );
 	}
 

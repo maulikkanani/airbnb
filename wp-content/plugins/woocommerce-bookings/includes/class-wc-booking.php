@@ -87,23 +87,19 @@ class WC_Booking {
 	 * Schedule events for this booking
 	 */
 	public function schedule_events() {
-		switch ( get_post_status( $this->id ) ) {
-			case "paid" :
-				if ( $this->start && $this->get_order() ) {
-					$order_status = $this->get_order()->get_status();
-
-					if ( ! in_array( $order_status, array( 'cancelled', 'refunded', 'pending', 'on-hold' ) ) ) {
-						wp_schedule_single_event( strtotime( '-' . absint( apply_filters( 'woocommerce_bookings_remind_before_days', 1 ) ) . ' day', $this->start ), 'wc-booking-reminder', array( $this->id ) );
-					}
+		if ( in_array( get_post_status( $this->id ), get_wc_booking_statuses( 'scheduled' ) ) ) {
+			if ( $this->start && $this->get_order() ) {
+				$order_status = $this->get_order()->get_status();
+				if ( ! in_array( $order_status, array( 'cancelled', 'refunded', 'pending', 'on-hold' ) ) ) {
+					wp_schedule_single_event( strtotime( '-' . absint( apply_filters( 'woocommerce_bookings_remind_before_days', 1 ) ) . ' day', $this->start ), 'wc-booking-reminder', array( $this->id ) );
 				}
-				if ( $this->end ) {
-					wp_schedule_single_event( $this->end, 'wc-booking-complete', array( $this->id ) );
-				}
-			break;
-			default :
-				wp_clear_scheduled_hook( 'wc-booking-reminder', array( $this->id ) );
-				wp_clear_scheduled_hook( 'wc-booking-complete', array( $this->id ) );
-			break;
+			}
+			if ( $this->end ) {
+				wp_schedule_single_event( $this->end, 'wc-booking-complete', array( $this->id ) );
+			}
+		} else {
+			wp_clear_scheduled_hook( 'wc-booking-reminder', array( $this->id ) );
+			wp_clear_scheduled_hook( 'wc-booking-complete', array( $this->id ) );
 		}
 	}
 
@@ -194,6 +190,7 @@ class WC_Booking {
 
 		WC_Cache_Helper::get_transient_version( 'bookings', true );
 
+		do_action( 'woocommerce_booking_' . $status, $this->id );
 		do_action( 'woocommerce_new_booking', $this->id );
 	}
 
@@ -292,7 +289,9 @@ class WC_Booking {
 	 */
 	public function update_status( $status ) {
 		$current_status   = $this->get_status( true );
-		$allowed_statuses = array( 'unpaid', 'pending-confirmation', 'confirmed', 'paid', 'cancelled', 'complete', 'in-cart', 'was-in-cart' );
+		$allowed_statuses = array_unique( array_merge( get_wc_booking_statuses(), get_wc_booking_statuses( 'user' ), get_wc_booking_statuses( 'cancel' ) ) );
+		$allowed_statuses[] = 'was-in-cart';
+		$allowed_statuses = array_values( $allowed_statuses );
 
 		if ( $this->populated ) {
 			if ( in_array( $status, $allowed_statuses ) ) {
@@ -307,7 +306,7 @@ class WC_Booking {
 
 				// Note in the order
 				if ( $order = $this->get_order() ) {
-					$order->add_order_note( sprintf( __( 'Booking #%d status changed from "%s" to "%s', 'woocommerce-bookings' ), $this->id, $current_status, $status ) );
+					$order->add_order_note( sprintf( __( 'Booking #%d status changed from "%s" to "%s"', 'woocommerce-bookings' ), $this->id, $current_status, $status ) );
 				}
 
 				return true;
@@ -515,7 +514,7 @@ class WC_Booking {
 			if ( $this->is_all_day() ) {
 				return date_i18n( $date_format, $this->start );
 			} else {
-				return date_i18n( $date_format . $time_format, $this->start );
+				return apply_filters( 'woocommerce_bookings_get_start_date_with_time', date_i18n( $date_format . $time_format, $this->start ), $this );
 			}
 		}
 
@@ -537,7 +536,7 @@ class WC_Booking {
 			if ( $this->is_all_day() ) {
 				return date_i18n( $date_format, $this->end );
 			} else {
-				return date_i18n( $date_format . $time_format, $this->end );
+				return apply_filters( 'woocommerce_bookings_get_end_date_with_time', date_i18n( $date_format . $time_format, $this->end ), $this );
 			}
 		}
 

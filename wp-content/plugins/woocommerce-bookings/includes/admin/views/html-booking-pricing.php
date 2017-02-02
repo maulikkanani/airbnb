@@ -30,10 +30,11 @@
 					<tr>
 						<th class="sort" width="1%">&nbsp;</th>
 						<th><?php _e( 'Range type', 'woocommerce-bookings' ); ?></th>
-						<th><?php _e( 'From', 'woocommerce-bookings' ); ?></th>
-						<th><?php _e( 'To', 'woocommerce-bookings' ); ?></th>
-						<th colspan="2"><?php _e( 'Base cost', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'Enter a cost for this rule. Applied to the booking as a whole.', 'woocommerce-bookings' ); ?>">[?]</a></th>
-						<th colspan="2"><?php _e( 'Block cost', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'Enter a cost for this rule. Applied to each booking block.', 'woocommerce-bookings' ); ?>">[?]</a></th>
+						<th><?php _e( 'Range', 'woocommerce-bookings' ); ?></th>
+						<th></th>
+						<th></th>
+						<th><?php _e( 'Base cost', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'Enter a cost for this rule. Applied to the booking as a whole.', 'woocommerce-bookings' ); ?>">[?]</a></th>
+						<th><?php _e( 'Block cost', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'Enter a cost for this rule. Applied to each booking block.', 'woocommerce-bookings' ); ?>">[?]</a></th>
 						<th class="remove" width="1%">&nbsp;</th>
 					</tr>
 				</thead>

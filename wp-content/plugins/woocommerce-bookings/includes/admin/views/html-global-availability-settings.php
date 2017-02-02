@@ -36,6 +36,13 @@ if ( ! empty( $_POST['bookings_availability_submitted'] ) ) {
 				$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ 'wc_booking_availability_from_time' ][ $i ] );
 				$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ 'wc_booking_availability_to_time' ][ $i ] );
 			break;
+			case 'time:range' :
+				$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_from_time" ][ $i ] );
+				$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_availability_to_time" ][ $i ] );
+
+				$availability[ $i ]['from_date'] = wc_clean( $_POST[ 'wc_booking_availability_from_date' ][ $i ] );
+				$availability[ $i ]['to_date']   = wc_clean( $_POST[ 'wc_booking_availability_to_date' ][ $i ] );
+			break;
 		}
 	}
 	update_option( 'wc_global_booking_availability', $availability );
@@ -56,8 +63,9 @@ if ( ! empty( $_POST['bookings_availability_submitted'] ) ) {
 							<tr>
 								<th class="sort" width="1%">&nbsp;</th>
 								<th><?php _e( 'Range type', 'woocommerce-bookings' ); ?></th>
-								<th><?php _e( 'From', 'woocommerce-bookings' ); ?></th>
-								<th><?php _e( 'To', 'woocommerce-bookings' ); ?></th>
+								<th><?php _e( 'Range', 'woocommerce-bookings' ); ?></th>
+								<th></th>
+								<th></th>
 								<th><?php _e( 'Bookable', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php _e( 'If not bookable, users won\'t be able to choose this block for their booking.', 'woocommerce-bookings' ); ?>">[?]</a></th>
 								<th><?php _e( 'Priority', 'woocommerce-bookings' ); ?>&nbsp;<a class="tips" data-tip="<?php esc_html_e( 'The lower the priority number, the earlier this rule gets applied. By default, global rules take priority over product rules which take priority over resource rules. By using priority numbers you can execute rules in different orders.', 'woocommerce-bookings' ); ?>">[?]</a></th>
 								<th class="remove" width="1%">&nbsp;</th>

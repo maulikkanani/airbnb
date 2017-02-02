@@ -36,8 +36,13 @@ class WC_Bookings_Addons {
 	 * Show options
 	 */
 	public function addon_options( $post, $addon, $loop ) {
+		$product = get_product( $post->ID );
+		$css_classes = 'show_if_booking';
+		if ( 'booking' !== $product->product_type ) {
+			$css_classes .= ' hide_initial_booking_addon_options';
+		}
 		?>
-		<tr class="show_if_booking">
+		<tr class="<?php echo esc_attr( $css_classes ); ?>">
 			<td class="addon_wc_booking_person_qty_multiplier addon_required" width="50%">
 				<label for="addon_wc_booking_person_qty_multiplier_<?php echo $loop; ?>"><?php _e( 'Bookings: Multiply cost by person count', 'woocommerce-bookings' ); ?></label>
 				<input type="checkbox" id="addon_wc_booking_person_qty_multiplier_<?php echo $loop; ?>" name="addon_wc_booking_person_qty_multiplier[<?php echo $loop; ?>]" <?php checked( ! empty( $addon['wc_booking_person_qty_multiplier'] ), true ) ?> />
@@ -116,18 +121,16 @@ class WC_Bookings_Addons {
 
 		if ( ! empty( $addons['addons'] ) ) {
 			foreach ( $addons['addons'] as $addon ) {
-				$addon_cost = 0;
+				$person_multiplier = 1;
+				$duration_multipler = 1;
 
 				if ( ! empty( $addon['wc_booking_person_qty_multiplier'] ) && ! empty( $booking_data['_persons'] ) && array_sum( $booking_data['_persons'] ) ) {
-					$addon_cost += $addon['price'] * array_sum( $booking_data['_persons'] );
+					$person_multiplier = array_sum( $booking_data['_persons'] );
 				}
 				if ( ! empty( $addon['wc_booking_block_qty_multiplier'] ) && ! empty( $booking_data['_duration'] ) ) {
-					$addon_cost += $addon['price'] * $booking_data['_duration'];
+					$duration_multipler = $booking_data['_duration'];
 				}
-				if ( ! $addon_cost ) {
-					$addon_cost += $addon['price'];
-				}
-				$addon_costs += $addon_cost;
+				$addon_costs += $addon['price'] * $person_multiplier * $duration_multipler;
 			}
 		}
 

@@ -37,7 +37,7 @@ abstract class WC_Booking_Form_Picker {
 				$js_string = "+{$min_date['value']}{$unit}";
 			} elseif ( 'h' === $unit ) {
 				$current_d = date( 'd', current_time( 'timestamp' ) );
-				$min_d     = date( 'd', strtotime( "+{$min_date['value']}{$unit}", current_time( 'timestamp' ) ) );
+				$min_d     = date( 'd', strtotime( "+{$min_date['value']} hour", current_time( 'timestamp' ) ) );
 				$js_string = "+" . ( $current_d == $min_d ? 0 : 1 ) . "d";
 			}
 		}

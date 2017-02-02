@@ -21,44 +21,44 @@ class Astoundify_Updater_Products {
 			include( dirname( __FILE__ ) . '/EDD_SL_Plugin_Updater.php' );
 		}
 
-		add_action( 'job_manager_settings', array( $this, 'license_field'), 11 );
+		//add_action( 'job_manager_settings', array( $this, 'license_field'), 11 );
 
-		add_action( 'admin_init', array( $this, 'init_updater' ) );
-		add_action( 'admin_init', array( $this, 'deactive_license' ) );
+		//add_action( 'admin_init', array( $this, 'init_updater' ) );
+		//add_action( 'admin_init', array( $this, 'deactive_license' ) );
 
-		add_action( 'update_option_' . $this->slug, array( $this, 'sanitize_license' ), 10, 2 );
+		//add_action( 'update_option_' . $this->slug, array( $this, 'sanitize_license' ), 10, 2 );
 
-		if ( ! has_action( 'wp_job_manager_admin_field_license' ) ) {
-			add_action( 'wp_job_manager_admin_field_license', array( $this, 'output_license_field' ), 10, 4 );
-		}
+//		if ( ! has_action( 'wp_job_manager_admin_field_license' ) ) {
+//			add_action( 'wp_job_manager_admin_field_license', array( $this, 'output_license_field' ), 10, 4 );
+//		}
 	}
 
-	public function license_field( $fields ) {
-		$fields[ 'wpjmp_settings' ][1][] = array(
-			'name'			=> $this->slug,
-			'type'          => 'license',
-			'std'			=> '',
-			'placeholder'	=> '',
-			'label'			=> __( 'License Key', 'wp-job-manager-reviews' ),
-			'desc'			=> __( 'Enter the license key you received with your purchase receipt.', 'wp-job-manager-reviews' ),
-			'attributes'	=> array()
-		);
+//	public function license_field( $fields ) {
+//		$fields[ 'wpjmp_settings' ][1][] = array(
+//			'name'			=> $this->slug,
+//			'type'          => 'license',
+//			'std'			=> '',
+//			'placeholder'	=> '',
+//			'label'			=> __( 'License Key', 'wp-job-manager-reviews' ),
+//			'desc'			=> __( 'Enter the license key you received with your purchase receipt.', 'wp-job-manager-reviews' ),
+//			'attributes'	=> array()
+//		);
+//
+//		return $fields;
+//	}
 
-		return $fields;
-	}
+//	public function init_updater() {
+//		$license_key = trim( get_option( $this->slug ) );
+//
+//		$edd_updater = new EDD_SL_Plugin_Updater( $this->api_url, $this->file, array( 
+//			'version' 	=> $this->version,
+//			'license' 	=> $license_key,
+//			'item_name' => $this->item,
+//			'author' 	=> 'Astoundify'
+//		) );
+//	}
 
-	public function init_updater() {
-		$license_key = trim( get_option( $this->slug ) );
-
-		$edd_updater = new EDD_SL_Plugin_Updater( $this->api_url, $this->file, array( 
-			'version' 	=> $this->version,
-			'license' 	=> $license_key,
-			'item_name' => $this->item,
-			'author' 	=> 'Astoundify'
-		) );
-	}
-
-	public function output_license_field( $option, $attributes, $value, $placeholder ) {
+	/*public function output_license_field( $option, $attributes, $value, $placeholder ) {
 		$status  = get_option( $this->slug . '_status' );
 		?>
 			<input id="setting-<?php echo $option['name']; ?>" class="regular-text" type="text" name="<?php echo $option['name']; ?>" value="<?php esc_attr_e( $value ); ?>" <?php echo implode( ' ', $attributes ); ?> <?php echo $placeholder; ?> />
@@ -148,6 +148,6 @@ class Astoundify_Updater_Products {
 		wp_safe_redirect( admin_url( 'edit.php?post_type=job_listing&page=job-manager-settings' ) );
 
 		exit();
-	}
+	}*/
 
 }

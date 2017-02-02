@@ -1,11 +1,19 @@
 <?php
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 /**
  * WC_Booking_Cart_Manager class.
  */
 class WC_Booking_Cart_Manager {
+
+	/**
+	 * The class id used for identification in logging.
+	 *
+	 * @var $id
+	 */
+	public $id;
 
 	/**
 	 * Constructor
@@ -30,6 +38,13 @@ class WC_Booking_Cart_Manager {
 			} else {
 				add_filter( 'woocommerce_add_to_cart_redirect', array( $this, 'add_to_cart_redirect' ) );
 			}
+		}
+
+		$this->id = 'wc_booking_cart_manager';
+
+		// Active logs.
+		if ( class_exists( 'WC_Logger' ) ) {
+			$this->log = new WC_Logger();
 		}
 	}
 
@@ -57,7 +72,7 @@ class WC_Booking_Cart_Manager {
 	public function validate_add_cart_item( $passed, $product_id, $qty ) {
 		$product = get_product( $product_id );
 
-		if ( $product->product_type !== 'booking' ) {
+		if ( ! is_wc_booking_product( $product ) ) {
 			return $passed;
 		}
 
@@ -120,6 +135,8 @@ class WC_Booking_Cart_Manager {
 
 	/**
 	 * Before delete
+	 *
+	 * @param string $cart_item_key identifying which item in cart.
 	 */
 	public function cart_item_removed( $cart_item_key ) {
 		$cart_item = WC()->cart->removed_cart_contents[ $cart_item_key ];
@@ -127,14 +144,27 @@ class WC_Booking_Cart_Manager {
 		if ( isset( $cart_item['booking'] ) ) {
 			$booking_id = $cart_item['booking']['_booking_id'];
 			$booking    = get_wc_booking( $booking_id );
-			$booking->update_status( 'was-in-cart' );
-			WC_Cache_Helper::get_transient_version( 'bookings', true );
-			wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
+
+			if ( $booking->has_status( 'in-cart' ) ) {
+
+				$booking->update_status( 'was-in-cart' );
+				WC_Cache_Helper::get_transient_version( 'bookings', true );
+				wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
+
+				if ( isset( $this->log ) ) {
+
+					$message = sprintf( 'Booking ID: %s removed from cart by user ID: %s ', $booking->id, get_current_user_id() );
+					$this->log->add( $this->id, $message );
+
+				}
+			}
 		}
 	}
 
 	/**
 	 * Restore item
+	 *
+	 * @param string $cart_item_key identifying which item in cart.
 	 */
 	public function cart_item_restored( $cart_item_key ) {
 		$cart      = WC()->cart->get_cart();
@@ -143,9 +173,20 @@ class WC_Booking_Cart_Manager {
 		if ( isset( $cart_item['booking'] ) ) {
 			$booking_id = $cart_item['booking']['_booking_id'];
 			$booking    = get_wc_booking( $booking_id );
-			$booking->update_status( 'in-cart' );
-			WC_Cache_Helper::get_transient_version( 'bookings', true );
-			$this->schedule_cart_removal( $booking_id );
+
+			if ( $booking->has_status( 'was-in-cart' ) ) {
+
+				$booking->update_status( 'in-cart' );
+				WC_Cache_Helper::get_transient_version( 'bookings', true );
+				$this->schedule_cart_removal( $booking_id );
+
+				if ( isset( $this->log ) ) {
+
+					$message = sprintf( 'Booking ID: %s was restored to cart by user ID: %s ', $booking->id, get_current_user_id() );
+					$this->log->add( $this->id, $message );
+
+				}
+			}
 		}
 	}
 
@@ -190,7 +231,7 @@ class WC_Booking_Cart_Manager {
 	public function add_cart_item_data( $cart_item_meta, $product_id ) {
 		$product = get_product( $product_id );
 
-		if ( 'booking' !== $product->product_type ) {
+		if ( ! is_wc_booking_product( $product ) ) {
 			return $cart_item_meta;
 		}
 
@@ -280,10 +321,6 @@ class WC_Booking_Cart_Manager {
 			// Set as pending when the booking requires confirmation
 			if ( wc_booking_requires_confirmation( $values['product_id'] ) ) {
 				$booking_status = 'pending-confirmation';
-			}
-
-			if ( ! $booking ) {
-				$booking = $this->create_booking_from_cart_data( $cart_item_meta, $product->id );
 			}
 
 			$booking->set_order_id( $order_id, $item_id );

@@ -1,5 +1,109 @@
 *** WooCommerce Bookings Changelog ***
 
+2016.06.21 - version 1.9.9
+* Fix - Revert commit d5eb4b6 which caused calendar to display unbookable blocks.
+
+2016.06.17 - version 1.9.8
+* Fix - WC 2.6 request confirmation showing even when no bookable product in cart.
+* Fix - When range of days ( not today ) are selected, today's date becomes available.
+* Fix - Compatibility issue with Product Addons where custom multiplier would calculate wrongly.
+* Fix - Unable to pay for confirmed booking if coupon reduces price.
+* Tweak - Small performance change.
+* Add - Filter wc_bookings_product_get_available_blocks
+
+2016.04.22 - version 1.9.7
+* Fix - Warning on single product page caused by booking objects transient stored
+  as empty string. The reason for this is when false is stored via set_transient,
+  it will return empty string when retrieved via get_transient.
+
+2016.04.19 - version 1.9.6
+* Fix - Make sure booking costs that span beyond end of the year are supported.
+* Fix - Sync booking when booking is edited from edit booking screen.
+* Fix - Check the booking resource against the selected date to prevent wrong
+  display of free available slots when restricted resource is used.
+* Fix - Add a false value if order_ids return empty during search. This fixes
+  issue of SQL syntax error when searching in Bookings.
+* Tweak - Add logging mechanism, especially when booking is added to or removed from
+  cart. This would help people troubleshooting issue where status is changed
+  to 'was-in-cart' for unknown reason.
+* Fix - Limit status changes to only affect qualifying bookings. This should
+  prevents status updated to 'was-in-cart' issue.
+* Fix - Don't convert time in UTC to local time in WP when scheduling an event.
+  WP cron uses UTC time, not local time in WP. Start / end date also stored in UTC,
+  so the diff is already performed in UTC. This fixes issue in which reminder
+  emails were not sent one day prior the start date.
+* Fix - Notices when creating booking with existing order manually.
+* Fix - Set default resource availability quantity to 1 which fixes issue of a product
+  with resources is not bookable.
+* Fix - Buffer period is not respected when checking between blocks.
+* Fix - Construct Date-object from UTC to ignore browser's TZ and incorrect
+  calculated duration on particular timezones.
+* Fix - Check automatic resource assignments on each date to make sure a fully
+  booked date is not available instead of partially booked.
+* Fix - Use admin_url instead of WC()->ajax_url() for ajax_url in class-wc-booking-form.php
+  WC()->ajax_url() uses relative scheme that might cause if fronted site is SSL'ed.
+* Fix - Use translated string "Booking ID" when checking the item.
+* Fix - Reset tags on email body before each trigger which fixes tag placeholders.
+  were not substituted properly.
+* Fix - Removed deprecated args causing notices displayed in confirmation email.
+* Tweak - Cache booking objects in booking's controller. There are some performance
+  improvements queued for next milestone too.
+
+
+2016.02.05 - version 1.9.5
+* Localisation - Updated language files.
+* Tweak - Expand "Remaining Spaces" to work with automatically assigned resources.
+* Tweak - New Bookings specific add-on section under WooCommerce > Add-ons.
+* Tweak - Show a notice when viewing a booking if it's add-on plugin no longer is installed.
+* Fix - Prevent the multiply cost checkboxes from displaying on non booking products when using the product add-ons extension.
+* Fix - Prevent booking data from fatal erroring if an add-on like the accommodation bookings plugin is removed.
+* Fix - Prevent start times that end after date times from showing up when using buffer times and 'not available' for default availability.
+* Fix - Booking in "My Account" not created with Confirmation Requried Booking + New User account
+* Fix - Missing ending double quotes in order note of booking status transition
+* Fix - Use full unit 'hour' when using date/time str in strtotime
+
+
+2016.01.27 - version 1.9.4
+* Tweak - Sync bookings without orders (manually created bookings) to Google Calendar.
+* Tweak - Humanized order status in order column of bookings list.
+* Fix - If the new resource input is canceled, the resource input area will no longer be blocked.
+* Fix - Format the datetime form based on site language (matches behavior for day form).
+* Fix - Fix for possible availability problems using time range blocks.
+* Fix - Remove extra + from being added to cost string when using resource block/base costs.
+* Fix - Prevent extra border from showing on time slots when using TwentySixteen as your theme.
+* Fix - Save the correct (booking, not order) ID when saving booking details on the admin screen.
+
+2016.01.13 - version 1.9.3
+* Fix - Make sure time rules only overwrite the day when default_availability is set to off, otherwise handle as we did before.
+
+2016.01.07 - version 1.9.2
+* Tweak - When manually creating bookings that either have no order or are attached to an existing order, the status will now default to "confirmed" instead of "pending confirmation".
+* Fix - Prevent multiple AJAX requests from happening when using the range picker.
+* Fix - Fix ranges on non-product rules.
+* Fix - There was an issue when trying to display both date and time rules on a calendar where time rules might not display correctly. This no longer happens.
+
+2016.01.06 - version 1.9.1
+* Fix - Typo in month names.
+* Fix - Compatibility fix for WooCommerce Accommodation Bookings 1.0.
+
+2016.01.05 - version 1.9.0
+* Feature - Support for the Accommodations extension -- making it easier for you to create and manage bookings for accommodations.
+* Feature - Time ranges for custom dates -- you can now set availability and cost rules for hours on specific dates.
+* Tweak - Some developer improvements, including making it easier to create custom booking statuses, and improvements to the date/time picker code.
+* Fix - Subscriptions Compatibility
+
+2015.12.22 - version 1.8.7
+* Fix - Use GMT offset when creating cron jobs for booking events.
+
+2015.12.16 - version 1.8.6
+* Fix - Ignore local time zone when calculating dates from the date picker.
+
+2015.12.14 - version 1.8.5
+* Fix - WooCommerce 2.5+ Compatibility.
+* Fix - UI improvements for Person & Resource tabs.
+* Fix - Label display bug on check-out/order page.
+* Fix - Multipler calculation for hours.
+
 2015.11.25 - version 1.8.4
 * Fix - An additional fix for accurate buffer calculations.
 * Tweak - New filter to change custom bookings labels.
