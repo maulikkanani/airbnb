@@ -4,3 +4,34 @@ Theme URI:      http://astoundify.com/themes/listify
 Template:       listify
 Version:        1.0
 */
+.main-amenities .col-md-3 {text-align: center;}
+.main-amenities img {display: block;text-align: center;margin: 0 auto;padding-bottom: 5px;}
+.main-amenities span {text-align: center;font-size: 16px;}
+.clearfix {clear:both;}
+.main-amenities {border-top: 1px solid #ddd;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ddd;}
+.listing-information .space-4.text-center-sm {margin-top: 20px;font-size: 24px;font-weight: bold;text-transform: capitalize;margin-bottom: 15px;}
+.product-long-details {border-top: 1px solid #ddd;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ddd;margin-top: 20px;}
+.product-long-details .det-tit {font-size: 22px;font-weight: 600;text-transform: capitalize;}
+.product-long-details .col-md-9 {border-bottom: 1px solid #ddd;padding-bottom: 20px;}
+.product-long-details .col-md-9 .bold {
+	font-weight: bold;
+	font-size: 17px;
+	padding-left: 2px;
+}
+.product-long-details .col-md-9 label {
+	font-size: 17px;
+	font-weight: 400;
+	padding-right: 5px;
+	font-style: normal;
+}
+.product-long-details .col-md-9 ul {
+	margin: 0;
+}
+.product-long-details .col-md-9 .col-md-6 {
+	padding-left: 0;
+}
+.product-long-details .col-md-9 a {
+	font-size: 20px;
+	font-weight: 600;
+}
+
