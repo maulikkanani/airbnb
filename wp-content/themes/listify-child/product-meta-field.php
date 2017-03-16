@@ -86,175 +86,175 @@
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Elevator in building</label>
-                                    <input type="checkbox" name="list_data[elevator]" value="yes" />
+                                    <input type="checkbox" name="list_data[elevator]" value="yes" <?php if($custom_box['elevator'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Wheelchair accessible</label>
-                                    <input type="checkbox" name="list_data[wheelchair]" value="yes" />
+                                    <input type="checkbox" name="list_data[wheelchair]" value="yes" <?php if($custom_box['wheelchair'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Internet</label>
-                                    <input type="checkbox" name="list_data[internet]" value="yes" />
+                                    <input type="checkbox" name="list_data[internet]" value="yes" <?php if($custom_box['internet'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Dryer</label>
-                                    <input type="checkbox" name="list_data[dryer]" value="yes" />
+                                    <input type="checkbox" name="list_data[dryer]" value="yes" <?php if($custom_box['dryer'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Wireless Internet</label>
-                                    <input type="checkbox" name="list_data[wireless]" value="yes" />
+                                    <input type="checkbox" name="list_data[wireless]" value="yes" <?php if($custom_box['wireless'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Iron</label>
-                                    <input type="checkbox" name="list_data[iron]" value="yes" />
+                                    <input type="checkbox" name="list_data[iron]" value="yes" <?php if($custom_box['iron'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Pets allowed</label>
-                                    <input type="checkbox" name="list_data[pets_allowed]" value="yes" />
+                                    <input type="checkbox" name="list_data[pets_allowed]" value="yes" <?php if($custom_box['pets_allowed'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Cable TV</label>
-                                    <input type="checkbox" name="list_data[cable_TV]" value="yes" />
+                                    <input type="checkbox" name="list_data[cable_TV]" value="yes" <?php if($custom_box['cable_TV'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Indoor fireplace</label>
-                                    <input type="checkbox" name="list_data[indoor_fireplace]" value="yes" />
+                                    <input type="checkbox" name="list_data[indoor_fireplace]" value="yes" <?php if($custom_box['indoor_fireplace'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Shampoo</label>
-                                    <input type="checkbox" name="list_data[shampoo]" value="yes" />
+                                    <input type="checkbox" name="list_data[shampoo]" value="yes" <?php if($custom_box['shampoo'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Buzzer/wireless intercom</label>
-                                    <input type="checkbox" name="list_data[buzzer_wireless_intercom]" value="yes" />
+                                    <input type="checkbox" name="list_data[buzzer_wireless_intercom]" value="yes" <?php if($custom_box['buzzer_wireless_intercom'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Laptop friendly workspace</label>
-                                    <input type="checkbox" name="list_data[laptop_friendly]" value="yes" />
+                                    <input type="checkbox" name="list_data[laptop_friendly]" value="yes" <?php if($custom_box['laptop_friendly'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Kitchen</label>
-                                    <input type="checkbox" name="list_data[kitchen]" value="yes" />
+                                    <input type="checkbox" name="list_data[kitchen]" value="yes" <?php if($custom_box['kitchen'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Pool</label>
-                                    <input type="checkbox" name="list_data[pool]" value="yes" />
+                                    <input type="checkbox" name="list_data[pool]" value="yes" <?php if($custom_box['pool'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Doorman</label>
-                                    <input type="checkbox" name="list_data[doorman]" value="yes" />
+                                    <input type="checkbox" name="list_data[doorman]" value="yes" <?php if($custom_box['doorman'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Washer</label>
-                                    <input type="checkbox" name="list_data[washer]" value="yes" />
+                                    <input type="checkbox" name="list_data[washer]" value="yes" <?php if($custom_box['washer'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Heating</label>
-                                    <input type="checkbox" name="list_data[heating]" value="yes" />
+                                    <input type="checkbox" name="list_data[heating]" value="yes" <?php if($custom_box['heating'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Hangers</label>
-                                    <input type="checkbox" name="list_data[hangers]" value="yes" />
+                                    <input type="checkbox" name="list_data[hangers]" value="yes" <?php if($custom_box['hangers'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Hair dryer</label>
-                                    <input type="checkbox" name="list_data[hair_dryer]" value="yes" />
+                                    <input type="checkbox" name="list_data[hair_dryer]" value="yes" <?php if($custom_box['hair_dryer'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Smoking allowed</label>
-                                    <input type="checkbox" name="list_data[smoking_allowed]" value="yes" />
+                                    <input type="checkbox" name="list_data[smoking_allowed]" value="yes" <?php if($custom_box['smoking_allowed'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Breakfast</label>
-                                    <input type="checkbox" name="list_data[breakfast]" value="yes" />
+                                    <input type="checkbox" name="list_data[breakfast]" value="yes" <?php if($custom_box['breakfast'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Suitable for events</label>
-                                    <input type="checkbox" name="list_data[suitable_events]" value="yes" />
+                                    <input type="checkbox" name="list_data[suitable_events]" value="yes" <?php if($custom_box['suitable_events'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Family/kid friendly</label>
-                                    <input type="checkbox" name="list_data[family_kid_friendly]" value="yes" />
+                                    <input type="checkbox" name="list_data[family_kid_friendly]" value="yes" <?php if($custom_box['family_kid_friendly'] == "yes") { ?> checked="checked" <?php } ?> />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Air conditioning</label>
-                                    <input type="checkbox" name="list_data[air_conditioning]" value="yes" />
+                                    <input type="checkbox" name="list_data[air_conditioning]" value="yes" <?php if($custom_box['air_conditioning'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Gym</label>
-                                    <input type="checkbox" name="list_data[gym]" value="yes" />
+                                    <input type="checkbox" name="list_data[gym]" value="yes" <?php if($custom_box['gym'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">TV</label>
-                                    <input type="checkbox" name="list_data[tv]" value="yes" />
+                                    <input type="checkbox" name="list_data[tv]" value="yes" <?php if($custom_box['tv'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Free parking on premises</label>
-                                    <input type="checkbox" name="list_data[free_parking]" value="yes" />
+                                    <input type="checkbox" name="list_data[free_parking]" value="yes" <?php if($custom_box['free_parking'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                             <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Essentials</label>
-                                    <input type="checkbox" name="list_data[essentials]" value="yes" />
+                                    <input type="checkbox" name="list_data[essentials]" value="yes" <?php if($custom_box['essentials'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                              <div class="col-xs-4">
                                 <p class="form-field">
                                     <label for="_wc_booking_duration_type">Private entrance</label>
-                                    <input type="checkbox" name="list_data[private_entrance]" value="yes" />
+                                    <input type="checkbox" name="list_data[private_entrance]" value="yes" <?php if($custom_box['private_entrance'] == "yes") { ?> checked="checked" <?php } ?>  />
                                 </p>
                             </div>
                         </div>

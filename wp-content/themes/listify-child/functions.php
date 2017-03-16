@@ -118,6 +118,43 @@ function woo_custom_description_tab_content() {
             </div>
         </div>
     </div>
+    <div class="the-amenities">
+        <div class="col-md-3">
+            <span class="det-tit">Amenities</span>
+        </div>
+         <div class="col-md-9 expandable">
+             <div class="expandable-content-summary">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <?php if($mata_data['elevator'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/elevator.png" alt="" /><strong>Elevator in building</strong></li> <?php } ?>
+                            <?php if($mata_data['wheelchair'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wheelchair.png" alt="" /><strong>Wheelchair accessible</strong></li> <?php } ?>
+                            <?php if($mata_data['internet'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/internet.png" alt="" /><strong>Internet</strong></li> <?php } ?>
+                            <?php if($mata_data['dryer'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hair-dryer.png" alt="" /><strong>Dryer</strong></li> <?php } ?>
+                            <?php if($mata_data['wireless'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wifi.png" alt="" /><strong>Wireless Internet</strong></li> <?php } ?>
+                            <?php if($mata_data['iron'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/iron.png" alt="" /><strong>Iron</strong></li> <?php } ?>
+                            <?php if($mata_data['pets_allowed'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/dog-pet.png" alt="" /><strong>Pets allowed</strong></li> <?php } ?>
+                            <?php if($mata_data['cable_TV'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/television.png" alt="" /><strong>Cable TV</strong></li> <?php } ?>
+                            <?php if($mata_data['indoor_fireplace'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fireplace.png" alt="" /><strong>Indoor fireplace</strong></li> <?php } ?>
+                            <?php if($mata_data['shampoo'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/shampoo.png" alt="" /><strong>Shampoo</strong></li> <?php } ?>
+                            <?php if($mata_data['shampoo'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/intercome.png" alt="" /><strong>Buzzer/wireless intercom</strong></li> <?php } ?>
+                            <?php if($mata_data['laptop_friendly'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Laptop.png" alt="" /><strong>Laptop friendly workspace</strong></li> <?php } ?>
+                            <?php if($mata_data['kitchen'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/kitchen.png" alt="" /><strong>Kitchen</strong></li> <?php } ?>
+                            <?php if($mata_data['pool'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/swimming.png" alt="" /><strong>Pool</strong></li> <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+             <div class="expandable-content expandable-content-full">
+                <div class="row">
+                    <div class="col-md-6">                    
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+             </div>
+         </div>
+    </div>
 <div class="clearfix"></div>  
 </div>
 <?php
