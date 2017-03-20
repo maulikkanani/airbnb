@@ -141,6 +141,10 @@ function woo_custom_description_tab_content() {
                             <?php if($mata_data['laptop_friendly'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Laptop.png" alt="" /><strong>Laptop friendly workspace</strong></li> <?php } ?>
                             <?php if($mata_data['kitchen'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/kitchen.png" alt="" /><strong>Kitchen</strong></li> <?php } ?>
                             <?php if($mata_data['pool'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/swimming.png" alt="" /><strong>Pool</strong></li> <?php } ?>
+                            <?php if($mata_data['doorman'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/doorman.png" alt="" /><strong>Doorman</strong></li> <?php } ?>
+                            <?php if($mata_data['washer'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/washing.png" alt="" /><strong>Washer</strong></li> <?php } ?>
+                            <?php if($mata_data['heating'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Heating.png" alt="" /><strong>Heating</strong></li> <?php } ?>
+                            <?php if($mata_data['hangers'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Heating.png" alt="" /><strong>Hangers</strong></li> <?php } ?>
                         </ul>
                     </div>
                 </div>
