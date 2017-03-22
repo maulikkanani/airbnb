@@ -144,16 +144,177 @@ function woo_custom_description_tab_content() {
                             <?php if($mata_data['doorman'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/doorman.png" alt="" /><strong>Doorman</strong></li> <?php } ?>
                             <?php if($mata_data['washer'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/washing.png" alt="" /><strong>Washer</strong></li> <?php } ?>
                             <?php if($mata_data['heating'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Heating.png" alt="" /><strong>Heating</strong></li> <?php } ?>
-                            <?php if($mata_data['hangers'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Heating.png" alt="" /><strong>Hangers</strong></li> <?php } ?>
+                            <?php if($mata_data['hangers'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hanger.png" alt="" /><strong>Hangers</strong></li> <?php } ?>
+                            <?php if($mata_data['hair_dryer'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon.png" alt="" /><strong>Hair dryer</strong></li> <?php } ?>
+                            <?php if($mata_data['smoking_allowed'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cigarette.png" alt="" /><strong>Smoking allowed</strong></li> <?php } ?>
+                            <?php if($mata_data['breakfast'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/breakfast-time.png" alt="" /><strong>Breakfast</strong></li> <?php } ?>
+                            <?php if($mata_data['suitable_events'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/events.png" alt="" /><strong>Suitable for events</strong></li> <?php } ?>
+                            <?php if($mata_data['family_kid_friendly'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/party.png" alt="" /><strong>Family/kid friendly</strong></li> <?php } ?>
+                            <?php if($mata_data['air_conditioning'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/air-conditioner.png" alt="" /><strong>Air conditioning</strong></li> <?php } ?>
+                            <?php if($mata_data['gym'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/exercise.png" alt="" /><strong>Gym</strong></li> <?php } ?>
+                            <?php if($mata_data['tv'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tv.png" alt="" /><strong>TV</strong></li> <?php } ?>
+                            <?php if($mata_data['free_parking'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/parked-car.png" alt="" /><strong>Free parking on premises</strong></li> <?php } ?>
+                            <?php if($mata_data['essentials'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/essentials.png" alt="" /><strong>Essentials</strong></li> <?php } ?>
+                            <?php if($mata_data['private_entrance'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/door-entrance.png" alt="" /><strong>Private entrance</strong></li> <?php } ?>
                         </ul>
+                        <button class="expandable-trigger-more btn-link btn-link--bold" type="button" data-reactid="103"><span data-reactid="104">+ More</span></button>
                     </div>
                 </div>
              </div>
              <div class="expandable-content expandable-content-full">
                 <div class="row">
-                    <div class="col-md-6">                    
+                    <div class="col-md-6">
+                        <ul>
+                        <?php if($mata_data['elevator'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/elevator.png" alt="" /><strong>Elevator in building</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Elevator in building</del></li>
+                            <?php } ?>    
+                            <?php if($mata_data['internet'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/internet.png" alt="" /><strong>Internet</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Internet</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['wireless'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wifi.png" alt="" /><strong>Wireless Internet</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Wireless Internet</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['pets_allowed'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/dog-pet.png" alt="" /><strong>Pets allowed</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Pets allowed</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['indoor_fireplace'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fireplace.png" alt="" /><strong>Indoor fireplace</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Indoor fireplace</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['shampoo'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/intercome.png" alt="" /><strong>Buzzer/wireless intercom</strong></li> 
+                              <?php } else { ?>
+                                <li><del aria-hidden="true">Buzzer/wireless intercom</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['kitchen'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/kitchen.png" alt="" /><strong>Kitchen</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Kitchen</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['doorman'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/doorman.png" alt="" /><strong>Doorman</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Doorman</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['heating'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Heating.png" alt="" /><strong>Heating</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Heating</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['hair_dryer'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon.png" alt="" /><strong>Hair dryer</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Hair dryer</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['breakfast'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/breakfast-time.png" alt="" /><strong>Breakfast</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Breakfast</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['family_kid_friendly'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/party.png" alt="" /><strong>Family/kid friendly</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Breakfast</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['gym'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/exercise.png" alt="" /><strong>Gym</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Gym</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['free_parking'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/parked-car.png" alt="" /><strong>Free parking on premises</strong></li> 
+                            <?php } else { ?>
+                                <li><del aria-hidden="true">Free parking on premises</del></li>
+                            <?php } ?> 
+                            <?php if($mata_data['private_entrance'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/door-entrance.png" alt="" /><strong>Private entrance</strong></li> 
+                             <?php } else { ?>
+                                <li><del aria-hidden="true">Private entrance</del></li>
+                            <?php } ?> 
+                        </ul>      
                     </div>
                     <div class="col-md-6">
+                        <ul>
+                        <?php if($mata_data['wheelchair'] == 'yes') { ?> 
+                            <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wheelchair.png" alt="" /><strong>Wheelchair accessible</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Wheelchair accessible</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['dryer'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hair-dryer.png" alt="" /><strong>Dryer</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Dryer</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['iron'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/iron.png" alt="" /><strong>Iron</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Iron</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['cable_TV'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/television.png" alt="" /><strong>Cable TV</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Cable TV</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['shampoo'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/shampoo.png" alt="" /><strong>Shampoo</strong></li> 
+                         <?php } else { ?>
+                                <li><del aria-hidden="true">Shampoo</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['laptop_friendly'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Laptop.png" alt="" /><strong>Laptop friendly workspace</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Laptop friendly workspace</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['pool'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/swimming.png" alt="" /><strong>Pool</strong></li> 
+                          <?php } else { ?>
+                                <li><del aria-hidden="true">Pool</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['washer'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/washing.png" alt="" /><strong>Washer</strong></li> 
+                         <?php } else { ?>
+                                <li><del aria-hidden="true">Washer</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['hangers'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hanger.png" alt="" /><strong>Hangers</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Hangers</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['smoking_allowed'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cigarette.png" alt="" /><strong>Smoking allowed</strong></li> 
+                         <?php } else { ?>
+                                <li><del aria-hidden="true">Smoking allowed</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['suitable_events'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/events.png" alt="" /><strong>Suitable for events</strong></li> 
+                         <?php } else { ?>
+                                <li><del aria-hidden="true">Suitable for events</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['air_conditioning'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/air-conditioner.png" alt="" /><strong>Air conditioning</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Air conditioning</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['tv'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tv.png" alt="" /><strong>TV</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">TV</del></li>
+                            <?php } ?> 
+                        <?php if($mata_data['essentials'] == 'yes') { ?> 
+                                <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/essentials.png" alt="" /><strong>Essentials</strong></li> 
+                        <?php } else { ?>
+                                <li><del aria-hidden="true">Essentials</del></li>
+                            <?php } ?> 
+                        </ul>
                     </div>
                 </div>
              </div>
@@ -167,7 +328,21 @@ function woo_custom_description_tab_content() {
  * EndCustomize Description tab to display in product details page
  */
 
-
+/**
+ * Custom Js code 
+ */
+function js_code()
+{ ?>
+<script> 
+jQuery(document).ready(function(){
+    jQuery(".expandable-trigger-more").click(function(){
+        jQuery(".expandable-content-summary").slideUp("slow");
+        jQuery(".expandable-content-full").slideDown("slow");
+    });
+});
+</script>    
+<?php }
+add_action('wp_footer','js_code');
 
 /**
 	 * Add Meta box in Boat post

@@ -42,6 +42,7 @@ Version:        1.0
 	display: inline-block;
 	width: 49%;
 	padding-right: 15px;
+        
 }
 .expandable-content-summary ul li {
 	display: inline-block;
@@ -49,10 +50,10 @@ Version:        1.0
 	padding-right: 15px;
 	margin-bottom: 20px;
 }
-.expandable-content-summary ul li img {
+.expandable-content-summary ul li img, .expandable-content-full ul li img {
 	padding-right: 10px;
 }
-.expandable-content-summary ul li strong {
+.expandable-content-summary ul li strong, .expandable-content-full ul li del {
 	font-size: 17px;
 	vertical-align: middle;
 }
@@ -63,4 +64,19 @@ Version:        1.0
 	font-size: 20px;
 	font-weight: 600;
 }
-
+.expandable-content-full ul li
+{
+    padding-right: 15px;
+    margin-bottom: 20px;
+    display: block;
+}
+.expandable-content-full {display: none;}
+button.btn-link {
+	background-color: inherit;
+	border: none;
+	color: #2854a1;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 5px;
+	letter-spacing: 0.5px;
+}
