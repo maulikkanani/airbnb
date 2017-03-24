@@ -30,6 +30,10 @@
                 <ul class="nav nav-tabs tabs-left">
                     <li class="active"><a href="#boat_identi" data-toggle="tab">The space</a></li>
                     <li><a href="#amenities" data-toggle="tab">Amenities</a></li>
+                    <li><a href="#prices" data-toggle="tab">Prices</a></li>
+                    <li><a href="#description" data-toggle="tab">Description</a></li>
+                    <li><a href="#house_rules" data-toggle="tab">House Rules</a></li>
+                    <li><a href="#safety_features" data-toggle="tab">Safety features</a></li>
                 </ul>
             </div>   
              <div class="col-xs-9">
@@ -258,6 +262,52 @@
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="prices">
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">Extra people</label>
+                            <input type="text" name="list_data[extra_people]" size="40" value="<?php echo $custom_box['extra_people'];   ?>" />
+                        </p>
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">Cleaning Fee</label>
+                            <input type="text" name="list_data[cleaning_fee]" size="40" value="<?php echo $custom_box['cleaning_fee'];   ?>" />
+                        </p>
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">Weekly Discount</label>
+                            <input type="text" name="list_data[weekly_discount]" placeholder="5%" size="40" value="<?php echo $custom_box['weekly_discount'];   ?>" />
+                        </p>
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">Monthly Discount</label>
+                            <input type="text" name="list_data[monthly_discount]" placeholder="10%" size="40" value="<?php echo $custom_box['monthly_discount'];   ?>" />
+                        </p>
+                        
+                    </div>
+                    <div class="tab-pane" id="description">
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">Description</label>
+                           <?php  //$content = get_post_meta($post->ID, 'custom_wysiwyg', true);
+                                wp_editor(htmlspecialchars_decode($custom_box['custom_wysiwyg']) , 'list_data[custom_wysiwyg]', array(
+                                "media_buttons" => true
+                                )); ?>
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="house_rules">
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">House Rules</label>
+                           <?php  //$content = get_post_meta($post->ID, 'custom_wysiwyg', true);
+                                wp_editor(htmlspecialchars_decode($custom_box['house_rules']) , 'list_data[house_rules]', array(
+                                "media_buttons" => true
+                                )); ?>
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="safety_features">
+                        <p class="form-field">
+                            <label for="_wc_booking_duration_type">House Rules</label>
+                           <?php  //$content = get_post_meta($post->ID, 'custom_wysiwyg', true);
+                                wp_editor(htmlspecialchars_decode($custom_box['safety_features']) , 'list_data[safety_features]', array(
+                                "media_buttons" => true
+                                )); ?>
+                        </p>
                     </div>
                    <!-- End Amenities Tab --> 
                 </div>

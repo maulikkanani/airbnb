@@ -67,6 +67,15 @@ function woo_custom_description_tab_content() {
 	$mata_data = array();
     }
 ?>
+<div class="product-vendeor-info">
+    <div class="row">
+        <div class="col-md-9">
+            <h2><?php the_title(); ?></h2>
+            
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
 <div class="main-amenities">
     <div class="col-md-3">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/home.png" alt="" />
@@ -114,9 +123,10 @@ function woo_custom_description_tab_content() {
                 </div>
             </div>
             <div class="row">
-                <a href="#house_rules">House Rules</a>
+                <a class="btn-house" href="#">House Rules</a>
             </div>
         </div>
+        <div class="clearfix"></div>  
     </div>
     <div class="the-amenities">
         <div class="col-md-3">
@@ -160,6 +170,7 @@ function woo_custom_description_tab_content() {
                         <button class="expandable-trigger-more btn-link btn-link--bold" type="button" data-reactid="103"><span data-reactid="104">+ More</span></button>
                     </div>
                 </div>
+                 <div class="clearfix"></div>  
              </div>
              <div class="expandable-content expandable-content-full">
                 <div class="row">
@@ -319,6 +330,98 @@ function woo_custom_description_tab_content() {
                 </div>
              </div>
          </div>
+        <div class="clearfix"></div>  
+    </div>
+    <div class="the-space the-price">
+        <div class="col-md-3">
+            <span class="det-tit">Prices</span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                  <?php if($mata_data['extra_people'] != '') { ?> <li><label>Extra people:</label><span class="bold"><?php echo $mata_data['extra_people']; ?></span></li> <?php } ?>
+                  <?php if($mata_data['cleaning_fee'] != '') { ?> <li><label>Cleaning Fee:</label><span class="bold"><?php echo $mata_data['cleaning_fee']; ?></span></li> <?php } ?>
+                  <?php if($mata_data['weekly_discount'] != '') { ?> <li><label>Weekly Discount:</label><span class="bold"><?php echo $mata_data['weekly_discount']; ?></span></li> <?php } ?>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                 <ul>   
+                 <?php if($mata_data['monthly_discount'] != '') { ?> <li><label>Monthly Discount:</label><span class="bold"><?php echo $mata_data['monthly_discount']; ?></span></li> <?php } ?>
+                 <?php if($mata_data['cancellation'] != '') { ?> <li><label>Cancellation:</label><span class="bold"><?php echo $mata_data['cancellation']; ?></span></li> <?php } ?>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>  
+    </div>
+    <div class="the-space the-description">
+        <div class="col-md-3">
+            <span class="det-tit">Description</span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="react-expandable">
+                        <div class="expandable-content"> 
+                            <?php if($mata_data['custom_wysiwyg'] != '') { ?><?php echo htmlspecialchars_decode($mata_data['custom_wysiwyg']); ?> <?php } ?>
+                        </div>
+                        <button class="expandable-desc-more btn-link btn-link--bold" type="button" data-reactid="103"><span data-reactid="104">+ More</span></button>
+                    </div>    
+                </div>
+            </div>
+            
+        </div>
+        <div class="clearfix"></div>  
+    </div>
+    <div class="the-space house-rule" id="house_rules">
+        <div class="col-md-3">
+            <span class="det-tit">House Rules</span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if($mata_data['house_rules'] != '') { ?><?php echo htmlspecialchars_decode($mata_data['house_rules']); ?> <?php } ?> 
+                </div>
+            </div>
+            
+        </div>
+        <div class="clearfix"></div> 
+    </div>
+    <div class="safety-features">
+        <div class="col-md-3">
+            <span class="det-tit">Safety features</span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if($mata_data['safety_features'] != '') { ?><?php echo htmlspecialchars_decode($mata_data['safety_features']); ?> <?php } ?> 
+                </div>
+            </div>
+            
+        </div>
+        <div class="clearfix"></div> 
+    </div>
+    <div class="the-availability">
+        <div class="col-md-3">
+            <span class="det-tit">Availability</span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                     <ul>
+                        <li><strong>1 night</strong> minimum stay</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li><a href="#">View Calendar</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div class="clearfix"></div> 
     </div>
 <div class="clearfix"></div>  
 </div>
@@ -339,6 +442,16 @@ jQuery(document).ready(function(){
         jQuery(".expandable-content-summary").slideUp("slow");
         jQuery(".expandable-content-full").slideDown("slow");
     });
+    jQuery(".product-long-details .the-description .expandable-desc-more").click(function(){
+        jQuery(".product-long-details .the-description .react-expandable").addClass('expanded');
+        jQuery(".product-long-details .the-description .expandable-content").slideDown("slow");
+    });
+    jQuery(".btn-house").click(function(e) {
+        e.preventDefault();
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#house_rules").offset().top - 120
+    }, 1500);
+});
 });
 </script>    
 <?php }
