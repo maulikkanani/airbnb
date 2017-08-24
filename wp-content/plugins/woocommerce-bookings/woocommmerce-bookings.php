@@ -316,6 +316,7 @@ KEY resource_id (resource_id)
 							'parent'             => __( 'Parent Bookings', 'woocommerce-bookings' ),
 							'menu_name'          => _x( 'Bookings', 'Admin menu name', 'woocommerce-bookings' ),
 							'all_items'          => __( 'All Bookings', 'woocommerce-bookings' ),
+							
 						),
 					'description' 			=> __( 'This is where bookings are stored.', 'woocommerce-bookings' ),
 					'public' 				=> false,

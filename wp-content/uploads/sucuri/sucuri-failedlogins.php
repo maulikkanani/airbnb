@@ -1,3 +1,2 @@
 <?php exit(0); ?>
-{"user_login":"admin","user_password":"","attempt_time":1490417542,"remote_addr":"127.0.0.1","user_agent":"Mozilla\/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko\/20100101 Firefox\/52.0"}
-{"user_login":"admin","user_password":"","attempt_time":1490417860,"remote_addr":"127.0.0.1","user_agent":"Mozilla\/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko\/20100101 Firefox\/52.0"}
+{"user_login":"admin","user_password":"","attempt_time":1503461702,"remote_addr":"127.0.0.1","user_agent":"Mozilla\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/60.0.3112.101 Safari\/537.36"}

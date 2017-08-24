@@ -2,10 +2,17 @@
 /**
  * Listify child theme.
  */
+
+global $wpdb;
+
 function listify_child_styles() {
     wp_enqueue_style( 'listify-child', get_stylesheet_uri() );
+    
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
+add_action( 'admin_enqueue_scripts', 'listify_child_styles' );
+
+
 
 /** Place any new code below this line */
 
@@ -457,6 +464,14 @@ jQuery(document).ready(function(){
 <?php }
 add_action('wp_footer','js_code');
 
+
+
+function wc_vendors_name_loop()
+{
+    
+}
+add_action( 'woocommerce_account_content', 'wc_vendors_name_loop' );
+
 /**
 	 * Add Meta box in Boat post
 	 *
@@ -502,3 +517,18 @@ function product_post_save_metabox_data(){
     update_post_meta( $post_id, 'product_meta_data',$_POST['list_data'] );            
 }
 add_action( 'save_post', 'product_post_save_metabox_data', 10, 3 );
+
+
+/* Display customer order on vender sell product in frontend*/
+
+function display_Vender_order(){
+    
+    if ( WC_Product_Vendors_Utils::is_vendor() || is_admin() ) {
+        
+           $order=new WC_Product_Vendors_Bookings();
+           $order->render_bookings_dashboard_widget();
+           
+       } 
+}
+add_action('woocommerce_account_content','display_Vender_order');
+?>

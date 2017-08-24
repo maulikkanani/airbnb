@@ -7,6 +7,7 @@ Version:        1.0
 
 
 
+
 /*mahendr*/
 .main-amenities .col-md-3 {text-align: center;}
 .main-amenities img {display: block;text-align: center;margin: 0 auto;padding-bottom: 5px;}
@@ -44,3 +45,8 @@ button.btn-link {background-color: inherit;border: none;color: #2854a1;font-size
 .single-product .product .woocommerce-tabs .tabs a {font-size: 20px;font-weight: 600;}
 .single-product .product .woocommerce-tabs .tabs li {margin-right: 3em !important;}
 .product-vendeor-info h2 {display: block !important;margin-top: 10px;font-size: 28px;margin-bottom: 10px;}
+
+span.type_box.hidden {
+    display: block !impo;
+    visibility: visible;
+}
