@@ -82,6 +82,8 @@
                 echo 'option :'.$type_avail;
             }
             
+    /****  Start Availability to get value on preview page *****/
+            
     $availability_array = array();
     $row_size = isset($_POST["wc_booking_availability_type"]) ? sizeof($_POST["wc_booking_availability_type"]) : 0;
     for ($i = 0; $i < $row_size; $i ++) {
@@ -130,18 +132,94 @@
     
     ?>
       <input type="hidden" name="_wc_booking_availability"  value="<?php echo htmlspecialchars(serialize($availability_array)); ?>">
-       
-     <?php 
-           
-        //update_post_meta($product_id, '_wc_booking_availability', $availability_array);
+      
+        
+    <!--  End Availability to get value on preview page -->
+    <?php 
+
     
-    ?>
-        <?php
+/*****************
+ *  new cost range 
+ * ***************/    
+    
+    $pricing = array();
+		$row_size  =    isset( $_POST[ "wc_booking_pricing_type" ] ) ? sizeof( $_POST[ "wc_booking_pricing_type" ] ) : 0;
+		for ( $i = 0; $i < $row_size; $i ++ ) {
+			$pricing[ $i ]['type']          = wc_clean( $_POST[ "wc_booking_pricing_type" ][ $i ] );
+			$pricing[ $i ]['cost']          = wc_clean( $_POST[ "wc_booking_pricing_cost" ][ $i ] );
+			$pricing[ $i ]['modifier']      = wc_clean( $_POST[ "wc_booking_pricing_cost_modifier" ][ $i ] );
+			$pricing[ $i ]['base_cost']     = wc_clean( $_POST[ "wc_booking_pricing_base_cost" ][ $i ] );
+			$pricing[ $i ]['base_modifier'] = wc_clean( $_POST[ "wc_booking_pricing_base_cost_modifier" ][ $i ] );
+
+			switch ( $pricing[ $i ]['type'] ) {
+				case 'custom' :
+					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_date" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_date" ][ $i ] );
+				break;
+				case 'months' :
+					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_month" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_month" ][ $i ] );
+				break;
+				case 'weeks' :
+					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_week" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_week" ][ $i ] );
+				break;
+				case 'days' :
+					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_day_of_week" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_day_of_week" ][ $i ] );
+				break;
+				case 'time' :
+				case 'time:1' :
+				case 'time:2' :
+				case 'time:3' :
+				case 'time:4' :
+				case 'time:5' :
+				case 'time:6' :
+				case 'time:7' :
+					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+				break;
+				case 'time:range' :
+					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+
+					$pricing[ $i ]['from_date'] = wc_clean( $_POST[ 'wc_booking_pricing_from_date' ][ $i ] );
+					$pricing[ $i ]['to_date']   = wc_clean( $_POST[ 'wc_booking_pricing_to_date' ][ $i ] );
+				break;
+				default :
+					$pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from" ][ $i ] );
+					$pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to" ][ $i ] );
+				break;
+			}
+
+			if ( $pricing[ $i ]['cost'] > 0 ) {
+				$has_additional_costs = true;
+			}
+		}
+
+        ?>
+        
+        <input type="hidden" name="_wc_booking_pricing"  value="<?php echo htmlspecialchars(serialize($pricing)); ?>">      
+        
+        <?php     
+        
+        foreach($_POST['resource_id'] as $value){ 
+                echo "<input type='hidden' name='resource_id[]' value='".$value."' />";
+        }
+        
+        
+        
+        
+          
             echo '<pre>';
                 print_r($_POST);
-                
-                print_r($availability_array);
             echo '</pre>'; 
+            
+            echo '<br>Procing_tab_range<br>';
+            
+            echo '<pre>';
+                print_r($pricing);
+            echo '</pre>';
         
         ?>
         

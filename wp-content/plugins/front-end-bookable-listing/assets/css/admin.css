@@ -982,3 +982,9 @@ th.column-booking_status {
 .hide_initial_booking_addon_options {
     display: none
 }
+
+
+div#bookings_resources {
+    float: right;
+    width: 70%;
+	 //overflow: scroll;

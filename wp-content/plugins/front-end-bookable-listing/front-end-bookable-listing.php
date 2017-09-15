@@ -152,6 +152,8 @@ function display_product_data($job_id) {
     /****** Postmeta for general tab start ******/      
     
     update_post_meta($product_id, '_virtual', 'yes');
+    
+    
 
     if(isset($_POST['_wc_booking_duration_type']))
     {
@@ -265,7 +267,7 @@ function display_product_data($job_id) {
         add_post_meta($product_id, '_wc_booking_availability', $_wc_booking_availability,TRUE);
         
         $postmeta = $wpdb->prefix . 'postmeta';
-        $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id= '$product_id' "); ;
+        $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id= '$product_id' ");
         
         //update_post_meta($product_id, '_wc_booking_availability',$_wc_booking_availability );        
     }
@@ -290,9 +292,17 @@ function display_product_data($job_id) {
     }
         
     if(isset($_POST['_wc_booking_pricing'])){
+        
+        $_wc_booking_pricing = $_POST['_wc_booking_pricing'];
+        add_post_meta($product_id,'_wc_booking_pricing', $_wc_booking_pricing,TRUE);
+        
+        $posmeta = $wpdb->prefix.'postmeta';
+        $wpdb->query("update $posmeta set meta_value='$_wc_booking_pricing' where meta_key='_wc_booking_pricing' And post_id='$product_id' ");
                 
-        $_wc_booking_pricing =$_POST['_wc_booking_pricing'];
-        update_post_meta( $post_id, '_wc_booking_pricing', $pricing );    
+        
+        //update_post_meta( $product_id, '_wc_booking_pricing', $_wc_booking_pricing );    
+        
+        
     }
     
     
@@ -389,6 +399,16 @@ function display_product_data($job_id) {
     
     
     /****** Postmeta for Resources tab Start *****/
+    
+    if(isset($_POST['resource_id'])){
+        $person_ids = $_POST['resource_id'];   
+        
+        $max_loop = max(array_keys($_POST['resource_id']));
+        
+        
+    }
+    
+    
     
     //update_post_meta($product_id, '_wc_booking_has_resources', 'yes');
     
