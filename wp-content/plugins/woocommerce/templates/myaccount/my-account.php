@@ -34,8 +34,6 @@ do_action( 'woocommerce_account_navigation' ); ?>
 		 * My Account content.
 		 * @since 2.6.0
 		 */
-                
 		do_action( 'woocommerce_account_content' );
-                //do_action('check_user');
-                
-          
+	?>
+</div>

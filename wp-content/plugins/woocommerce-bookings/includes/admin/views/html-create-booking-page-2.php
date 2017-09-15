@@ -15,7 +15,7 @@
 					<td>
 						<div class="wc-bookings-booking-form">
 							<?php $booking_form->output(); ?>
-							<div class="wc-bookings-booking-cost" style="display:none"></div>
+							<div class="wc-bookings-booking-cost" style="display:block"></div>
 						</div>
 					</td>
 				</tr>
@@ -23,11 +23,11 @@
 					<th scope="row">&nbsp;</th>
 					<td>
 						<input type="submit" name="create_booking_2" class="button-primary" value="<?php _e( 'Create Booking', 'woocommerce-bookings' ); ?>" />
-						<input type="hidden" name="customer_id" value="<?php echo esc_attr( $customer_id ); ?>" />
-						<input type="hidden" name="bookable_product_id" value="<?php echo esc_attr( $bookable_product_id ); ?>" />
+                                                <input type="text" name="customer_id" value="<?php echo esc_attr( $customer_id ); ?>" />
+						<input type="text" name="bookable_product_id" value="<?php echo esc_attr( $bookable_product_id ); ?>" />
 						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $bookable_product_id ); ?>" />
 						<input type="hidden" name="booking_order" value="<?php echo esc_attr( $booking_order ); ?>" />
-						<?php wp_nonce_field( 'create_booking_notification' ); ?>
+						<?php wp_nonce_field( '' ); ?>
 					</td>
 				</tr>
 			</tbody>

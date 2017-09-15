@@ -17,9 +17,11 @@ get_header(); ?>
         <div class="row content-area">
 
              <?php get_sidebar(); ?>
-
+            hekki
+            
             <main id="main" class="site-main col-md-8 col-sm-7 col-xs-12" role="main">
 
+                
                 <?php if ( listify_has_integration( 'woocommerce' ) ) : ?>
                     <?php wc_print_notices(); ?>
                 <?php endif; ?>

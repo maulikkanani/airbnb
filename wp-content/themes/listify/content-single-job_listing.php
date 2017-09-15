@@ -54,7 +54,7 @@ global $job_manager, $post;
                 <?php endif; ?>
 
                 <?php do_action( 'single_job_listing_start' ); ?>
-
+                <?php// do_action( 'displaymenu' ); ?>
                 <?php
                     if ( ! dynamic_sidebar( 'single-job_listing-widget-area' ) ) {
                         $defaults = array(

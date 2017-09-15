@@ -58,7 +58,7 @@ class WPJMP_Products {
 
 		global $current_user;
 
-		$options 		= array();
+		$options = array();
 		$product_args 	= array(
 			'post_type' 		=> 'product',
 			'posts_per_page' 	=> '-1',
@@ -153,7 +153,7 @@ class WPJMP_Products {
 	 */
 	public function add_listing_data_fields_product( $fields ) {
 
-		$user_id 		= get_current_user_id();
+		$user_id  = get_current_user_id();
 		$product_args 	= array(
 			'post_type' 		=> 'product',
 			'posts_per_page' 	=> '-1',

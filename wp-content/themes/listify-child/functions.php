@@ -7,7 +7,8 @@ global $wpdb;
 
 function listify_child_styles() {
     wp_enqueue_style( 'listify-child', get_stylesheet_uri() );
-    
+    wp_enqueue_style( 'listify-child', get_stylesheet_directory_uri(). '/css/bootstrap.min.css' );
+//    wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/js/custom_script.js' );
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 add_action( 'admin_enqueue_scripts', 'listify_child_styles' );
@@ -464,14 +465,6 @@ jQuery(document).ready(function(){
 <?php }
 add_action('wp_footer','js_code');
 
-
-
-function wc_vendors_name_loop()
-{
-    
-}
-add_action( 'woocommerce_account_content', 'wc_vendors_name_loop' );
-
 /**
 	 * Add Meta box in Boat post
 	 *
@@ -519,16 +512,137 @@ function product_post_save_metabox_data(){
 add_action( 'save_post', 'product_post_save_metabox_data', 10, 3 );
 
 
-/* Display customer order on vender sell product in frontend*/
+/******** 
+    Display customer order on vender sell product in frontend
+********/
 
 function display_Vender_order(){
-    
-    if ( WC_Product_Vendors_Utils::is_vendor() || is_admin() ) {
-        
-           $order=new WC_Product_Vendors_Bookings();
-           $order->render_bookings_dashboard_widget();
-           
-       } 
+//    if ( WC_Product_Vendors_Utils::is_vendor() || is_admin() ) {
+//           $order=new WC_Product_Vendors_Bookings();
+//           $order->render_bookings_dashboard_widget();
 }
 add_action('woocommerce_account_content','display_Vender_order');
+
+
+
+
+/******** 
+    Redirect user to checkout page after click on Book now on listing product.
+********/
+
+//function redirect_to_checkout() {
+//    global $woocommerce;
+//    $checkout_url = $woocommerce->cart->get_checkout_url();
+//    return $checkout_url;
+//}
+//add_filter ('add_to_cart_redirect', 'redirect_to_checkout');
+
+/******** 
+    Add Product From Frontend for vender 
+********/
+
+function add_product_front(){
+    global $wpdb;
+    
+    $user_id  = get_current_user_id();
+    
+    if($user_id==0){
+        echo "Guest can\'t add product";
+    
+} else {
+    $user_id  = get_current_user_id();
+    
+    if(isset($_POST['new_post']) == '1') {
+    $post_title = $_POST['post_title'];
+    $post_category = $_POST['cat'];
+    $post_content = $_POST['post_content'];
+
+    $new_post = array(
+          'ID' => '',
+          'post_author' => $user_id/*$user->ID*/, 
+          'post_content' => $post_content, 
+          'post_title' => $post_title,
+          'post_type' => 'product',
+          'post_status' => 'publish',
+          'ping_status' => 'closed'
+        );
+    
+    $post_id = wp_insert_post($new_post);
+    
+    
+    $parent_post_id = $post_id;
+    
+    $wp_upload_dir = wp_upload_dir();
+    $filename = $_POST['addimage'];
+    $uploadfile = $wp_upload_dir['path'] . '/' . basename( $filename );
+    
+    echo $uploadfile;
+    
+    move_uploaded_file($filename, $uploadfile);
+    
+    
+    $filename = basename( $uploadfile );
+    $filetype = wp_check_filetype( basename( $filename ), null );
+    
+    echo '<pre>';
+    print_r($wp_upload_dir);
+    echo '</pre>';
+   
+    $attachment = array(
+       'guid'  => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+     //  'guid'  => $uploadfile, 
+       'post_mime_type' => $filetype['type'],
+       'post_content' => $post_content, 
+       'post_title' => $post_title,
+       'post_status' => 'publish',
+        
+    );
+    
+    echo '<pre>';
+    print_r($attachment );
+    echo '</pre>';
+    
+    die();
+   $attach_ide = wp_insert_attachment($attachment,$filename,$parent_post_id);
+   
+   $attach_data = wp_generate_attachment_metadata($attach_ide,$filename);
+   
+    wp_update_attachment_metadata( $attach_ide, $attach_data );
+    
+    update_post_meta( $post_id, '_thumbnail_id', $attach_ide);
+    
+    set_post_thumbnail( $parent_post_id, $attach_ide );
+    
+
+   // $post = get_post($post_id);
+    wp_redirect($post->guid);
+    
+    }
+    
+}
+    if($user_id!==0){
+  
+    ?>
+<form method="post" action=""> 
+    <p>
+        <label><?php  _e('Add New Product.','product') ?></label>
+        <input type="text" name="post_title" size="45" id="input-title"/>
+    </p>
+    <p>
+        <label><?php  _e('Add Product Description.','product') ?></label>
+        <textarea rows="5" name="post_content" cols="66" id="text-desc"></textarea> 
+    </p>
+    <p> 
+        <label><?php  _e('Add Product Image.','product') ?></label>  
+        <input type="file" name="addimage"/>
+    </p>
+    <input type="hidden" name="new_post" value="1"/> 
+    <input class="subput round" type="submit" name="submit" value="Post" style="margin-top: 10px;"/>
+</form>
+    <?php
+     }
+}
+//add_shortcode('add_product_front','add_product_front');
+
+
 ?>
