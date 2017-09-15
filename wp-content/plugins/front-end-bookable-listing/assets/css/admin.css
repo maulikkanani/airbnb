@@ -983,8 +983,8 @@ th.column-booking_status {
     display: none
 }
 
-
 div#bookings_resources {
     float: right;
     width: 70%;
-	 //overflow: scroll;
+    //overflow: scroll;
+}
