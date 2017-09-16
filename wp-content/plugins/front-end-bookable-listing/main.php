@@ -710,11 +710,16 @@
                 <?php
                 global $post, $wpdb; $product_id;
 
-                $all_resources = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE ID in(SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' )");
+//                $all_resources = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE ID in(SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' )");
+//                $product_resources = $wpdb->get_col($wpdb->prepare("SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' ORDER BY sort_order;", $product_id));
 
+
+                $all_resources = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID in (SELECT resource_id FROM `wp_wc_booking_relationships` )");
                 $product_resources = $wpdb->get_col($wpdb->prepare("SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' ORDER BY sort_order;", $product_id));
+                
                 $loop = 0;
-
+                
+                                
                 if ($product_resources) {
                     $resource_base_costs = get_post_meta($product_id, '_resource_base_costs', true);
                     $resource_block_costs = get_post_meta($product_id, '_resource_block_costs', true);

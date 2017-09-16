@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH')) {
-    exit; //ecgho Exit if accessed directly
+    exit; //echo Exit if accessed directly
 }
 
 ?>

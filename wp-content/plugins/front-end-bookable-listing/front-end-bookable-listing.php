@@ -32,7 +32,6 @@ function wpse_enqueue_js_css(){
         wp_enqueue_style('woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', null, WC_VERSION);
     }
     
-    
     wp_register_script('wc_bookings_writepanel_js', plugin_dir_url( __FILE__) . 'assets/js/availability-page.js', array('jquery'), '', true);
     wp_enqueue_script('wc_bookings_writepanel_js');
     
@@ -91,24 +90,14 @@ add_action('single_job_listing_start','displaymenu');
 
 function display_product_data($job_id) {
     global $wpdb;
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-    
-    echo '<pre>';
-    print_r($_POST['person_id']);
-    echo '</pre>';
     $$person_ids = $_POST['person_id'];
     
 
     $title =  get_the_title($job_id);
-
     $product_name = get_post_meta( $job_id, '_job_title', true );
-
     $product_description = get_post_meta( $job_id, '_job_description', true );
     
 //    $person = $persons['person_id'][0];
-
     $product = array(
           'post_title' => $product_name,
           'post_content' => $product_description,
@@ -190,9 +179,13 @@ function display_product_data($job_id) {
         update_post_meta($product_id, '_wc_booking_cancel_limit_unit', $wc_booking_cancel_limit_unit);
     }
 
-    /****** Postmeta for general tab end ******/  
-      
-    /****** Postmeta for avaiabilty tab  start *****/        
+    /****** 
+     * Postmeta for general tab end 
+     * ******/  
+    
+    /****** 
+     * Postmeta for avaiabilty tab  start 
+     * *****/        
         
     if (isset($_POST['_wc_booking_qty'])) {
     $booking_qty = $_POST['_wc_booking_qty'];
@@ -246,12 +239,15 @@ function display_product_data($job_id) {
         
         //update_post_meta($product_id, '_wc_booking_availability',$_wc_booking_availability );        
     }
+   
+    /****** 
+     * Postmeta for avaiabilty tab end 
+     * *****/        
     
     
-    /****** Postmeta for avaiabilty tab end *****/        
-    
-    
-    /****** Postmeta for Cost tab Start *****/     
+    /****** 
+     * Postmeta for Cost tab Start 
+     * *****/     
     
     if(isset($_POST['_wc_booking_cost'])){
         $wc_booking_cost = $_POST['_wc_booking_cost'];
@@ -279,10 +275,14 @@ function display_product_data($job_id) {
         
     }
     
-    /****** Postmeta for Cost tab End *****/       
+    /****** 
+     * Postmeta for Cost tab End 
+     * *****/       
     
     
-    /****** Postmeta for Person tab Start *****/         
+    /****** 
+     * Postmeta for Person tab Start 
+     * *****/         
     
     update_post_meta($product_id, '_wc_booking_has_persons', 'yes');
     
@@ -366,9 +366,13 @@ function display_product_data($job_id) {
             }
         }
     }
-    /****** Postmeta for Person tab End *****/   
+    /****** 
+     * Postmeta for Person tab End 
+     * *****/   
 
-    /****** Postmeta for Resources tab Start *****/
+    /******
+     *  Postmeta for Resources tab Start 
+     * *****/
     
     update_post_meta($product_id, '_wc_booking_has_resources', 'yes');
     
@@ -397,73 +401,21 @@ function display_product_data($job_id) {
             }
 
             $resource_id = absint($resource_ids[$i]);
+            $get_resource_id = $wpdb->get_var(" select ID from wp_wc_booking_relationships where  resource_id=' $resource_id ' and  product_id =0 ORDER BY ID DESC ");
             
-            echo $product_id;
-
-            
-           echo $wpdb->update(
-                    "{$wpdb->prefix}wc_booking_relationships", array(
-                    'sort_order' => $resource_menu_order[$i],
-                    'product_id' => $product_id,
-                    ), array(               
-                    'resource_id' => $resource_id
-                    )
-            );
-
-                    
-                    
+           $wpdb->query("UPDATE wp_wc_booking_relationships SET product_id='$product_id' WHERE ID='$get_resource_id' and product_id=0 "); 
             $resource_base_costs[$resource_id] = wc_clean($resource_base_cost[$i]);
             $resource_block_costs[$resource_id] = wc_clean($resource_block_cost[$i]);
 
-//            if (( $resource_base_cost[$i] + $resource_block_cost[$i] ) > 0) {
-//                $has_additional_costs = true;
-//            }
         }
         update_post_meta($product_id, '_resource_base_costs', $resource_base_costs);
         update_post_meta($product_id, '_resource_block_costs', $resource_block_costs);
         
     }
     
-    
-    
-    
-    
-//    if(isset($_POST['resource_id'])){
-//        $resource_ids = $_POST['resource_id'];   
-//        
-//        echo '<pre>';
-//            print_r($resource_ids);
-//        echo '</pre>';
-//        
-//        $max_loop = max(array_keys($_POST['resource_id']));
-//        
-//        for($i=0; $i<=$max_loop; $i++  ){
-//            if (!isset($resource_ids[$i])) {
-//                continue;
-//            }
-//            
-//         $resource_id = absint($resource_ids[$i]);
-//            echo 'Query For update in relation Table'. $wpdb->update(
-//                $wpdb->wc_booking_relationships, array(
-//                    'product_id' => $product_id  ),
-//                    array(
-//                        'resource_id' => $resource_id
-//                    ),
-//                    array(
-//                        '%d'
-//                    ),
-//                    array( 
-//                        '%d'
-//                    )
-//                
-//            );
-//        }
-//        
-//    }
-    
-
-    
-    /****** Postmeta for Resources tab End *****/
+    /****** 
+     * Postmeta for Resources tab End 
+     * *****/
 }
 //add_action( 'single_job_listing_meta_after', 'display_product_data' );
 add_action( 'job_manager_job_submitted', 'display_product_data' );
@@ -482,12 +434,5 @@ function display_job() {
 }
 add_action( 'single_job_listing_meta_start', 'display_job' );
 
-
-
-//function submit_job_form_fields(){
-//    echo 'Hiiiiiiiiiiiiiiiiiiiiii';
-//    die();
-//}
-//add_action('submit_job_form_fields_get_job_data','submit_job_form_fields');
 
 
