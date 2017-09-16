@@ -127,17 +127,14 @@ function display_product_data($job_id) {
 
     $product_description = get_post_meta( $job_id, '_job_description', true );
     
-    
 //    $person = $persons['person_id'][0];
 
     $product = array(
-
           'post_title' => $product_name,
           'post_content' => $product_description,
           'post_type' => 'product',
           'post_status' => 'publish',
           'ping_status' => 'closed',
-          
           
       );
 
@@ -153,8 +150,6 @@ function display_product_data($job_id) {
     
     update_post_meta($product_id, '_virtual', 'yes');
     
-    
-
     if(isset($_POST['_wc_booking_duration_type']))
     {
        // echo $_POST['data'];
@@ -302,11 +297,7 @@ function display_product_data($job_id) {
         
         //update_post_meta( $product_id, '_wc_booking_pricing', $_wc_booking_pricing );    
         
-        
     }
-    
-    
-    
     
     /****** Postmeta for Cost tab End *****/       
     
@@ -374,13 +365,16 @@ function display_product_data($job_id) {
                 'post_title' => stripslashes($person_name[$i]),
                 'post_excerpt' => stripslashes($person_description[$i]),
                 'post_parent' => $product_id,
-                'menu_order' => $person_menu_order[$i]), array(
-                'ID' => $person_id
-                    ), array(
-                '%s',
-                '%s',
-                '%d'
-                    ), array('%d')
+                'menu_order' => $person_menu_order[$i]), 
+                array(
+                    'ID' => $person_id
+                    ), 
+                array(
+                    '%s',
+                    '%s',
+                    '%d'
+                    ), 
+                array('%d')
             );
             update_post_meta($person_id, 'cost', wc_clean($person_cost[$i]));
             update_post_meta($person_id, 'block_cost', wc_clean($person_block_cost[$i]));
@@ -392,25 +386,102 @@ function display_product_data($job_id) {
             }
         }
     }
-    
-    
     /****** Postmeta for Person tab End *****/   
 
-    
-    
     /****** Postmeta for Resources tab Start *****/
     
-    if(isset($_POST['resource_id'])){
-        $person_ids = $_POST['resource_id'];   
+    update_post_meta($product_id, '_wc_booking_has_resources', 'yes');
+    
+    if (isset($_POST['_wc_booking_resouce_label'])) {
+        $_wc_booking_resouce_label = $_POST['_wc_booking_resouce_label'];
+        update_post_meta($product_id, '_wc_booking_resouce_label', $_wc_booking_resouce_label);
+    }
+    if (isset($_POST['_wc_booking_resources_assignment'])) {
+        $_wc_booking_resources_assignment = $_POST['_wc_booking_resources_assignment'];
+        update_post_meta($product_id, '_wc_booking_resources_assignment', $_wc_booking_resources_assignment);
+    }
+    
+    if (isset($_POST['resource_id'])) {
+        $resource_ids = $_POST['resource_id'];
+        $resource_menu_order = $_POST['resource_menu_order'];
+        $resource_base_cost = $_POST['resource_cost'];
+        $resource_block_cost = $_POST['resource_block_cost'];
         
         $max_loop = max(array_keys($_POST['resource_id']));
-        
+//        $resource_base_costs = array();
+//        $resource_block_costs = array();
+
+        for ($i = 0; $i <= $max_loop; $i ++) {
+            if (!isset($resource_ids[$i])) {
+                continue;
+            }
+
+            $resource_id = absint($resource_ids[$i]);
+            
+            echo $product_id;
+
+            
+           echo $wpdb->update(
+                    "{$wpdb->prefix}wc_booking_relationships", array(
+                    'sort_order' => $resource_menu_order[$i],
+                    'product_id' => $product_id,
+                    ), array(               
+                    'resource_id' => $resource_id
+                    )
+            );
+
+                    
+                    
+            $resource_base_costs[$resource_id] = wc_clean($resource_base_cost[$i]);
+            $resource_block_costs[$resource_id] = wc_clean($resource_block_cost[$i]);
+
+//            if (( $resource_base_cost[$i] + $resource_block_cost[$i] ) > 0) {
+//                $has_additional_costs = true;
+//            }
+        }
+        update_post_meta($product_id, '_resource_base_costs', $resource_base_costs);
+        update_post_meta($product_id, '_resource_block_costs', $resource_block_costs);
         
     }
     
     
     
-    //update_post_meta($product_id, '_wc_booking_has_resources', 'yes');
+    
+    
+//    if(isset($_POST['resource_id'])){
+//        $resource_ids = $_POST['resource_id'];   
+//        
+//        echo '<pre>';
+//            print_r($resource_ids);
+//        echo '</pre>';
+//        
+//        $max_loop = max(array_keys($_POST['resource_id']));
+//        
+//        for($i=0; $i<=$max_loop; $i++  ){
+//            if (!isset($resource_ids[$i])) {
+//                continue;
+//            }
+//            
+//         $resource_id = absint($resource_ids[$i]);
+//            echo 'Query For update in relation Table'. $wpdb->update(
+//                $wpdb->wc_booking_relationships, array(
+//                    'product_id' => $product_id  ),
+//                    array(
+//                        'resource_id' => $resource_id
+//                    ),
+//                    array(
+//                        '%d'
+//                    ),
+//                    array( 
+//                        '%d'
+//                    )
+//                
+//            );
+//        }
+//        
+//    }
+    
+
     
     /****** Postmeta for Resources tab End *****/
 }

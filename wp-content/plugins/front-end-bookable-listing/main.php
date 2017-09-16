@@ -1,5 +1,5 @@
-<script type='text/javascript' src='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/js/availability-page.js?ver=4.7'></script>
-<link rel='stylesheet' id='admin-style-css'  href='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/css/admin.css?ver=4.7' type='text/css' media='all' />
+<!--<script type='text/javascript' src='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/js/availability-page.js?ver=4.7'></script>
+<link rel='stylesheet' id='admin-style-css'  href='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/css/admin.css?ver=4.7' type='text/css' media='all' />-->
 
 
 <!-- Left side menus on the add listing page -->
@@ -660,9 +660,9 @@
 
 <div id="bookings_resources" class="woocommerce_options_panel panel wc-metaboxes-wrapper">
         <div class="options_group" id="resource_options">
-            <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $post_id; ?>">
+            
             <?php
-            $_wc_booking_resouce_label = get_post_meta($post_id, '_wc_booking_resouce_label', true);
+            $_wc_booking_resouce_label = get_post_meta($product_id, '_wc_booking_resouce_label', true);
             ?>
 
             <p class="form-field _wc_booking_resouce_label_field ">
@@ -671,7 +671,7 @@
                 <input type="text" class="short" style="" name="_wc_booking_resouce_label" id="_wc_booking_resouce_label" value="<?php echo $_wc_booking_resouce_label; ?>" placeholder="Type"> 
             </p>
             <?php
-            $_wc_booking_resources_assignment = get_post_meta($post_id, '_wc_booking_resources_assignment', true);
+            $_wc_booking_resources_assignment = get_post_meta($product_id, '_wc_booking_resources_assignment', true);
             ?>
             <p class="form-field _wc_booking_resources_assignment_field ">
                 <label for="_wc_booking_resources_assignment">Resources are...</label>

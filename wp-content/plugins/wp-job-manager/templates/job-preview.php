@@ -207,20 +207,27 @@
                 echo "<input type='hidden' name='resource_id[]' value='".$value."' />";
         }
         
+        foreach($_POST['resource_cost'] as $value){ 
+                echo "<input type='hidden' name='resource_cost[]' value='".$value."' />";
+        }
+        foreach($_POST['resource_block_cost'] as $value){ 
+                echo "<input type='hidden' name='resource_block_cost[]' value='".$value."' />";
+        }
+        ?>
+        <input type="hidden" name="_wc_booking_resouce_label"  value="<?php echo $_POST['_wc_booking_resouce_label']; ?>">      
+        <input type="hidden" name="_wc_booking_resources_assignment"  value="<?php echo $_POST['_wc_booking_resources_assignment']; ?>">      
+        <?php
+        foreach ($_POST[''] as $value){
+            
+        }
         
         
         
-          
+        
             echo '<pre>';
                 print_r($_POST);
             echo '</pre>'; 
             
-            echo '<br>Procing_tab_range<br>';
-            
-            echo '<pre>';
-                print_r($pricing);
-            echo '</pre>';
-        
         ?>
         
         
