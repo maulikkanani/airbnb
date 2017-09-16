@@ -83,26 +83,6 @@ function displaymenu(){
 }
 add_action('single_job_listing_start','displaymenu');
 
-/******
- *  Added Field in listing for price 
- ******/
-
-//function frontend_add_product_field( $fields ) {
-//    $user_id  = get_current_user_id();
-//    global $post;
-//     
-//    $fields['job']['product_price'] = array(
-//    'label'       => __( 'Product price', 'job_manager' ),
-//    'type'        => 'text',
-//    'required'    => true,
-//    'priority'    => 7
-//  );
-// 
-//    wp_insert_post($post);
-//    
-//    return $fields;
-//}
-//add_filter( 'submit_job_form_fields', 'frontend_add_product_field' );
 
 
 /******
