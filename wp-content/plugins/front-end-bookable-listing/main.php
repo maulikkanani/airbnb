@@ -1,7 +1,3 @@
-<!--<script type='text/javascript' src='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/js/availability-page.js?ver=4.7'></script>
-<link rel='stylesheet' id='admin-style-css'  href='http://localhost/airbnb/wp-content/plugins/front-end-bookable-listing/assets/css/admin.css?ver=4.7' type='text/css' media='all' />-->
-
-
 <!-- Left side menus on the add listing page -->
 
 <div class="woocommerce-MyAccount-navigation">
