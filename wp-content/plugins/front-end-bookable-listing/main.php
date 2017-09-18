@@ -7,6 +7,19 @@
             $product_id=$products[0];
         }
     }
+    
+//    $person_types = array(
+//            'post_type' => 'bookable_person',
+//            'post_status' => 'publish',
+//            'post_parent' => $product_id
+//        );
+//        
+//        $parent_data = get_children($person_types);
+//    
+//        echo 'New_ :<br>';    
+//        echo '<pre>';
+//            print_r($parent_data);
+//        echo '</pre>';    
 ?>
 <!-- Left side menus on the add listing page -->
 
@@ -38,8 +51,7 @@
 
 <div id="general_tab" class="panel woocommerce_options_panel">
     <div class="options_group show_if_booking">        
-            <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $product_id; ?>">
-            <?php
+           <?php
             
             $duration_type = get_post_meta($product_id, '_wc_booking_duration_type', true);
             $duration = max(absint(get_post_meta($product_id, '_wc_booking_duration', true)), 1);
@@ -174,7 +186,7 @@
 <div id="bookings_availability" class="panel woocommerce_options_panel">
         
         <div class="options_group">
-            <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $product_id; ?>">
+            
             <h2>Set Availability of Product</h2>
             <p class="form-field _wc_booking_qty_field ">
                 <label for="_wc_booking_qty">Max bookings per block</label>
@@ -285,173 +297,12 @@
                     <tbody id="availability_rows">
                         <?php
                         $values = get_post_meta($product_id, '_wc_booking_availability', true);
-                        //if (!empty($values) && is_array($values)) {
-                            //foreach ($values as $availability) {
-                               // include( 'html-booking-availability-fields.php' );
+                       if (!empty($values) && is_array($values)) {
+                            foreach ($values as $availability) {
+                                include( 'html-booking-availability-fields.php' );
                         
-                        $intervals = array();
-
-                        $intervals['months'] = array(
-                            '1' => __('January', 'woocommerce-bookings'),
-                            '2' => __('February', 'woocommerce-bookings'),
-                            '3' => __('March', 'woocommerce-bookings'),
-                            '4' => __('April', 'woocommerce-bookings'),
-                            '5' => __('May', 'woocommerce-bookings'),
-                            '6' => __('June', 'woocommerce-bookings'),
-                            '7' => __('July', 'woocommerce-bookings'),
-                            '8' => __('August', 'woocommerce-bookings'),
-                            '9' => __('September', 'woocommerce-bookings'),
-                            '10' => __('October', 'woocommerce-bookings'),
-                            '11' => __('November', 'woocommerce-bookings'),
-                            '12' => __('December', 'woocommerce-bookings')
-                        );
-
-
-                        $intervals['days'] = array(
-                            '1' => __('Monday', 'woocommerce-bookings'),
-                            '2' => __('Tuesday', 'woocommerce-bookings'),
-                            '3' => __('Wednesday', 'woocommerce-bookings'),
-                            '4' => __('Thursday', 'woocommerce-bookings'),
-                            '5' => __('Friday', 'woocommerce-bookings'),
-                            '6' => __('Saturday', 'woocommerce-bookings'),
-                            '7' => __('Sunday', 'woocommerce-bookings')
-                        );
-
-                        for ($i = 1; $i <= 53; $i ++) {
-                            $intervals['weeks'][$i] = sprintf(__('Week %s', 'woocommerce-bookings'), $i);
-                        }
-
-                        if (!isset($availability['type'])) {
-                            $availability['type'] = 'custom';
-                        }
-
-                        if (!isset($availability['priority'])) {
-                            $availability['priority'] = 10;
-                        }
-  
-                                
-                      //} ?>
-                        <tr>
-                            <td class="sort">&nbsp;</td>
-                            <td>
-                                <div class="select wc_booking_availability_type">
-                                    <select name="wc_booking_availability_type[]" id="wc_booking_availability_type">
-                                        <option value="custom" <?php selected($availability['type'], 'custom'); ?>><?php _e('Date range', 'woocommerce-bookings'); ?></option>
-                                        <option value="months" <?php selected($availability['type'], 'months'); ?>><?php _e('Range of months', 'woocommerce-bookings'); ?></option>
-                                        <option value="weeks" <?php selected($availability['type'], 'weeks'); ?>><?php _e('Range of weeks', 'woocommerce-bookings'); ?></option>
-                                        <option value="days" <?php selected($availability['type'], 'days'); ?>><?php _e('Range of days', 'woocommerce-bookings'); ?></option>
-                                        <optgroup label="<?php _e('Time Ranges', 'woocommerce-bookings'); ?>">
-                                            <option value="time" <?php selected($availability['type'], 'time'); ?>><?php _e('Time Range (all week)', 'woocommerce-bookings'); ?></option>
-                                            <option value="time:range" <?php selected($availability['type'], 'time:range'); ?>><?php _e('Date Range with time', 'woocommerce-bookings'); ?></option>
-                                            <?php foreach ($intervals['days'] as $key => $label) : ?>
-                                                <option value="time:<?php echo $key; ?>" <?php selected($availability['type'], 'time:' . $key) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </td>
-                            <td style="border-right:0;">
-                                <div class="bookings-datetime-select-from">
-                                    <div class="select from_day_of_week">
-                                        <select id="wc_booking_availability_from_day_of_week" name="wc_booking_availability_from_day_of_week[]">
-                                            <?php foreach ($intervals['days'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['from']) && $availability['from'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="select from_month">
-                                        <select id="wc_booking_availability_from_month" name="wc_booking_availability_from_month[]">
-                                            <?php foreach ($intervals['months'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['from']) && $availability['from'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="select from_week">
-                                        <select id="wc_booking_availability_from_week" name="wc_booking_availability_from_week[]">
-                                            <?php foreach ($intervals['weeks'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['from']) && $availability['from'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="from_date">
-                                        <?php
-                                        $from_date = '';
-                                        if ('custom' === $availability['type'] && !empty($availability['from'])) {
-                                            $from_date = $availability['from'];
-                                        } else if ('time:range' === $availability['type'] && !empty($availability['from_date'])) {
-                                            $from_date = $availability['from_date'];
-                                        }
-                                        ?>
-                                        <input type="text" class="date-picker from_date_picker" id="wc_booking_availability_from_date" name="wc_booking_availability_from_date[]" value="<?php echo esc_attr($from_date); ?>" />
-                                    </div>
-                                    <div class="from_time">
-                                        <input type="time" class="time-picker" id="wc_booking_availability_from_time" name="wc_booking_availability_from_time[]" value="<?php if (strrpos($availability['type'], 'time') === 0 && !empty($availability['from'])) echo $availability['from'] ?>" placeholder="HH:MM" />
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="border-right:0;" class="bookings-to-label-row">
-                                <p><?php _e('to', 'woocommerce-bookings'); ?></p>
-                                <p class="bookings-datetimerange-second-label"><?php _e('to', 'woocommerce-bookings'); ?></p>
-                            </td>
-                            <td>
-                                <div class='bookings-datetime-select-to'>
-                                    <div class="select to_day_of_week">
-                                        <select id="wc_booking_availability_to_day_of_week" name="wc_booking_availability_to_day_of_week[]">
-                                            <?php foreach ($intervals['days'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['to']) && $availability['to'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="select to_month">
-                                        <select id="wc_booking_availability_to_month" name="wc_booking_availability_to_month[]">
-                                            <?php foreach ($intervals['months'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['to']) && $availability['to'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="select to_week">
-                                        <select id="wc_booking_availability_to_week" name="wc_booking_availability_to_week[]">
-                                            <?php foreach ($intervals['weeks'] as $key => $label) : ?>
-                                                <option value="<?php echo $key; ?>" <?php selected(isset($availability['to']) && $availability['to'] == $key, true) ?>><?php echo $label; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="to_date">
-                                        <?php
-                                        $to_date = '';
-                                        if ('custom' === $availability['type'] && !empty($availability['to'])) {
-                                            $to_date = $availability['to'];
-                                        } else if ('time:range' === $availability['type'] && !empty($availability['to_date'])) {
-                                            $to_date = $availability['to_date'];
-                                        }
-                                        ?>
-                                        <input type="text" class="date-picker to_date_picker" id="wc_booking_availability_to_date" name="wc_booking_availability_to_date[]" value="<?php echo esc_attr($to_date); ?>" />
-                                    </div>
-
-                                    <div class="to_time">
-                                        <input type="time" class="time-picker" id="wc_booking_availability_to_time" name="wc_booking_availability_to_time[]" value="<?php if (strrpos($availability['type'], 'time') === 0 && !empty($availability['to'])) echo $availability['to']; ?>" placeholder="HH:MM" />
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="select">
-                                    <select name="wc_booking_availability_bookable[]" id="wc_booking_availability_bookable">
-                                        <option value="no" <?php selected(isset($availability['bookable']) && $availability['bookable'] == 'no', true) ?>><?php _e('No', 'woocommerce-bookings'); ?></option>
-                                        <option value="yes" <?php selected(isset($availability['bookable']) && $availability['bookable'] == 'yes', true) ?>><?php _e('Yes', 'woocommerce-bookings'); ?></option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="priority">
-                                    <input type="number" id="wc_booking_availability_priority" name="wc_booking_availability_priority[]" value="<?php echo esc_attr($availability['priority']); ?>" placeholder="10" />
-                                </div>
-                            </td>
-                            <td class="remove">&nbsp;</td>
-                        </tr>
-
-                          
-                       <?php 
-                   //}
+                            }
+                   }
                         ?>
           
                         
@@ -521,13 +372,18 @@
                     </tfoot>
                     <tbody id="pricing_rows">
                         <?php
-                        $values = get_post_meta($post_id, '_wc_booking_pricing', true);
-//                        if (!empty($values) && is_array($values)) {
-//                            foreach ($values as $pricing) {
-//                                include( 'html-booking-pricing-fields.php' );
-//                                do_action('woocommerce_bookings_pricing_fields', $pricing);
-//                            }
-//                        }
+                        $values = get_post_meta($product_id, '_wc_booking_pricing', true);
+                        echo 'Pricing Rpw';
+                        echo '<pre>';
+                            print_r($values);
+                        echo '</pre>';
+                        
+                        if (!empty($values) && is_array($values)) {
+                            foreach ($values as $pricing) {
+                                include( 'html-booking-pricing-fields.php' );
+                                do_action('woocommerce_bookings_pricing_fields', $pricing);
+                            }
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -543,7 +399,7 @@
 <div id="bookings_persons" class="woocommerce_options_panel panel wc-metaboxes-wrapper">
         <?php $my_product_name = get_the_title($product_id); ?>
         <div class="options_group" id="persons-options">
-            <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $product_id; ?>">
+
             <?php
             $_wc_booking_min_persons_group = get_post_meta($product_id, '_wc_booking_min_persons_group', true);
             ?>
@@ -631,10 +487,16 @@
                 $person_types = get_posts(array(
                     'post_type' => 'bookable_person',
                     'post_status' => 'publish',
-                    'posts_per_page' => -1,
-                    'post_parent' => $post_id
+                    'post_parent' => $product_id
                 ));
 
+                echo 'check';
+                echo '<pre>';
+                $parent_data = get_children($person_types);
+                    print_r($person_types) ;
+                echo '</pre>';
+                
+                    
                 if (sizeof($person_types) == 0) {
                     echo '<div id="message" class="inline woocommerce-message" style="margin: 1em 0;">';
                     echo '<div class="squeezer">';
@@ -648,7 +510,7 @@
 
                     foreach ($person_types as $person_type) {
                         $person_type_id = absint($person_type->ID);
-                        //include( 'html-booking-person-page.php' );
+                        include( 'html-booking-person-page.php' );
                         $loop++;
                     }
                 }
