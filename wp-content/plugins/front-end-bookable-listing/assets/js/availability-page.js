@@ -368,12 +368,9 @@ jQuery(document).ready(function () {
     // Remove a resource
     jQuery('#bookings_resources').on('click', 'button.remove_booking_resource', function (e) {
         e.preventDefault();
-        console.log(jQuery('#product_id').val());
-        exit;
         var answer = confirm(wc_bookings_writepanel_js_params.i18n_remove_resource);
         if (answer) {
-            var post_id = jQuery('#product_id').val();
-            console.log(post_id);
+            var post_id = jQuery('#product_id').val();            
             var el = jQuery(this).parent().parent();
             var resource = jQuery(this).attr('rel');
             jQuery(el).block({message: null, overlayCSS: {background: '#fff url(' + wc_bookings_writepanel_js_params.plugin_url + '/assets/images/ajax-loader.gif) no-repeat center', opacity: 0.6}});
