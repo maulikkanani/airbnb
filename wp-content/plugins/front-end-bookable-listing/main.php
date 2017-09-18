@@ -461,13 +461,19 @@
             <div class="woocommerce_bookable_persons wc-metaboxes">
 
                 <?php
-                $person_types = get_posts(array(
-                    'post_type' => 'bookable_person',
-                    'post_status' => 'publish',
-                    'post_parent' => $product_id
-                ));
-                $parent_data = get_children($person_types);               
-                    
+                if(!empty($product_id)){
+//                $person_types = get_posts(array(
+//                    'post_type' => 'bookable_person',
+//                    'post_status' => 'publish',
+//                    'post_parent' => $product_id
+//                ));
+                    $person_args = array(
+                        'post_type' => 'bookable_person',
+                        'post_status' => 'publish',
+                        'post_parent' => $product_id
+                    );
+                    $person_types = get_children($person_args);               
+                }
                 if (sizeof($person_types) == 0) {
                     echo '<div id="message" class="inline woocommerce-message" style="margin: 1em 0;">';
                     echo '<div class="squeezer">';
