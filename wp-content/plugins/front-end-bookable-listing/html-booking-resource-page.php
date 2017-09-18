@@ -21,12 +21,12 @@ if (!defined('ABSPATH')) {
                 <td>
                     <label><?php _e('Base Cost', 'woocommerce-bookings'); ?>:</label>
                     <input type="number" class="" name="resource_cost[<?php echo $loop; ?>]" value="<?php if (!empty($resource_base_cost)) echo esc_attr($resource_base_cost); ?>" placeholder="0.00" step="0.01" />
-                    <?php do_action('woocommerce_bookings_after_resource_cost', $resource_id, $post_id); ?>
+                    <?php do_action('woocommerce_bookings_after_resource_cost', $resource_id, $product_id); ?>
                 </td>
                 <td>
                     <label><?php _e('Block Cost', 'woocommerce-bookings'); ?>:</label>
                     <input type="number" class="" name="resource_block_cost[<?php echo $loop; ?>]" value="<?php if (!empty($resource_block_cost)) echo esc_attr($resource_block_cost); ?>" placeholder="0.00" step="0.01" />
-                    <?php do_action('woocommerce_bookings_after_resource_block_cost', $resource_id, $post_id); ?>
+                    <?php do_action('woocommerce_bookings_after_resource_block_cost', $resource_id, $product_id); ?>
                 </td>
             </tr>
         </tbody>
