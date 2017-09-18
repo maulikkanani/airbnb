@@ -1,3 +1,11 @@
+<!-- get product for edit listing-->
+<?php 
+    $products=get_post_meta($_GET['job_id'],'_products',true);
+    $product_id='';
+    if(count($products)==1){
+        $product_id=$products[0];
+    }
+?>
 <!-- Left side menus on the add listing page -->
 
 <div class="woocommerce-MyAccount-navigation">
