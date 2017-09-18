@@ -1,3 +1,4 @@
+.ui-sortable-handle strong,.ui-sortable-handle strong span.resource_name{cursor:pointer;}
 #bookings_availability .table_grid table td.sort,
 #bookings_persons .table_grid table td.sort,
 #bookings_pricing .table_grid table td.sort,
