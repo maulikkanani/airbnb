@@ -83,35 +83,43 @@ function displaymenu(){
 add_action('single_job_listing_start','displaymenu');
 
 
+add_action('job_manager_update_job_data','display_product_data',90);
 
 /******
  *  Display Product Name listing and added listing name in post as product name 
  ******/
 
-function display_product_data($job_id) {
+function display_product_data($job_id,$value='') {
     global $wpdb;
-    $$person_ids = $_POST['person_id'];
+    $person_ids = $_POST['person_id'];
+    $product_id='';
     
-
+//    echo "<pre>";
+//    print_r($_POST);
+//    echo "</pre>";
+   // die('test');
     $title =  get_the_title($job_id);
     $product_name = get_post_meta( $job_id, '_job_title', true );
     $product_description = get_post_meta( $job_id, '_job_description', true );
     
 //    $person = $persons['person_id'][0];
-    $product = array(
-          'post_title' => $product_name,
-          'post_content' => $product_description,
-          'post_type' => 'product',
-          'post_status' => 'publish',
-          'ping_status' => 'closed',
-          
-      );
+    if(empty($_POST['product_id'])){        
+        $product = array(
+              'post_title' => $product_name,
+              'post_content' => $product_description,
+              'post_type' => 'product',
+              'post_status' => 'publish',
+              'ping_status' => 'closed',
 
-    $product_id = wp_insert_post($product);
+          );
 
-    array_push($product, $product_id);
+        $product_id = wp_insert_post($product);
+
+        array_push($product, $product_id);        
+    }else{
+       $product_id=(int)$_POST['product_id'] ;
+    }
     update_post_meta( $job_id,'_products',array($product_id));
-    
     //set product type
     wp_set_object_terms($product_id, 'booking', 'product_type');
         
@@ -412,7 +420,7 @@ function display_product_data($job_id) {
         update_post_meta($product_id, '_resource_block_costs', $resource_block_costs);
         
     }
-    
+    //die('test');
     /****** 
      * Postmeta for Resources tab End 
      * *****/

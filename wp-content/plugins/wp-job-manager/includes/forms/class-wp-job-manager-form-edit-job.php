@@ -49,13 +49,14 @@ class WP_Job_Manager_Form_Edit_Job extends WP_Job_Manager_Form_Submit_Job {
 	 */
 	public function output( $atts = array() ) {
 		$this->submit_handler();
-		$this->submit();
+		$this->submit();                
 	}
 
 	/**
 	 * Submit Step
 	 */
 	public function submit() {
+          
 		$job = get_post( $this->job_id );
 
 		if ( empty( $this->job_id  ) || ( $job->post_status !== 'publish' && ! job_manager_user_can_edit_pending_submissions() ) ) {
@@ -88,7 +89,7 @@ class WP_Job_Manager_Form_Edit_Job extends WP_Job_Manager_Form_Submit_Job {
 		}
 
 		$this->fields = apply_filters( 'submit_job_form_fields_get_job_data', $this->fields, $job );
-
+                
 		wp_enqueue_script( 'wp-job-manager-job-submission' );
 
 		get_job_manager_template( 'job-submit.php', array(
@@ -139,4 +140,5 @@ class WP_Job_Manager_Form_Edit_Job extends WP_Job_Manager_Form_Submit_Job {
 			return;
 		}
 	}
+        
 }

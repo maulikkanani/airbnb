@@ -6,6 +6,7 @@
         if(count($products)==1){
             $product_id=$products[0];
         }
+        echo "<input type='hidden' id='product_id' name='product_id' value='".$product_id."' />";
     }  
 ?>
 <!-- Left side menus on the add listing page -->
@@ -366,7 +367,7 @@
                 </table>
             </div>
             <?php 
-            do_action('woocommerce_bookings_after_bookings_pricing', $post_id); ?>
+            //do_action('woocommerce_bookings_after_bookings_pricing', $post_id); ?>
 
         </div>
 </div>
@@ -504,7 +505,6 @@
 
 <div id="bookings_resources" class="woocommerce_options_panel panel wc-metaboxes-wrapper">
         <div class="options_group" id="resource_options">
-            
             <?php
             $_wc_booking_resouce_label = get_post_meta($product_id, '_wc_booking_resouce_label', true);
             ?>
@@ -552,25 +552,28 @@
                 </div>
 
                 <?php
-                global $post, $wpdb; $product_id;
+                global $post, $wpdb;
 
                 $all_resources = $wpdb->get_results("SELECT * FROM wp_posts WHERE ID in (SELECT resource_id FROM `wp_wc_booking_relationships` )");
-                $product_resources = $wpdb->get_col($wpdb->prepare("SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' ORDER BY sort_order;", $product_id));
                 
-                $loop = 0;
-                
-                if ($product_resources) {
-                    $resource_base_costs = get_post_meta($product_id, '_resource_base_costs', true);
-                    $resource_block_costs = get_post_meta($product_id, '_resource_block_costs', true);
+                if(!empty($product_id)){                    
+                    $product_resources = $wpdb->get_col($wpdb->prepare("SELECT resource_id FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = '$product_id' ORDER BY sort_order;", $product_id));
 
-                    foreach ($product_resources as $resource_id) {
-                        $resource = get_post($resource_id);
-                        $resource_base_cost = isset($resource_base_costs[$resource_id]) ? $resource_base_costs[$resource_id] : '';
-                        $resource_block_cost = isset($resource_block_costs[$resource_id]) ? $resource_block_costs[$resource_id] : '';
+                    $loop = 0;
 
-                        include( 'html-booking-resource-page.php' );
+                    if ($product_resources) {
+                        $resource_base_costs = get_post_meta($product_id, '_resource_base_costs', true);
+                        $resource_block_costs = get_post_meta($product_id, '_resource_block_costs', true);
 
-                        $loop++;
+                        foreach ($product_resources as $resource_id) {
+                            $resource = get_post($resource_id);
+                            $resource_base_cost = isset($resource_base_costs[$resource_id]) ? $resource_base_costs[$resource_id] : '';
+                            $resource_block_cost = isset($resource_block_costs[$resource_id]) ? $resource_block_costs[$resource_id] : '';
+
+                            include( 'html-booking-resource-page.php' );
+
+                            $loop++;
+                        }
                     }
                 }
                 ?>
