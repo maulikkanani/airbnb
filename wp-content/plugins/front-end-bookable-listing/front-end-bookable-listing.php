@@ -82,9 +82,11 @@ function displaymenu(){
 }
 add_action('single_job_listing_start','displaymenu');
 
-
-add_action('job_manager_update_job_data','display_product_data',90);
-
+if(isset($_POST['product_id'])){
+    if(!empty($_POST['product_id'])){
+        add_action('job_manager_update_job_data','display_product_data',90);
+    }
+}
 /******
  *  Display Product Name listing and added listing name in post as product name 
  ******/
@@ -97,7 +99,7 @@ function display_product_data($job_id,$value='') {
 //    echo "<pre>";
 //    print_r($_POST);
 //    echo "</pre>";
-   // die('test');
+//    die('test');
     $title =  get_the_title($job_id);
     $product_name = get_post_meta( $job_id, '_job_title', true );
     $product_description = get_post_meta( $job_id, '_job_description', true );
@@ -235,19 +237,71 @@ function display_product_data($job_id,$value='') {
     /****** 
         Add Range in Availability
     ******/
-    
-    if(isset($_POST['_wc_booking_availability'])){
-      
-        $_wc_booking_availability = $_POST['_wc_booking_availability'];
-        
-        add_post_meta($product_id, '_wc_booking_availability', $_wc_booking_availability,TRUE);
-        
+    if(empty($_POST['product_id'])){/ 
+        if(isset($_POST['_wc_booking_availability'])){
+
+            $_wc_booking_availability = $_POST['_wc_booking_availability'];
+
+            add_post_meta($product_id, '_wc_booking_availability', $_wc_booking_availability,TRUE);
+
+            $postmeta = $wpdb->prefix . 'postmeta';
+            $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id= '$product_id' ");
+
+            //update_post_meta($product_id, '_wc_booking_availability',$_wc_booking_availability );        
+        }
+    }else{ 
+        //execute when update listing...
+        $availability_array = array();
+        $row_size = isset($_POST["wc_booking_availability_type"]) ? sizeof($_POST["wc_booking_availability_type"]) : 0;
+        for ($i = 0; $i < $row_size; $i ++) {
+            $availability_array[$i]['type'] = $_POST['wc_booking_availability_type'][$i];
+
+            $availability_array[$i]['bookable'] = wc_clean($_POST["wc_booking_availability_bookable"][$i]);
+            $availability_array[$i]['priority'] = intval($_POST['wc_booking_availability_priority'][$i]);
+
+            switch ($availability_array[$i]['type']) {
+                case 'custom' :
+                    $availability_array[$i]['from'] = wc_clean($_POST["wc_booking_availability_from_date"][$i]);
+                    $availability_array[$i]['to'] = wc_clean($_POST["wc_booking_availability_to_date"][$i]);
+                    break;
+                case 'months' :
+                    $availability_array[$i]['from'] = wc_clean($_POST["wc_booking_availability_from_month"][$i]);
+                    $availability_array[$i]['to'] = wc_clean($_POST["wc_booking_availability_to_month"][$i]);
+                    break;
+                case 'weeks' :
+                    $availability_array[$i]['from'] = wc_clean($_POST["wc_booking_availability_from_week"][$i]);
+                    $availability_array[$i]['to'] = wc_clean($_POST["wc_booking_availability_to_week"][$i]);
+                    break;
+                case 'days' :
+                    $availability_array[$i]['from'] = wc_clean($_POST["wc_booking_availability_from_day_of_week"][$i]);
+                    $availability_array[$i]['to'] = wc_clean($_POST["wc_booking_availability_to_day_of_week"][$i]);
+                    break;
+                case 'time' :
+                case 'time:1' :
+                case 'time:2' :
+                case 'time:3' :
+                case 'time:4' :
+                case 'time:5' :
+                case 'time:6' :
+                case 'time:7' :
+                    $availability_array[$i]['from'] = wc_booking_sanitize_time1($_POST["wc_booking_availability_from_time"][$i]);
+                    $availability_array[$i]['to'] = wc_booking_sanitize_time1($_POST["wc_booking_availability_to_time"][$i]);
+                    break;
+                case 'time:range' :
+                    $availability_array[$i]['from'] = wc_booking_sanitize_time1($_POST["wc_booking_availability_from_time"][$i]);
+                    $availability_array[$i]['to'] = wc_booking_sanitize_time1($_POST["wc_booking_availability_to_time"][$i]);
+
+                    $availability_array[$i]['from_date'] = wc_clean($_POST['wc_booking_availability_from_date'][$i]);
+                    $availability_array[$i]['to_date'] = wc_clean($_POST['wc_booking_availability_to_date'][$i]);
+                    break;
+            }
+        }
+        $_wc_booking_availability=htmlspecialchars(serialize($availability_array));
+        //echo "ser:". $_wc_booking_availability;
         $postmeta = $wpdb->prefix . 'postmeta';
-        $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id= '$product_id' ");
-        
-        //update_post_meta($product_id, '_wc_booking_availability',$_wc_booking_availability );        
+        $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id=".$product_id);
     }
-   
+    
     /****** 
      * Postmeta for avaiabilty tab end 
      * *****/        
@@ -420,7 +474,7 @@ function display_product_data($job_id,$value='') {
         update_post_meta($product_id, '_resource_block_costs', $resource_block_costs);
         
     }
-    //die('test');
+    //die('test_save');
     /****** 
      * Postmeta for Resources tab End 
      * *****/
