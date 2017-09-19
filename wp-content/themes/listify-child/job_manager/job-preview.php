@@ -221,6 +221,12 @@
         foreach ($_POST[''] as $value){
             
         }
+        foreach ($_POST['wc_booking_pricing_type'] as $value){
+            echo '<input type="hidden" name="wc_booking_pricing_type[]" value="'.$value.'">';
+        }
+        
+        
+        
         
         
         

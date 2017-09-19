@@ -167,7 +167,7 @@
 			</select>
 		</div>
 		<input type="number" step="0.01" name="wc_booking_pricing_base_cost[]" value="<?php if ( ! empty( $pricing['base_cost'] ) ) echo $pricing['base_cost']; ?>" placeholder="0" />
-        <?php do_action( 'woocommerce_bookings_after_booking_pricing_base_cost', $pricing, $post_id ); ?>
+        <?php do_action( 'woocommerce_bookings_after_booking_pricing_base_cost', $pricing, $product_id ); ?>
 	</td>
 	<td>
 		<div class="select">
@@ -179,7 +179,7 @@
 			</select>
 		</div>
 		<input type="number" step="0.01" name="wc_booking_pricing_cost[]" value="<?php if ( ! empty( $pricing['cost'] ) ) echo $pricing['cost']; ?>" placeholder="0" />
-        <?php do_action( 'woocommerce_bookings_after_booking_pricing_cost', $pricing, $post_id ); ?>
+        <?php do_action( 'woocommerce_bookings_after_booking_pricing_cost', $pricing, $product_id ); ?>
 	</td>
 	<td class="remove">&nbsp;</td>
 </tr>

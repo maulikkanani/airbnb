@@ -87,6 +87,7 @@ if(isset($_POST['product_id'])){
         add_action('job_manager_update_job_data','display_product_data',90);
     }
 }
+
 /******
  *  Display Product Name listing and added listing name in post as product name 
  ******/
@@ -237,7 +238,7 @@ function display_product_data($job_id,$value='') {
     /****** 
         Add Range in Availability
     ******/
-    if(empty($_POST['product_id'])){/ 
+    if(empty($_POST['product_id'])){
         if(isset($_POST['_wc_booking_availability'])){
 
             $_wc_booking_availability = $_POST['_wc_booking_availability'];
@@ -481,6 +482,20 @@ function display_product_data($job_id,$value='') {
 }
 //add_action( 'single_job_listing_meta_after', 'display_product_data' );
 add_action( 'job_manager_job_submitted', 'display_product_data' );
+
+
+function remove_bookable_person_meta() {
+		check_ajax_referer( 'delete-bookable-person', 'security' );
+		$person_type_id = intval( $_POST['person_id'] );
+		$person_type    = get_post( $person_type_id );
+
+		if ( $person_type && 'bookable_person' == $person_type->post_type ) {
+			delete_metadata( $person_type_id );
+		}
+		die();
+	}
+add_action( 'wp_ajax_woocommerce_remove_bookable_person',  'remove_bookable_person_meta' );
+
 
 
 function display_job() {

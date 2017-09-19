@@ -298,6 +298,7 @@
 <!-- Price Menu Tab -->
 
 <div id="bookings_pricing" class="panel woocommerce_options_panel">
+    <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $product_id; ?>">
 	<div class="options_group">
             <?php
                 $_wc_booking_cost = get_post_meta($product_id, '_wc_booking_cost', true);
@@ -367,7 +368,7 @@
                 </table>
             </div>
             <?php 
-            //do_action('woocommerce_bookings_after_bookings_pricing', $post_id); ?>
+            do_action('woocommerce_bookings_after_bookings_pricing', $product_id); ?>
 
         </div>
 </div>
