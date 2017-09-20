@@ -393,7 +393,6 @@ function display_product_data($job_id,$value='') {
                                    $has_additional_costs = true;
                            }
 		}
-                    
                 
                 $_wc_booking_pricing = serialize($pricing);
                 add_post_meta($product_id,'_wc_booking_pricing', $_wc_booking_pricing,TRUE);
