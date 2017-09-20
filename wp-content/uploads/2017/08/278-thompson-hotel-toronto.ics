@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WooThemes//WooCommerce Bookings 1.9.9//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Listify
+X-ORIGINAL-URL:http://localhost/airbnb/
+X-WR-CALDESC:Bookings from Listify
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+DTEND:20170901
+UID:wc_bookings_278
+DTSTAMP:20170831T035945
+LOCATION:
+DESCRIPTION:Adult: 5\n\n
+URL;VALUE=URI:http://localhost/airbnb/myaccount/view-order/279
+SUMMARY:#278 - Thompson Hotel Toronto
+DTSTART:20170901
+END:VEVENT
+END:VCALENDAR

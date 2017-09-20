@@ -1,0 +1,77 @@
+1)	C:\wamp64\www\airbnb\wp-content\themes\listify\content-single-job_listing.php 
+	added do_action( 'displaymenu' );
+	
+	in function.php created displaymenu().  Now i have comment it
+	
+2)	apply filter to move on checkout page when click on book now.
+function.php
+	function redirect_to_checkout() {
+    global $woocommerce;
+    echo $checkout_url = $woocommerce->cart->get_checkout_url();
+    return $checkout_url;
+}
+add_filter ('add_to_cart_redirect', 'redirect_to_checkout');
+
+3) added css in child theme style.css
+
+	-> For calender on particular listing page to display avaibility for booking
+		#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.bookable span{color:red!important}.wc-bookings-date-picker .ui-datepicker td.fully_booked span{border-radius:18px!important}#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.bookable a{color:#fff!important;background-color:#2ecc71!important;border-radius:19px!important}.wc-bookings-date-picker .ui-datepicker td.bookable a{background-color:#2ecc71!important;background-image:none!important;border-color:rgba(0,0,0,.1)!important;color:#fff!important;text-shadow:0 1px 0 rgba(0,0,0,.1)}
+		
+	-> Navigation on content single job listing page 
+		.listing-nav ul{list-style-type:none;margin:0;padding:0;overflow:hidden}.listing-nav li{float:left}.listing-nav li a{display:block;color:#008489!important;text-align:center;padding:5px 10px;text-decoration:none;font-size:15px!important;line-height:18px!important;letter-spacing:.2px!important;font-weight:700!important}.listing-nav li a:active{color:#000}
+		
+	-> To Visible Bookable link in the admin panel when we add product
+		span.type_box.hidden {display: block !important;visibility: visible;}
+
+4) addedd some functions in child theme function.php
+		
+	/******** 
+		Display customer order on vender sell product in frontend
+	********/
+
+	function display_Vender_order(){
+		
+		if ( WC_Product_Vendors_Utils::is_vendor() || is_admin() ) {
+			   $order=new WC_Product_Vendors_Bookings();
+			   $order->render_bookings_dashboard_widget();
+		   } 
+	}
+	add_action('woocommerce_account_content','display_Vender_order');
+
+
+	/******** 
+		Display menu in single listing page
+	********/
+
+	function displaymenu(){
+		?>
+		<div class="listing-nav">
+			<ul>
+				<li><a href="#listify_widget_panel_listing_content-1">Overview</a></li>
+				<li><a href="#comments">Reviews</a></li>
+				<li><a href="#wcpv_vendor_widget-2">The Host</a></li>
+				<li><a href="#location">Location</a></li>
+		  </ul>
+			<br/>
+			<hr>
+		</div>
+		<?php 
+	}
+	add_action('single_job_listing_start','displaymenu');
+
+	/******** 
+		Redirect user to checkout page after click on Book now on listing product.
+	********/
+
+	function redirect_to_checkout() {
+		global $woocommerce;
+		$checkout_url = $woocommerce->cart->get_checkout_url();
+		return $checkout_url;
+	}
+	add_filter ('add_to_cart_redirect', 'redirect_to_checkout');
+	
+5) creating add product from frontend for vender.
+	create shortcode for that add_shortcode('add_product_front','add_product_front');
+	and added in "add-product" page.
+		-> post has been created.
+		
