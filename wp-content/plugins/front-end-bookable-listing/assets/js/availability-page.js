@@ -137,7 +137,7 @@ jQuery(document).ready(function () {
        }
         
     });
-
+    
     jQuery('#has_person').change(function () {
         if (jQuery(this).is(':checked')) {
             jQuery('li .person_front').show();

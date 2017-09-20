@@ -218,22 +218,13 @@
         <input type="hidden" name="_wc_booking_resouce_label"  value="<?php echo $_POST['_wc_booking_resouce_label']; ?>">      
         <input type="hidden" name="_wc_booking_resources_assignment"  value="<?php echo $_POST['_wc_booking_resources_assignment']; ?>">      
         <?php
-        foreach ($_POST[''] as $value){
-            
-        }
+        
         foreach ($_POST['wc_booking_pricing_type'] as $value){
             echo '<input type="hidden" name="wc_booking_pricing_type[]" value="'.$value.'">';
         }
-        
-        
-        
-        
-        
-        
-        
-            echo '<pre>';
-                print_r($_POST);
-            echo '</pre>'; 
+//            echo '<pre>';
+//                print_r($_POST);
+//            echo '</pre>'; 
             
         ?>
         
