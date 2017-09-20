@@ -90,7 +90,7 @@ span.type_box.hidden {
     For calender on particular listing page to display avaibility for booking 
 ********/
 
-#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.bookable span{
+/*#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.bookable span{
     color: red !important;
 }
 .wc-bookings-date-picker .ui-datepicker td.fully_booked span {
@@ -166,6 +166,6 @@ input#_wc_booking_duration,input#_wc_booking_cancel_limit, input#_wc_booking_min
 .to_date{width: 90px !important;}
 .from_date{width: 90px !important;}
 #bookings_pricing .table_grid{overflow: scroll;}
-div#bookings_persons {float: right;width: 70%;}
+div#bookings_persons {float: right;width: 70%;}*/
 
 

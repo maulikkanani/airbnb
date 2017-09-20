@@ -11,27 +11,47 @@
 ?>
 <!-- Left side menus on the add listing page -->
 
-<div class="woocommerce-MyAccount-navigation">
+<div class="woocommerce-MyAccount-navigation" id="tabs_menu_custom">
     <nav class="woocommerce-MyAccount-navigation"> 
         <ul class="product_data_tabs wc-tabs">
-            <li class="general_options general_tab hide_if_grouped">
-                <a href="#general_product_data" class="general_front">General</a>
+            <li class="general_options general_tab hide_if_grouped active_tab">
+                <a class="general_front">General</a>
             </li>
             <li class="bookings_tab bookings_resources_tab advanced_options show_if_booking" >
-                <a href="#bookings_resources" class="resource_front">Resources</a>
+                <a  class="resource_front">Resources</a>
             </li>
             <li class="bookings_tab bookings_availability_tab advanced_options show_if_booking" >
-                <a href="#bookings_availability" class="availability_front">Availability</a>
+                <a  class="availability_front">Availability</a>
             </li>
             <li class="bookings_tab bookings_pricing_tab advanced_options show_if_booking" >
-                    <a href="#bookings_pricing" class="coast coast_front">Costs</a>
+                    <a class="coast coast_front">Costs</a>
             </li>
             <li class="bookings_tab bookings_persons_tab advanced_options show_if_booking" >
-                <a href="#bookings_persons" class="person person_front">Persons</a>
+                <a class="person person_front">Persons</a>
             </li>
         </ul>
     </nav>
 </div>
+
+<div id="has_person_checkbox">
+    <?php 
+        $has_person = get_post_meta($product_id, '_wc_booking_has_persons', true); 
+        if($has_person=='yes'){?>
+            <input type="checkbox" class="checkbox" style="" name="has_person" id="has_person" value="yes" checked="checked">Enable Persons
+        <?php }else{ ?>
+            <input type="checkbox" class="checkbox" style="" name="has_person" id="has_person" value="no">Enable Persons
+        <?php } ?>
+</div>
+<div id="has_resource_checkbox">
+    <?php 
+        $has_resource = get_post_meta($product_id, '_wc_booking_has_resources', true); 
+        if($has_resource=='yes'){?>
+            <input type="checkbox" class="checkbox" style="" name="has_resource" id="has_resource" value="yes" checked="checked">Enable Resource
+        <?php }else{ ?>
+            <input type="checkbox" class="checkbox" style="" name="has_resource" id="has_resource" value="no">Enable Resource
+        <?php } ?>
+</div>
+
 
 
 <!-- General Menu Tab -->
@@ -603,7 +623,8 @@
             jQuery("#bookings_pricing").hide();
             jQuery("#bookings_persons").hide();
             jQuery('#bookings_resources').hide();
-            
+            jQuery('li .person_front').hide();
+            jQuery('li .resource_front').hide();
         
         jQuery('.general_front').click(function (){
             jQuery("#general_tab").show();
@@ -611,6 +632,7 @@
             jQuery("#bookings_pricing").hide();
             jQuery("#bookings_persons").hide();
             jQuery('#bookings_resources').hide();
+            
         });
         
         jQuery('.availability_front').click(function (){

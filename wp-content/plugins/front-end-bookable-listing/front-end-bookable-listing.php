@@ -413,6 +413,14 @@ function display_product_data($job_id,$value='') {
     
     update_post_meta($product_id, '_wc_booking_has_persons', 'yes');
     
+    
+    if(isset($_POST['has_person'])){
+        $_wc_booking_has_persons = $_POST['has_person'];
+        update_post_meta($product_id, '_wc_booking_has_persons', $_wc_booking_has_persons);
+    }else{
+        update_post_meta($product_id,'_wc_booking_has_persons', 'no');
+    }
+    
     if (isset($_POST['_wc_booking_min_persons_group'])) {
         $_wc_booking_min_persons_group = $_POST['_wc_booking_min_persons_group'];
         update_post_meta($product_id, '_wc_booking_min_persons_group', $_wc_booking_min_persons_group);

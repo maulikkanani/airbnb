@@ -118,3 +118,5 @@
 {"user_id":2,"user_login":"rigal","user_remoteaddr":"127.0.0.1","user_hostname":"C182.narola.local","user_lastlogin":"2017-09-18 04:00:47"}
 {"user_id":1,"user_login":"admin","user_remoteaddr":"127.0.0.1","user_hostname":"C182.narola.local","user_lastlogin":"2017-09-18 04:25:34"}
 {"user_id":2,"user_login":"rigal","user_remoteaddr":"127.0.0.1","user_hostname":"C182.narola.local","user_lastlogin":"2017-09-18 07:15:06"}
+{"user_id":2,"user_login":"rigal","user_remoteaddr":"127.0.0.1","user_hostname":"127.0.0.1","user_lastlogin":"2017-09-20 09:49:24"}
+{"user_id":1,"user_login":"admin","user_remoteaddr":"127.0.0.1","user_hostname":"127.0.0.1","user_lastlogin":"2017-09-20 10:45:24"}
