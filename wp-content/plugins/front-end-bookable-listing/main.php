@@ -10,6 +10,7 @@
     }  
 ?>
 <!-- Left side menus on the add listing page -->
+
 <div class="woocommerce-MyAccount-navigation" id="tabs_menu_custom">
     <nav class="woocommerce-MyAccount-navigation"> 
         <ul class="product_data_tabs wc-tabs">
