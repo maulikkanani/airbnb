@@ -300,6 +300,7 @@
 <div id="bookings_pricing" class="panel woocommerce_options_panel">
     <input type="hidden" id="post_id_val" name="post_id_val" value="<?php echo $product_id; ?>">
 	<div class="options_group">
+            
             <?php
                 $_wc_booking_cost = get_post_meta($product_id, '_wc_booking_cost', true);
             ?>
