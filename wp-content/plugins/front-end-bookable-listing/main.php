@@ -382,7 +382,7 @@
             <?php
             $_wc_booking_min_persons_group = get_post_meta($product_id, '_wc_booking_min_persons_group', true);
             ?>
-            <h2><?php echo $my_product_name; ?></h2>
+            <h2>Set person of Product<?php   // echo $my_product_name; ?></h2>
             <p class="form-field _wc_booking_min_persons_group_field ">
                 <label for="_wc_booking_min_persons_group">Min persons</label>
                 <span class="woocommerce-help-tip"></span>

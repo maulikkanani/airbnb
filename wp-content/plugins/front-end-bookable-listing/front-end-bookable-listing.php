@@ -251,6 +251,7 @@ function display_product_data($job_id,$value='') {
             //update_post_meta($product_id, '_wc_booking_availability',$_wc_booking_availability );        
         }
     }else{ 
+        
         //execute when update listing...
         $availability_array = array();
         $row_size = isset($_POST["wc_booking_availability_type"]) ? sizeof($_POST["wc_booking_availability_type"]) : 0;
@@ -297,8 +298,10 @@ function display_product_data($job_id,$value='') {
                     break;
             }
         }
-        $_wc_booking_availability=htmlspecialchars(serialize($availability_array));
+        $_wc_booking_availability=serialize($availability_array);
         //echo "ser:". $_wc_booking_availability;
+        
+        add_post_meta($product_id, '_wc_booking_availability', $_wc_booking_availability);
         $postmeta = $wpdb->prefix . 'postmeta';
         $wpdb->query("update $postmeta set meta_value='$_wc_booking_availability' where meta_key = '_wc_booking_availability' And post_id=".$product_id);
     }
@@ -312,32 +315,94 @@ function display_product_data($job_id,$value='') {
      * Postmeta for Cost tab Start 
      * *****/     
     
-    if(isset($_POST['_wc_booking_cost'])){
-        $wc_booking_cost = $_POST['_wc_booking_cost'];
-        update_post_meta($product_id,'_wc_booking_cost',$wc_booking_cost);
-    }
-    if(isset($_POST['_wc_booking_base_cost'])){
-        $wc_booking_base_cost = $_POST['_wc_booking_base_cost'];
-        update_post_meta($product_id,'_wc_booking_base_cost',$wc_booking_base_cost);
-    }
-    if(isset($_POST['_wc_display_cost'])){
-        $wc_display_cost = $_POST['_wc_display_cost'];
-        update_post_meta($product_id,'_wc_display_cost',$wc_display_cost);
-    }
+    if(empty($_POST['product_id'])){
+            if(isset($_POST['_wc_booking_cost'])){
+                    $wc_booking_cost = $_POST['_wc_booking_cost'];
+                    update_post_meta($product_id,'_wc_booking_cost',$wc_booking_cost);
+                }
+                if(isset($_POST['_wc_booking_base_cost'])){
+                    $wc_booking_base_cost = $_POST['_wc_booking_base_cost'];
+                    update_post_meta($product_id,'_wc_booking_base_cost',$wc_booking_base_cost);
+                }
+                if(isset($_POST['_wc_display_cost'])){
+                    $wc_display_cost = $_POST['_wc_display_cost'];
+                    update_post_meta($product_id,'_wc_display_cost',$wc_display_cost);
+                }
         
-    if(isset($_POST['_wc_booking_pricing'])){
+            if(isset($_POST['_wc_booking_pricing'])){
+                    $_wc_booking_pricing = $_POST['_wc_booking_pricing'];
+                    add_post_meta($product_id,'_wc_booking_pricing', $_wc_booking_pricing,TRUE);
+
+                    $posmeta = $wpdb->prefix.'postmeta';
+                    $wpdb->query("update $posmeta set meta_value='$_wc_booking_pricing' where meta_key='_wc_booking_pricing' And post_id='$product_id' ");
+                    //update_post_meta( $product_id, '_wc_booking_pricing', $_wc_booking_pricing );    
+                }
+        } else {
         
-        $_wc_booking_pricing = $_POST['_wc_booking_pricing'];
-        add_post_meta($product_id,'_wc_booking_pricing', $_wc_booking_pricing,TRUE);
-        
-        $posmeta = $wpdb->prefix.'postmeta';
-        $wpdb->query("update $posmeta set meta_value='$_wc_booking_pricing' where meta_key='_wc_booking_pricing' And post_id='$product_id' ");
+                $pricing = array();
+                   $row_size  =    isset( $_POST[ "wc_booking_pricing_type" ] ) ? sizeof( $_POST[ "wc_booking_pricing_type" ] ) : 0;
+                   for ( $i = 0; $i < $row_size; $i ++ ) {
+                           $pricing[ $i ]['type']          = wc_clean( $_POST[ "wc_booking_pricing_type" ][ $i ] );
+                           $pricing[ $i ]['cost']          = wc_clean( $_POST[ "wc_booking_pricing_cost" ][ $i ] );
+                           $pricing[ $i ]['modifier']      = wc_clean( $_POST[ "wc_booking_pricing_cost_modifier" ][ $i ] );
+                           $pricing[ $i ]['base_cost']     = wc_clean( $_POST[ "wc_booking_pricing_base_cost" ][ $i ] );
+                           $pricing[ $i ]['base_modifier'] = wc_clean( $_POST[ "wc_booking_pricing_base_cost_modifier" ][ $i ] );
+
+                           switch ( $pricing[ $i ]['type'] ) {
+                                   case 'custom' :
+                                           $pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_date" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_date" ][ $i ] );
+                                   break;
+                                   case 'months' :
+                                           $pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_month" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_month" ][ $i ] );
+                                   break;
+                                   case 'weeks' :
+                                           $pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_week" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_week" ][ $i ] );
+                                   break;
+                                   case 'days' :
+                                           $pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from_day_of_week" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to_day_of_week" ][ $i ] );
+                                   break;
+                                   case 'time' :
+                                   case 'time:1' :
+                                   case 'time:2' :
+                                   case 'time:3' :
+                                   case 'time:4' :
+                                   case 'time:5' :
+                                   case 'time:6' :
+                                   case 'time:7' :
+                                           $pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+                                   break;
+                                   case 'time:range' :
+                                           $pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_from_time" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST[ "wc_booking_pricing_to_time" ][ $i ] );
+
+                                           $pricing[ $i ]['from_date'] = wc_clean( $_POST[ 'wc_booking_pricing_from_date' ][ $i ] );
+                                           $pricing[ $i ]['to_date']   = wc_clean( $_POST[ 'wc_booking_pricing_to_date' ][ $i ] );
+                                   break;
+                                   default :
+                                           $pricing[ $i ]['from'] = wc_clean( $_POST[ "wc_booking_pricing_from" ][ $i ] );
+                                           $pricing[ $i ]['to']   = wc_clean( $_POST[ "wc_booking_pricing_to" ][ $i ] );
+                                   break;
+                           }
+
+                           if ( $pricing[ $i ]['cost'] > 0 ) {
+                                   $has_additional_costs = true;
+                           }
+		}
+                    
                 
-        
-        //update_post_meta( $product_id, '_wc_booking_pricing', $_wc_booking_pricing );    
-        
+                $_wc_booking_pricing = serialize($pricing);
+                add_post_meta($product_id,'_wc_booking_pricing', $_wc_booking_pricing,TRUE);
+
+                $posmeta = $wpdb->prefix.'postmeta';
+                $wpdb->query("update $posmeta set meta_value='$_wc_booking_pricing' where meta_key='_wc_booking_pricing' And post_id='$product_id' ");
     }
-    
+             
+   
     /****** 
      * Postmeta for Cost tab End 
      * *****/       
