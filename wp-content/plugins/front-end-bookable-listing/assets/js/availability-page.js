@@ -121,35 +121,45 @@ jQuery(document).ready(function () {
             jQuery('#_wc_booking_enable_range_picker').val('yes');
         }
     });
-    
+
     jQuery('#has_resource').change(function () {
         if (jQuery(this).is(':checked')) {
-            jQuery('li .resource_front').show();
             jQuery('#has_resource').val('yes');
-        } else {
-            //jQuery('#bookings_resources').hide();
-            jQuery('li .resource_front').hide();
         }
-        
-        if(jQuery('#bookings_resources').is(':visible')){
-           jQuery('#bookings_resources').hide();
-           jQuery('#general_tab').show();
-       }
-        
     });
-    
+
+    if (jQuery('#has_resource').is(':checked')) {
+        jQuery('#bookings_resources').show();
+    } else {
+        jQuery('#bookings_resources').hide();
+    }
+
+    jQuery('#has_resource').change(function () {
+        if (jQuery(this).is(':checked')) {
+            jQuery('#bookings_resources').show();
+        } else {
+            jQuery('#bookings_resources').hide();
+        }
+    });
+
     jQuery('#has_person').change(function () {
         if (jQuery(this).is(':checked')) {
-            jQuery('li .person_front').show();
             jQuery('#has_person').val('yes');
-        }else {
-            jQuery('li .person_front').hide();
         }
-        
-       if(jQuery('#bookings_persons').is(':visible')){
-           jQuery('#bookings_persons').hide();
-           jQuery('#general_tab').show();
-       }
+    });
+
+    if (jQuery('#has_person').is(':checked')) {
+        jQuery('#bookings_persons').show();
+    } else {
+        jQuery('#bookings_persons').hide();
+    }
+
+    jQuery('#has_person').change(function () {
+        if (jQuery(this).is(':checked')) {
+            jQuery('#bookings_persons').show();
+        } else {
+            jQuery('#bookings_persons').hide();
+        }
     });
 
     jQuery('#_wc_booking_person_cost_multiplier').change(function () {
@@ -360,7 +370,7 @@ jQuery(document).ready(function () {
         e.preventDefault();
         var answer = confirm(wc_bookings_writepanel_js_params.i18n_remove_resource);
         if (answer) {
-            var post_id = jQuery('#product_id').val();            
+            var post_id = jQuery('#post_id_val').val();
             var el = jQuery(this).parent().parent();
             var resource = jQuery(this).attr('rel');
             jQuery(el).block({message: null, overlayCSS: {background: '#fff url(' + wc_bookings_writepanel_js_params.plugin_url + '/assets/images/ajax-loader.gif) no-repeat center', opacity: 0.6}});
