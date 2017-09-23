@@ -7,7 +7,7 @@
  * values:
  *      mylist //cancel div with class: gd-mylist-box
  */
-
+//
 //setup general variables
 global $wpdb, $var_setting, $templates_html, $template_path;
 
