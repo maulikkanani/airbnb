@@ -23,16 +23,13 @@
 define('DB_NAME', 'airbnb');
 
 /** MySQL database username */
-//define('DB_USER', 'dev');
-define('DB_USER', 'root');
+define('DB_USER', 'dev');
 
 /** MySQL database password */
-//define('DB_PASSWORD', 'narola21');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'narola21');
 
 /** MySQL hostname */
-//define('DB_HOST', '192.168.1.48');
-define('DB_HOST', 'localhost');
+define('DB_HOST', '192.168.1.48');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
