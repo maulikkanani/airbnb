@@ -536,6 +536,13 @@ jQuery(document).ready(function () {
             }
         });
     });
+
+//TO Popup model for signup form
+
+    jQuery('#menu-item-378 a').attr('data-toggle','dropdown');
+    jQuery('#menu-item-378 a').attr('data-target','#myModal');
+    jQuery('#menu-item-378 a').attr('class','btn btn-info btn-lg');
+    
 });
 //Base cost is applied regardless of a customer’s choices on the booking form.
 //Block cost is the cost per block that was assigned in the General tab. If a customer books multiple blocks, this cost is multiplied by the number of blocks booked.
