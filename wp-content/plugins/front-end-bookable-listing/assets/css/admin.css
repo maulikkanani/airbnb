@@ -1023,16 +1023,27 @@ ul.product_data_tabs.wc-tabs{list-style-type: none;}
 select#wc_booking_availability_type{padding: 10px 10px;}
 
 label{cursor: pointer;}
-
-/*.custom-regis{width: 100%;margin-bottom: 5px;}*/
-
-#email{width: 20% !important;}
-#username, #password1, #password2, #first_name, #last_name{width: 20%;}
-
-.custom-regis {margin-bottom: 5% !important;}
-
-#content{width: 100%;margin: 0 auto;text-align: center;}
-.custom-regis p{margin-bottom: 10px;}
+#content .custom-regis{width: 100%;margin: 0 auto;text-align: center;}
+#content .custom-regis #password1, #password2, #first_name, #last_name, #email, #username{width: 25%;}
+.wrapper.custom-regis {
+    padding-bottom: 13px;
+}
 .custom-regis h3,label{color: #234f9c;}
 
 
+/*.custom-regis{width: 100%;margin-bottom: 5px;}
+
+#message, #password1, #password2, #first_name, #last_name, #email, #username{width: 80%;}
+.modal-body{padding-left: 90px;}
+
+#email{width: 20% !important;}
+
+
+.custom-regis {margin-bottom: 5% !important;}
+
+.custom-regis p{margin-bottom: 10px;}
+.custom-regis h3,label{color: #234f9c;}
+
+/*#message input{width: 150px;}
+
+ #content{margin: 0 auto; float: right;}*/
