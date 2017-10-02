@@ -57,10 +57,10 @@ function add_login_logout_register_menu( $items, $args ) {
  $items .= '<li><a href="' . wp_logout_url(home_url()) . '">' . __( 'Log Out' ) . '</a></li>';
  } else {
  $items .= '<li><a href="' . wp_login_url(home_url()) . '">' . __( 'Log In' ) . '</a></li>';
- $items .= '<li><a href="' . wp_registration_url() . '">' . __( 'Sign Up' ) . '</a></li>';
+// $items .= '<li><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">' . __( 'Sign Up' ) . '</a></li>';
+  $items .= '<li><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">' . __( 'Sign Up' ) . '</button></li>';
+ 
  }
- 
- return $items;
+     return $items;
 }
- 
 add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
