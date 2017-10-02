@@ -1,0 +1,46 @@
+/*
+Theme Name:     Listify Child
+Theme URI:      http://astoundify.com/themes/listify
+Template:       listify
+Version:        1.0
+*/
+
+
+
+/*mahendr*/
+.main-amenities .col-md-3 {text-align: center;}
+.main-amenities img {display: block;text-align: center;margin: 0 auto;padding-bottom: 5px;}
+.main-amenities span {text-align: center;font-size: 16px;}
+.clearfix {clear:both;}
+.main-amenities {border-top: 1px solid #ddd;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ddd;}
+.listing-information .space-4.text-center-sm {margin-top: 20px;font-size: 24px;font-weight: bold;text-transform: capitalize;margin-bottom: 15px;}
+.product-long-details {border-top: 1px solid #ddd;padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #ddd;margin-top: 20px;}
+.product-long-details .det-tit {font-size: 22px;font-weight: 600;text-transform: capitalize;}
+.product-long-details .col-md-9 {border-bottom: 1px solid #ddd;padding-bottom: 20px;}
+.product-long-details .col-md-9 .bold {font-weight: bold;font-size: 17px;padding-left: 2px;}
+.product-long-details .col-md-9 label {font-size: 17px;font-weight: 400;padding-right: 5px;font-style: normal;}
+.product-long-details .col-md-9 ul {margin: 0; list-style: none;}
+.the-amenities .col-md-9.expandable {padding-top: 20px;}
+.expandable-content-summary .col-md-12 {padding: 0;}
+.product-long-details .col-md-9 ul {margin: 0;list-style: none;}
+.expandable-content-summary ul li {display: inline-block;width: 49%;padding-right: 15px;}
+.expandable-content-summary ul li {display: inline-block;width: 49%;padding-right: 15px;margin-bottom: 20px;}
+.expandable-content-summary ul li img, .expandable-content-full ul li img {padding-right: 10px;}
+.expandable-content-summary ul li strong, .expandable-content-full ul li del {font-size: 17px;vertical-align: middle;}
+.product-long-details .col-md-9 .col-md-6 {padding-left: 0;}
+.product-long-details .col-md-9 a {font-size: 20px;font-weight: 600;}
+.expandable-content-full ul li{padding-right: 15px; margin-bottom: 20px; display: block;}
+.expandable-content-full {display: none;}
+button.btn-link {background-color: inherit;border: none;color: #2854a1;font-size: 18px;font-weight: 600;margin-top: 5px;letter-spacing: 0.5px;}
+.product-long-details .the-price .col-md-9 {padding-top: 20px;}
+.product-long-details .the-description .col-md-9, .house-rule .col-md-9, .safety-features .col-md-9{padding-top: 20px;font-size: 16px;}
+.product-long-details .the-description .col-md-9 p, .house-rule p, .safety-features .col-md-9 p {margin-bottom: 10px;}
+.product-long-details .the-description .col-md-9 .col-md-12 {padding: 0;}
+.product-long-details .the-description .expandable-content {height: 14em;position: relative;overflow: hidden;}
+.product-long-details .the-description .expanded .expandable-content { height: auto; }
+.product-long-details .the-description .expanded .expandable-desc-more { display: none; }
+.the-availability .col-md-9 {padding-top: 20px;font-size: 16px;}
+.single-product .product .woocommerce-tabs .tabs .active a {border-color: #2854a1;}
+.single-product .product .woocommerce-tabs .tabs a {font-size: 20px;font-weight: 600;}
+.single-product .product .woocommerce-tabs .tabs li {margin-right: 3em !important;}
+.product-vendeor-info h2 {display: block !important;margin-top: 10px;font-size: 28px;margin-bottom: 10px;}
