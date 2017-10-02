@@ -1,9 +1,7 @@
-
 <?php  
 /* 
 Template Name: Singup Page 
 */
-
 get_header();
 ?>
  

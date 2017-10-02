@@ -48,6 +48,10 @@ function woo_new_product_tab_location() {
 }
 /* End New Product Tab in Product Details page */
 
+/**
+ * Customize Description tab to display in product details page
+ */
+
 function add_login_logout_register_menu( $items, $args ) {
  if ( $args->theme_location != 'primary' ) {
  return $items;

@@ -9,25 +9,15 @@
         if(count($products)==1){
             $product_id=$products[0];
         }
+        
     }  
     echo "<input type='hidden' id='product_id' name='product_id' value='".$product_id."' />";
-    
-//    $current_user_id = get_current_user_id();
-//    echo 'user_id:'.$current_user_id;
- 
-    $current_user = wp_get_current_user();
-    $user_id = $current_user->ID;
-    echo $user_id;
-    
-//  $we = wp_get_object_terms($product_id, 'wcpv_product_vendors');
-    echo '<pre>';
-    //    print_r($we);
-    echo '</pre>';
     
 ?>  
 
 <div class="navandbookale">
     
+
 <!-- Left side menus on the add listing page -->
 <div class="woocommerce-MyAccount-navigation" id="tabs_menu_custom">
     <nav class="woocommerce-MyAccount-navigation"> 
@@ -536,6 +526,9 @@
         <!-------
             RESOURCE TAB END
         -------->            
+            
+            
+            
      
 <?php
 
@@ -683,6 +676,7 @@
         GENERAL TAB FIELD END
      ------->
         
+        
     <!-------
         AVAILABILITY TAB MENU START 
     -------->
@@ -816,6 +810,7 @@
             AVAILABILITY TAB MENU END 
         -------->
             
+            
         <!-------
             COST TAB MENU START 
         -------->
@@ -894,7 +889,9 @@
             do_action('woocommerce_bookings_after_bookings_pricing', $product_id); ?>
 
         </div>
-</div>  
+</div>    
+        
+            
         <!-------
             COST TAB MENU END
         -------->    
@@ -1042,6 +1039,7 @@
             <?php
             $_wc_booking_resouce_label = get_post_meta($product_id, '_wc_booking_resouce_label', true);
             ?>
+
             <p class="form-field _wc_booking_resouce_label_field ">
                 <label for="_wc_booking_resouce_label">Label</label>
                 <span class="woocommerce-help-tip"></span>
@@ -1070,7 +1068,9 @@
                 </select>
             </p>
         </div>
+
         <div class="options_group">
+
             <div class="toolbar">
                 <h3><?php _e('Resources', 'woocommerce-bookings'); ?></h3>
                 <span class="toolbar_links"><a href="#" class="close_all"><?php _e('Close all', 'woocommerce-bookings'); ?></a><a href="#" class="expand_all"><?php _e('Expand all', 'woocommerce-bookings'); ?></a></span>
@@ -1132,8 +1132,14 @@
             RESOURCE TAB END
         -------->
             
+            
+            
+            
+        
         <?php 
+        
     }
+
 ?>
 
     </div>

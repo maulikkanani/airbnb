@@ -994,8 +994,24 @@ div#bookablecontent{float: right; width: 80%;}
 
 ul.product_data_tabs.wc-tabs{list-style-type: none;}
 
-.from_date, .to_date{ width: 80px;}
+.from_date, to_date{ width: 80px;}
 .table_grid{overflow: scroll;}
+
+.to_date{width: 80px;}
+.from_date{width: 80px;}
+
+label{cursor: pointer;}
+#content .custom-regis{width: 100%;margin: 0 auto;text-align: center;}
+#content .custom-regis #password1, #password2, #first_name, #last_name, #email, #username{width: 25%;}
+.wrapper.custom-regis {padding-bottom: 13px;}
+.custom-regis h3,label{color: #234f9c;}
+
+
+/* Menu atab on Add listing page  */
+#tabs_menu_custom ul {list-style-type: none;margin: 0;padding: 0;width: 150px;background-color: #f1f1f1;}
+#tabs_menu_custom li a {display: block;color: #000;padding: 8px 16px;text-decoration: none;}
+/* Change the link color on hover */
+#tabs_menu_custom li a:hover {background-color: #2854a1;color: white;cursor: pointer;}
 
 /* css for calender on listing page */
 
@@ -1012,38 +1028,3 @@ ul.product_data_tabs.wc-tabs{list-style-type: none;}
 /* Today's date on calendar background color */ 
 #wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.ui-datepicker-today{background-color: #E80000 !important;opacity: 0.20 !important;}
 #wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.ui-datepicker-today span{color: #FFFFFF !important;} 
-
-/* Menu atab on Add listing page  */
-#tabs_menu_custom ul {list-style-type: none;margin: 0;padding: 0;width: 150px;background-color: #f1f1f1;}
-#tabs_menu_custom li a {display: block;color: #000;padding: 8px 16px;text-decoration: none;}
-/* Change the link color on hover */
-#tabs_menu_custom li a:hover {background-color: #2854a1;color: white;cursor: pointer;}
-
-#bookings_availability input{width: 6em !important;}
-select#wc_booking_availability_type{padding: 10px 10px;}
-
-label{cursor: pointer;}
-#content .custom-regis{width: 100%;margin: 0 auto;text-align: center;}
-#content .custom-regis #password1, #password2, #first_name, #last_name, #email, #username{width: 25%;}
-.wrapper.custom-regis {
-    padding-bottom: 13px;
-}
-.custom-regis h3,label{color: #234f9c;}
-
-
-/*.custom-regis{width: 100%;margin-bottom: 5px;}
-
-#message, #password1, #password2, #first_name, #last_name, #email, #username{width: 80%;}
-.modal-body{padding-left: 90px;}
-
-#email{width: 20% !important;}
-
-
-.custom-regis {margin-bottom: 5% !important;}
-
-.custom-regis p{margin-bottom: 10px;}
-.custom-regis h3,label{color: #234f9c;}
-
-/*#message input{width: 150px;}
-
- #content{margin: 0 auto; float: right;}*/
