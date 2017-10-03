@@ -11,8 +11,9 @@ Text Domain: Mahen
 
 
 function bookable_form(){
-    include( 'main.php' );
-}
+    include( 'main.php' );?>
+    
+<?php }
 add_action('submit_job_form_job_fields_end','bookable_form');
 
 /******
