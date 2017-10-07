@@ -9,7 +9,6 @@ License: GPLv2 or later
 Text Domain: Mahen
 */
 
-
 function bookable_form(){
     include( 'main.php' );
     include( 'product-meta-field.php' );

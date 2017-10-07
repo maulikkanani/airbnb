@@ -1067,4 +1067,9 @@ input[type=checkbox]:checked:before{
 .page-id-75 .row.product-custom-field{
     min-height: 100px !important;
 }
-
+.widget-title{
+    font-size: 14px !important;
+}
+body .chosen-container{
+    display: none;
+}
