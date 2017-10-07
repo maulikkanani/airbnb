@@ -527,8 +527,6 @@
             RESOURCE TAB END
         -------->            
             
-            
-            
      
 <?php
 
@@ -1132,10 +1130,6 @@
             RESOURCE TAB END
         -------->
             
-            
-            
-            
-        
         <?php 
         
     }
@@ -1144,47 +1138,6 @@
 
     </div>
 </div> 
-
-
-<div class="amenities">
-        <h2 class="hndle ui-sortable-handle"><span>Product Information</span></h2>
-        <div class="the-space">
-        <div class="col-md-3">
-            <span class="det-tit">The space</span>
-        </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6">
-                    <ul>
-                  <?php if($mata_data['accommodates'] != '') { ?> <li><label>Accommodates:</label><span class="bold"><?php echo $mata_data['accommodates']; ?></span></li> <?php } ?>
-                  <?php if($mata_data['bathrooms'] != '') { ?> <li><label>Bathrooms:</label><span class="bold"><?php echo $mata_data['bathrooms']; ?></span></li> <?php } ?>
-                  <?php if($mata_data['bedrooms'] != '') { ?> <li><label>Bedrooms:</label><span class="bold"><?php echo $mata_data['bedrooms']; ?></span></li> <?php } ?>
-                  <?php if($mata_data['beds'] != '') { ?> <li><label>Beds:</label><span class="bold"><?php echo $mata_data['beds']; ?></span></li> <?php } ?>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                 <ul>   
-                 <?php if($mata_data['check-in'] != '') { ?> <li><label>Check In:</label><span class="bold"><?php echo $mata_data['check-in']; ?></span></li> <?php } ?>
-                 <?php if($mata_data['check-out'] != '') { ?> <li><label>Check Out:</label><span class="bold"><?php echo $mata_data['check-out']; ?></span></li> <?php } ?>
-                 <?php if($mata_data['pet-owner'] != '') { ?> <li><label>Pet Owner:</label><span class="bold"><?php echo $mata_data['pet-owner']; ?></span></li> <?php } ?>
-                 <?php if($mata_data['property-type'] != '') { ?> <li><label>Property type:</label><span class="bold"><?php echo $mata_data['property-type']; ?></span></li> <?php } ?>
-                 <?php if($mata_data['room-type'] != '') { ?> <li><label>Room type:</label><span class="bold"><?php echo $mata_data['room-type']; ?></span></li> <?php } ?>
-                </ul>
-                </div>
-            </div>
-            <div class="row">
-                <a class="btn-house" href="#">House Rules</a>
-            </div>
-        </div>
-        <div class="clearfix"></div>  
-    </div>    
-        <div>
-            
-        </div>
-</div>
-
-
-
 
 
 

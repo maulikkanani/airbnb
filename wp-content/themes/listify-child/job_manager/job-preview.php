@@ -22,7 +22,14 @@
                 print_r($_POST);
             echo '</pre>'; 
             
+            
+            echo '<pre>'; 
+                $pl = $_POST['list_data'];
+            echo '</pre>'; 
+                
         ?>
+        <input type="hidden" name="product_meta_data" value="<?php echo htmlspecialchars(serialize($pl));?>"> 
+        
         
         <!--General Tab-->
         

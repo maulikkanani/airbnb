@@ -1053,3 +1053,18 @@ label{cursor: pointer;}
 .listing-nav li a:hover {
     background-color: #111;
 }
+
+.listing-ammenities ul{list-style-type: none;margin: 0;padding: 0;overflow: hidden;}
+.listing-ammenities li{float: left; margin-right: 40px; margin-bottom: 25px;width: 27%;}
+.listing-ammenities li a {display: block;color: white;text-align: center;padding: 14px 16px;text-decoration: none;}
+
+input[type=checkbox]:checked:before{
+        font-size: 15px ; 
+}
+.page-id-71 .row.product-custom-field{
+        min-height: 150px !important;
+}
+.page-id-75 .row.product-custom-field{
+    min-height: 100px !important;
+}
+

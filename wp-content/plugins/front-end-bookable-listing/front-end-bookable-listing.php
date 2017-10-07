@@ -11,7 +11,9 @@ Text Domain: Mahen
 
 
 function bookable_form(){
-    include( 'main.php' );?>
+    include( 'main.php' );
+    include( 'product-meta-field.php' );
+?>
     
 <?php }
 add_action('submit_job_form_job_fields_end','bookable_form');
@@ -69,7 +71,7 @@ add_action('wp_footer', 'wpse_enqueue_js_css');
     Display menu in single listing page
 ********/
 
-function displaymenu(){
+function displaymenu($product_id){
     ?>
     <div class="listing-nav">
         <ul>
@@ -81,9 +83,47 @@ function displaymenu(){
         <br/>
         <hr>
     </div>
+    
+    <?php 
+        
+//Get product id using current job list
+        $id = get_the_ID();
+        $products_id_amenities=get_post_meta($id,'_products',true);        
+        $current_post_product = $products_id_amenities[0];
+//create a new post meta for ammenities   
+        $custom_boxs = get_post_meta( $current_post_product , 'product_meta_data', true );
+// unserialize the data         
+        $unserialize_data = maybe_unserialize($custom_boxs);
+        
+    ?>
+<!--Display ammnenities on the product listing page if it is available-->     
+
+    <aside id="listify_widget_panel_listing_tags-2" class="widget widget-job_listing listify_widget_panel_listing_tags">
+        <h2 class="widget-title widget-title-job_listing %s">Amenities</h2>
+        <div class="job_listing_tag-list listing-ammenities ">
+            <ul>
+                <?php if($unserialize_data['elevator'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/elevator.png" alt="" /><strong>Elevator in building</strong></li> <?php } ?>
+                <?php if($unserialize_data['wheelchair'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wheelchair.png" alt="" /><strong>Wheelchair accessible</strong></li> <?php } ?>
+                <?php if($unserialize_data['internet'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/internet.png" alt="" /><strong>Internet</strong></li> <?php } ?>
+                <?php if($unserialize_data['dryer'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hair-dryer.png" alt="" /><strong>Dryer</strong></li> <?php } ?>
+                <?php if($unserialize_data['wireless'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wifi.png" alt="" /><strong>Wireless Internet</strong></li> <?php } ?>
+                <?php if($unserialize_data['tv'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/tv.png" alt="" /><strong>TV</strong></li> <?php } ?>
+                <?php if($unserialize_data['free_parking'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/parked-car.png" alt="" /><strong>Free parking</strong></li> <?php } ?>
+                <?php if($unserialize_data['cigarette'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cigarette.png" alt="" /><strong>Smoking Allowed</strong></li> <?php } ?>
+                <?php if($unserialize_data['kitchen'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/kitchen.png" alt="" /><strong>kitchen</strong></li> <?php } ?>
+                <?php if($unserialize_data['air-conditioner'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/air-conditioner.png" alt="" /><strong>kitchen</strong></li> <?php } ?>
+            </ul>
+        </div>
+    </aside>
+    
     <?php 
 }
-add_action('single_job_listing_start','displaymenu');
+add_action('single_job_listing_start','displaymenu',439);
+
+
+
+
+
 
 if(isset($_POST['product_id'])){
     if(!empty($_POST['product_id'])){
@@ -106,8 +146,12 @@ function display_product_data($job_id,$value='') {
     $product_id='';
     
     echo "<pre>";
-    print_r($_POST);
+        print_r($_POST);
     echo "</pre>";
+    
+    echo '<pre>'; 
+        $_POST['list_data'];
+    echo '</pre>'; 
     
 //    die('test');
     $title =  get_the_title($job_id);
@@ -135,17 +179,20 @@ function display_product_data($job_id,$value='') {
    // Added Term taxonomy of vender for product     
         echo $vendor_id = $_COOKIE[ 'wcpv_vendor_id_' . COOKIEHASH ];
         $wpdb->query("insert into wp_term_relationships (object_id,term_taxonomy_id,term_order) values($product_id, $vendor_id, 0 )");
-                                   
+        
     // Added Product in listing.    
         array_push($product, $product_id);        
         
     }else{
        $product_id=(int)$_POST['product_id'] ;
     }
+    
+    
     update_post_meta( $job_id,'_products',array($product_id));
    
     //set product type
     wp_set_object_terms($product_id, 'booking', 'product_type');
+    
     
     
     /****** Postmeta for general tab start ******/      
@@ -596,10 +643,23 @@ function display_product_data($job_id,$value='') {
         update_post_meta($product_id, '_resource_block_costs', $resource_block_costs);
         
     }
-    //die('test_save');
+    
+    
     /****** 
      * Postmeta for Resources tab End 
      * *****/
+    
+    /* Amenities */ 
+    
+    if(empty($_POST['product_id'])){
+        if(isset($_POST['product_meta_data'])){
+            add_post_meta( $product_id, 'product_meta_data',$_POST['product_meta_data'] );     
+        }
+    }else{
+        $update_ammenities = $_POST['list_data'];
+        update_post_meta( $product_id, 'product_meta_data', $update_ammenities);
+    }
+    
 }
 //add_action( 'single_job_listing_meta_after', 'display_product_data' );
 add_action( 'job_manager_job_submitted', 'display_product_data' );

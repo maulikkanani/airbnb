@@ -13,13 +13,17 @@
 			 * @hooked job_listing_company_display - 30
 			 */
 			do_action( 'single_job_listing_start' );
+                        
 		?>
 
 		<div class="job_description" itemprop="description">
 			<?php echo apply_filters( 'the_job_description', get_the_content() ); ?>
 		</div>
-
-		<?php if ( candidates_can_apply() ) : ?>
+                
+                
+		<?php
+                    
+                if ( candidates_can_apply() ) : ?>
 			<?php get_job_manager_template( 'job-application.php' ); ?>
 		<?php endif; ?>
 
