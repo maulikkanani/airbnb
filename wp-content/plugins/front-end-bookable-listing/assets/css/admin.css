@@ -1030,10 +1030,7 @@ label{cursor: pointer;}
 #wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.ui-datepicker-today{background-color: #E80000 !important;opacity: 0.20 !important;}
 #wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td.ui-datepicker-today span{color: #FFFFFF !important;} 
 
-
-/* listing Navigation */
-
-
+/* Navigation on listig page */
 .listing-nav ul {
     list-style-type: none;
     margin: 0;
@@ -1041,7 +1038,9 @@ label{cursor: pointer;}
     overflow: hidden;
     background-color: #333;
 }
-.listing-nav li{float: left;}
+.listing-nav li {
+    float: left;
+}
 .listing-nav li a {
     display: block;
     color: white;
@@ -1049,10 +1048,12 @@ label{cursor: pointer;}
     padding: 14px 16px;
     text-decoration: none;
 }
-
+/* Change the link color to #111 (black) on hover */
 .listing-nav li a:hover {
     background-color: #111;
 }
+
+
 
 .listing-ammenities ul{list-style-type: none;margin: 0;padding: 0;overflow: hidden;}
 .listing-ammenities li{float: left; margin-right: 40px; margin-bottom: 25px;width: 27%;}
@@ -1070,6 +1071,43 @@ input[type=checkbox]:checked:before{
 .widget-title{
     font-size: 14px !important;
 }
-body .chosen-container{
+
+/* hide Region and category 
+    body .chosen-container{
     display: none;
+}*/
+.fieldset-products{
+    display: none;
+}
+
+/*Hide share buttin on add listing page */
+.addtoany_share_save_container.addtoany_content_bottom{
+    display: none;
+}
+
+/* For Amenities tab */
+.amenities_custom ul{
+    background-color: #f1f1f1;
+    color: black;
+    border-color: #f1f1f1;
+    margin-left: 0px;
+    width: 74%;
+}
+.amenities_custom ul li a{
+    color: #000;
+}
+.amenities_custom ul li a:hover{
+     border-color: #f1f1f1;
+    border-color: #2854a1;
+    color: #FFFFFF;
+}
+.page-id-495 .site-content{
+    padding-top: 65px;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.site select{
+    padding-right: 0px;
 }

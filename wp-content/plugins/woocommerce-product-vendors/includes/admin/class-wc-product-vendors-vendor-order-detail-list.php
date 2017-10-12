@@ -32,7 +32,7 @@ class WC_Product_Vendors_Vendor_Order_Detail_List extends WP_List_Table {
 
 		parent::__construct( array(
 			'singular'  => 'order',
-			'plural'    => 'orders',
+			'plural'    => 'orderses',
 			'ajax'      => false,
 		) );
 
@@ -154,7 +154,8 @@ class WC_Product_Vendors_Vendor_Order_Detail_List extends WP_List_Table {
 	 * @return mixed
 	 */
 	public function column_default( $item, $column_name ) {
-		switch( $column_name ) {
+            
+            	switch( $column_name ) {
 
 			case 'product_name' :
 				$quantity = absint( $item->product_quantity );
@@ -256,10 +257,10 @@ class WC_Product_Vendors_Vendor_Order_Detail_List extends WP_List_Table {
 	public function get_hidden_columns() {
 		// get user hidden columns
 		$hidden = get_hidden_columns( $this->screen );
+                
+                $new_hidden = array();
 
-		$new_hidden = array();
-
-		foreach( $hidden as $k => $v ) {
+                foreach( $hidden as $k => $v ) {
 			if ( ! empty( $v ) ) {
 				$new_hidden[] = $v;
 			}
@@ -278,8 +279,7 @@ class WC_Product_Vendors_Vendor_Order_Detail_List extends WP_List_Table {
 	 */
 	public function no_items() {
 		_e( 'No orders found.', 'woocommerce-product-vendors' );
-
-		return true;
+                return true;
 	}
 
 	/**

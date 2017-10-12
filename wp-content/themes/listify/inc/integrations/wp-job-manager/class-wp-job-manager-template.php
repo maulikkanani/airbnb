@@ -65,7 +65,7 @@ class Listify_WP_Job_Manager_Template extends listify_Integration {
 
         // output listing actions
         add_action( 'listify_single_job_listing_actions', array( $this, 'the_actions' ) );
-        add_action( 'listify_single_job_listing_actions_after', array( $this, 'submit_review_link' ) );
+            add_action( 'listify_single_job_listing_actions_after', array( $this, 'submit_review_link' ) );
 
         // breadcrumb links
         add_filter( 'term_links-job_listing_category', array( $this, 'term_links' ) );

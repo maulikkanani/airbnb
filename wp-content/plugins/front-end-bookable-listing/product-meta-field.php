@@ -36,7 +36,7 @@
 if(empty($custom_box)){?>
     
 <h2 style="display: block;"><span>Product Information</span></h2>
-<div class="wrap">
+<div class="wrap amenities_custom">
     <div class="row product-custom-field" style="min-height:400px;">
         <div  class="col-sm-12">
             <div class="col-xs-3"> 
@@ -188,4 +188,13 @@ if(empty($custom_box)){?>
         </div>
     </div>
 </div>
-<?php } ?>
+<?php }?>
+
+<script>
+    jQuery(document).ready(function(){
+        console.log('hi');
+        jQuery('#amenities').show();
+        
+    });
+    
+</script>

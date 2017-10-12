@@ -1,5 +1,9 @@
 jQuery(document).ready(function () {
 
+/* 09-10-2017 */
+    jQuery('#amenities').addClass("active");
+/* 09-10-2017 */
+
     jQuery('#bookings_availability, #bookings_pricing, .bookings_extension').on('change', '.wc_booking_availability_type select, .wc_booking_pricing_type select', function () {
         var value = jQuery(this).val();
         var row = jQuery(this).closest('tr');
@@ -536,6 +540,8 @@ jQuery(document).ready(function () {
             }
         });
     });
+    
+    
 });
 //Base cost is applied regardless of a customer’s choices on the booking form.
 //Block cost is the cost per block that was assigned in the General tab. If a customer books multiple blocks, this cost is multiplied by the number of blocks booked.

@@ -175,7 +175,7 @@ function display_product_data($job_id,$value='') {
         $post_guid= $wpdb->prefix . 'posts';
         $wpdb->query("UPDATE $post_guid SET guid='$site_url' WHERE id='$product_id'");
 
-   // Added Term taxonomy of vender for product     
+   // Added Term taxonomy of vender for product in "wp_term_taxonomy"  Table
         echo $vendor_id = $_COOKIE[ 'wcpv_vendor_id_' . COOKIEHASH ];
         $wpdb->query("insert into wp_term_relationships (object_id,term_taxonomy_id,term_order) values($product_id, $vendor_id, 0 )");
         
@@ -676,9 +676,6 @@ function remove_bookable_person_meta() {
 	}
 add_action( 'wp_ajax_woocommerce_remove_bookable_person',  'remove_bookable_person_meta' );
 
-
-
-
 //function display_job() {
 //  global $post;
 //
@@ -691,13 +688,48 @@ add_action( 'wp_ajax_woocommerce_remove_bookable_person',  'remove_bookable_pers
 //}
 //add_action( 'single_job_listing_meta_start', 'display_job' );
 
-//function display_Vender_order(){
-//    if ( WC_Product_Vendors_Utils::is_vendor()) {
-//        
-//           $order=new WC_Product_Vendors_Bookings();
-//           $order->render_bookings_dashboard_widget();
-//       } 
-//}
-//add_action('woocommerce_account_content','display_Vender_order');
+function display_Vender_order(){
+  
+    if ( WC_Product_Vendors_Utils::is_vendor()) {
+       $order=new WC_Product_Vendors_Bookings();
+           $order->render_bookings_dashboard_widget();
+  }
+  
+}
+add_action('woocommerce_account_content','display_Vender_order');
 
+
+
+
+//function display_Vender_orders(){
+        
+//        function render_convos_in_orders() {
+//
+//		add_meta_box( 'orders_convo', 'Conversation',
+//				array($this,'render_convo_admin'),
+//				'shop_order', 'normal', 'default');
+//	}
+
+//     $ordered->render_wooconvo_myaccount($order);
+//    global $wooconvo;
+//    $wooconvo -> render_wooconvo_frontend();
+//
+//}
+//add_action('woocommerce_account_content','display_Vender_orders');
+
+
+//function render_convos_in_orderss(){
+//    
+//    $new_chat = new NM_PLUGIN_WooConvo();
+//    $new_chat->render_convo_admin($order);
+//     
+////                $order_id = $order -> ID;
+////		$new_chat -> load_template('convo-history.php');
+////		$new_chat -> load_template('send-message.php');
+//        
+//    add_meta_box( 'orders_convo', 'Conversation',
+//				array($this,'render_convo_admin'),
+//				'shop_order', 'normal', 'default');
+//}
+//add_action('woocommerce_account_content','render_convos_in_orderss');
 

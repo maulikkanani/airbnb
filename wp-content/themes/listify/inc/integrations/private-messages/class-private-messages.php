@@ -19,8 +19,8 @@ class Listify_PrivateMessages extends Listify_Integration {
 	 * @since 1.8.0
 	 */
 	public function setup_actions() {
-        add_filter( 'walker_nav_menu_start_el', array( $this, 'menu_item' ), 10, 4 );
-        add_filter( 'nav_menu_css_class', array( $this, 'menu_item_class' ), 10, 3 );
+            add_filter( 'walker_nav_menu_start_el', array( $this, 'menu_item' ), 10, 4 );
+            add_filter( 'nav_menu_css_class', array( $this, 'menu_item_class' ), 10, 3 );
 	}
 
 	/**
