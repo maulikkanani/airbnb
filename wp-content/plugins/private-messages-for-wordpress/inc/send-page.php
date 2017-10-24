@@ -186,14 +186,41 @@ function rwpm_send()
 					{
                                             if(current_user_can('customer')){
                                                 
+                                                do_action('woocommerce_account_content');
+                                                
+                                                $current_user = wp_get_current_user();
+                                                echo 'Username: ' . $current_user->user_login . '<br />';
+                                                echo 'User email: ' . $current_user->user_email . '<br />';
+                                                echo 'User first name: ' . $current_user->user_firstname . '<br />';
+                                                echo 'User last name: ' . $current_user->user_lastname . '<br />';
+                                                echo 'User display name: ' . $current_user->display_name . '<br />';
+                                                echo 'User ID: ' . $current_user->ID . '<br />';
+                                                
+                                               $args = array(
+                                                        'post_status'    => 'paid',
+                                                        'post_type'      => 'wc_booking',
+//                                                        
+                                                    );
+
+                                                    $query = new WP_Query( $args );
+                                                
                                                 // Get all users of blog
-						$args = array(
-                                                        'role' => 'wc_product_vendors_manager_vendor',
-							'order'   => 'ASC',
-							'orderby' => 'display_name' );
+//						$args = array(
+//                                                        'role' => 'wc_product_vendors_manager_vendor',
+//							'order'   => 'ASC',
+//							'orderby' => 'display_name' );
+                                                    $query->the_post();
+                                                    $order    = new WC_Order( $query->post->ID );
+                                                    
+                                                    echo '<pre>';
+                                                    print_r($order);
+                                                    echo '</pre>';
+                                                    
+                                                    echo 'mahen'.$order->post->post_parent;
+                                                    
+                                                    
 						$values = get_users( $args );
 						$values = apply_filters( 'rwpm_recipients', $values );
-                                                
                                                 
 						?>
 						<select name="recipient[]" multiple="multiple" size="5">
@@ -206,7 +233,7 @@ function rwpm_send()
 							?>
 						</select>
 						<?php
-                                            }elseif(current_user_can('wc_product_vendors_manager_vendor')) {
+                                            }elseif (current_user_can('wc_product_vendors_manager_vendor')) {
                                                 // Get all users of blog
 						$args = array(
                                                         'role' => 'customer',

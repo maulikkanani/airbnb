@@ -98,7 +98,7 @@ function displaymenu($product_id){
 <!--Display ammnenities on the product listing page if it is available-->     
 
     <aside id="listify_widget_panel_listing_tags-2" class="widget widget-job_listing listify_widget_panel_listing_tags">
-        <h2 class="widget-title widget-title-job_listing %s">Amenities</h2>
+        <h2 class="widget-title widget-title-job_listing ">Amenities</h2>
         <div class="job_listing_tag-list listing-ammenities ">
             <ul>
                 <?php if($unserialize_data['elevator'] == 'yes') { ?> <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/elevator.png" alt="" /><strong>Elevator in building</strong></li> <?php } ?>
@@ -699,37 +699,4 @@ function display_Vender_order(){
 add_action('woocommerce_account_content','display_Vender_order');
 
 
-
-
-//function display_Vender_orders(){
-        
-//        function render_convos_in_orders() {
-//
-//		add_meta_box( 'orders_convo', 'Conversation',
-//				array($this,'render_convo_admin'),
-//				'shop_order', 'normal', 'default');
-//	}
-
-//     $ordered->render_wooconvo_myaccount($order);
-//    global $wooconvo;
-//    $wooconvo -> render_wooconvo_frontend();
-//
-//}
-//add_action('woocommerce_account_content','display_Vender_orders');
-
-
-//function render_convos_in_orderss(){
-//    
-//    $new_chat = new NM_PLUGIN_WooConvo();
-//    $new_chat->render_convo_admin($order);
-//     
-////                $order_id = $order -> ID;
-////		$new_chat -> load_template('convo-history.php');
-////		$new_chat -> load_template('send-message.php');
-//        
-//    add_meta_box( 'orders_convo', 'Conversation',
-//				array($this,'render_convo_admin'),
-//				'shop_order', 'normal', 'default');
-//}
-//add_action('woocommerce_account_content','render_convos_in_orderss');
 

@@ -22,7 +22,6 @@
 /** The name of the database for WordPress */
 define('DB_NAME', 'airbnb');
 
-
 /** MySQL database username */
 define('DB_USER', 'dev');
 //define('DB_USER', 'root');

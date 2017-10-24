@@ -44,3 +44,21 @@ button.btn-link {background-color: inherit;border: none;color: #2854a1;font-size
 .single-product .product .woocommerce-tabs .tabs a {font-size: 20px;font-weight: 600;}
 .single-product .product .woocommerce-tabs .tabs li {margin-right: 3em !important;}
 .product-vendeor-info h2 {display: block !important;margin-top: 10px;font-size: 28px;margin-bottom: 10px;}
+
+
+.page-id-467 pre{display: none;}
+.page-id-467 .content-box p:last-child{ background-color: #2854a1;
+    /* color: white !important; */
+    width: 21%; border-radius: 10px; padding: 5px 0 5px 12px;
+}
+.page-id-467 .content-box p:last-child:hover{ background-color: #D80000 ;
+    /* color: white !important; */
+    width: 21%;border-radius: 10px;padding: 5px 0 5px 12px;}
+.page-id-467 .content-box p a{color: white;}
+
+
+.woocommerce .cart_item .product-remove{ padding-right: 10px; width: 46px; }
+    
+.woocommerce{     font-family: 'Fira Sans', sans-serif !important; }
+.product-name .variation dd, .product-name .variation  dt{ margin-bottom: 10px; }
+.product-name .variation  dt{ margin-bottom: 0px; }

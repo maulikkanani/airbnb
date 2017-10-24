@@ -76,6 +76,7 @@ extract(theme_temp_setup($tmpcontent));
 
 function listify_child_styles() {
     wp_enqueue_style( 'listify-child', get_stylesheet_uri() );
+    wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri().'/js/custom.js', false );
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 
@@ -585,7 +586,6 @@ function add_login_logout_register_menu( $items, $args ) {
     if ( $args->theme_location != 'primary' ) {
     return $items;
  }
- 
     if ( is_user_logged_in() ) {
         $items .= '<li><a href="' . wp_logout_url(home_url()) . '">' . __( 'Log Out' ) . '</a></li>';
     } else {
@@ -596,5 +596,4 @@ function add_login_logout_register_menu( $items, $args ) {
      return $items;
 }
 add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
-
 
