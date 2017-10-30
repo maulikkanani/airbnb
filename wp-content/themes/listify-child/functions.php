@@ -597,3 +597,26 @@ function add_login_logout_register_menu( $items, $args ) {
 }
 add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
 
+
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login{ width: 500px !important; padding: 10% 30% 0 !important; background-color: #a7b8d7; }
+        #login h1 a, .login h1 a {
+                background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
+		height:65px;
+		width:320px;
+		background-size: 320px 65px;
+		background-repeat: no-repeat;
+        	padding-bottom: 30px;
+        }
+        .login #nav a, .login #backtoblog a{ color: #000 !important; }
+        
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+function wc_empty_cart_redirect_url() {
+    return  get_site_url().'/listing';
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'wc_empty_cart_redirect_url' );
+

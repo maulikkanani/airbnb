@@ -1,2 +1,2 @@
 <?php exit(0); ?>
-{"sucuriscan_plugin_version":"1.8.3","sucuriscan_runtime":1508816510}
+{"sucuriscan_plugin_version":"1.8.3","sucuriscan_runtime":1509078504}

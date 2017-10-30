@@ -688,15 +688,14 @@ add_action( 'wp_ajax_woocommerce_remove_bookable_person',  'remove_bookable_pers
 //}
 //add_action( 'single_job_listing_meta_start', 'display_job' );
 
-function display_Vender_order(){
-  
+function display_Vender_order(){?>
+<p style="font-weight: 600;font-size: 17px;padding: 0;margin: 0 0 5px;">Cutomer's order</p>
+    <?php
+    
     if ( WC_Product_Vendors_Utils::is_vendor()) {
+        
        $order=new WC_Product_Vendors_Bookings();
-           $order->render_bookings_dashboard_widget();
+       $order->render_bookings_dashboard_widget();
   }
-  
 }
 add_action('woocommerce_account_content','display_Vender_order');
-
-
-
