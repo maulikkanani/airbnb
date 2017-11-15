@@ -620,3 +620,29 @@ function wc_empty_cart_redirect_url() {
 }
 add_filter( 'woocommerce_return_to_shop_redirect', 'wc_empty_cart_redirect_url' );
 
+
+remove_action('woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20);
+add_action('woocommerce_proceed_to_checkout', 'change_url_to_checkout', 20);
+function change_url_to_checkout(){
+        $extra_url = 'checkout';
+        ?>
+        <a href="<?php echo $extra_url; ?>" class="checkout-button button alt wc-forward"><?php  _e( 'Proceed to Checkout', 'woocommerce' ); ?></a>
+        <?php   
+}
+        
+function change_booking_single_add_to_cart_text() {
+	
+//  global $product;
+//  $product_id = $product->get_id();
+//  $sku = $product->get_sku();
+//  Set below the page ID, your button text and link parameters to pass in url
+//  $page_id = get_the_ID();
+    
+    $button_text = __('Book Now', 'woocommerce');
+    //   $link = get_permalink( $page_id ) . '?id=' . $product_id . '&sku=' . $sku;
+    
+    // Output your custom text
+    echo '<a href="' .home_url().'/cart" class="book-now button">'.$button_text.'</a>';
+        
+}
+add_filter( 'woocommerce_booking_single_add_to_cart_text','change_booking_single_add_to_cart_text' );

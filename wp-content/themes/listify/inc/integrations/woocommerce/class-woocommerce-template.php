@@ -98,7 +98,7 @@ class Listify_WooCommerce_Template {
 
 		$link = sprintf(
 			'<a href="%s" class="current-cart"><span class="current-cart-count">%d</span> %s</a>',
-			( 0 == wc()->cart->cart_contents_count ) ? esc_url( wc_get_page_permalink( 'shop' ) ) : esc_url( wc()->cart->get_cart_url() ),
+			( 0 == wc()->cart->cart_contents_count ) ? esc_url( wc_get_page_permalink( 'shop' ) ) : esc_url( wc()->cart->get_cart_url().'/cart'),
 			wc()->cart->cart_contents_count,
 			_n( 'Item', 'Items', wc()->cart->cart_contents_count, 'listify' )
 		);
